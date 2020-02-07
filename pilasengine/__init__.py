@@ -14,6 +14,9 @@ import signal
 import imp
 import time
 
+import faulthandler
+faulthandler.enable()
+
 try:
     from PyQt5 import QtWebEngineWidgets
 except ModuleNotFoundError:
@@ -661,7 +664,7 @@ def abrir_script_con_livereload(archivo):
 def abrir_script(archivo):
 
     def terminar_con_error(mensaje):
-        _ = QtWidgets.QApplication(sys.argv)
+        # TODO: Asegurarse de que haya una instancia de QApplication
         error = QtWidgets.QMessageBox()
         error.critical(None, "Uh, algo anda mal...", mensaje)
         sys.exit(1)

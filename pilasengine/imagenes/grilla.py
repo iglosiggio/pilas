@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 import os
 
-from imagen import Imagen
+from pilasengine.imagenes.imagen import Imagen
 
 
 class Grilla(Imagen):

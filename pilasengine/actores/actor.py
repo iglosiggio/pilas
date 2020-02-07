@@ -146,13 +146,13 @@ class Actor(Estudiante):
         Este método se llama automáticamente cuando el actor se
         genera y agrega dentro de una escena.
         """
-        if not isinstance(x, (int, long, float)):
+        if not isinstance(x, (int, float)):
             mensaje = "El parametro x tiene un valor no permitido: " + str(x)
             raise Exception(mensaje)
         else:
             self.x = x
 
-        if not isinstance(y, (int, long, float)):
+        if not isinstance(y, (int, float)):
             mensaje = "El parametro y tiene un valor no permitido: " + str(y)
             raise Exception(mensaje)
         else:
@@ -456,21 +456,14 @@ class Actor(Estudiante):
         return self._y
 
     def definir_escala(self, s):
-        if s < 0.001:
-            s = 0.001
-
         self.escala_x = s
         self.escala_y = s
 
     def definir_escala_x(self, s):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'escala_x', s)
-        if self._escala_x < 0.001:
-            self._escala_x = 0.001
 
     def definir_escala_y(self, s):
         self.pilas.utils.interpretar_propiedad_numerica(self, 'escala_y', s)
-        if self._escala_y < 0.001:
-            self._escala_y = 0.001
 
     def obtener_escala(self):
         return self._escala_x
@@ -622,7 +615,7 @@ class Actor(Estudiante):
         Si la función a agregar espera un argumento, este método se
         asegura de enviarle el actor receptor del evento.
         """
-        cantidad_de_argumentos = len(inspect.getargspec(callback).args)
+        cantidad_de_argumentos = len(inspect.getfullargspec(callback).args)
 
         if inspect.ismethod(callback):
             cantidad_de_argumentos -= 1

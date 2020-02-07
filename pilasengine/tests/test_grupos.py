@@ -3,15 +3,10 @@
 import collections
 import sys
 import unittest
-
-from PyQt5 import QtWidgets
-
 import pilasengine
 
 
 class Test(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar()
 
@@ -22,22 +17,22 @@ class Test(unittest.TestCase):
 
     def testCuentaCorrectamenteActoresDentroDeGrupos(self):
         grupo = self.pilas.actores.Grupo()
-        self.assertEquals(grupo.obtener_cantidad_de_actores(), 0,
+        self.assertEqual(grupo.obtener_cantidad_de_actores(), 0,
                           "Hay 0 _actores al crear un grupo")
 
         actor = self.pilas.actores.Aceituna()
         grupo.agregar(actor)
 
-        self.assertEquals(grupo.obtener_cantidad_de_actores(), 1,
+        self.assertEqual(grupo.obtener_cantidad_de_actores(), 1,
                           "Hay 0 _actores al crear un grupo")
-        self.assertEquals(grupo.obtener_actores(), [actor],
+        self.assertEqual(grupo.obtener_actores(), [actor],
                           "Retoran correctamente los _actores")
 
         grupo.eliminar(actor)
 
-        self.assertEquals(grupo.obtener_actores(), [],
+        self.assertEqual(grupo.obtener_actores(), [],
                           "Borra correctamente un actor")
-        self.assertEquals(grupo.obtener_cantidad_de_actores(), 0,
+        self.assertEqual(grupo.obtener_cantidad_de_actores(), 0,
                           "El grupo vuelve a estar vacío")
 
     def testRechazaAgregarNoActores(self):

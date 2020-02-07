@@ -168,7 +168,7 @@ class Actores(object):
         """Se asegura que la función iniciar del actor
         se pueda ejecutar con los argumentos indicados."""
 
-        argumentos_esperados = inspect.getargspec(funcion)
+        argumentos_esperados = inspect.getfullargspec(funcion)
         args = argumentos_esperados[0]
         defaults = argumentos_esperados[3]
 
@@ -356,7 +356,7 @@ class Actores(object):
 
     def Grupo(self):
         ":rtype: grupo.Grupo"
-        import grupo
+        from pilasengine.actores import grupo
         nuevo_grupo = grupo.Grupo(self.pilas)
         return self.agregar_grupo(nuevo_grupo)
 
@@ -500,14 +500,14 @@ class Actores(object):
     def Texto(self, cadena_de_texto="Sin texto", magnitud=20, vertical=False,
               fuente=None, fijo=True, ancho=0, x=0, y=0):
         ":rtype: texto.Texto"
-        import texto
+        from pilasengine.actores import texto
         nuevo_actor = texto.Texto(self.pilas, cadena_de_texto, magnitud,
                                   vertical, fuente, fijo, ancho, x, y)
         return nuevo_actor
 
     def TextoInferior(self, texto="Sin texto", magnitud=20, retraso=5):
         ":rtype: texto_inferior.TextoInferior"
-        import texto_inferior
+        from pilasengine.actores import texto_inferior
         nuevo_actor = texto_inferior.TextoInferior(self.pilas, texto, magnitud,
                                                    retraso=retraso)
         return nuevo_actor

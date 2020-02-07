@@ -1,20 +1,15 @@
 # -*- encoding: utf-8 -*-
 import sys
 import unittest
-from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 from PyQt5.QtTest import QTest
-
 import pilasengine
 from pilasengine.controles import Controles
 from pilasengine.controles import simbolos
 
 
 class TestControles(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
-        import pilasengine
         self.pilas = pilasengine.iniciar()
 
     def testRealizaMovimientoConControles(self):

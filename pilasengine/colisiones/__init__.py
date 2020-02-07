@@ -98,12 +98,12 @@ class Colisiones(object):
 
     def invocar_funcion(self, funcion, actor1, actor2):
         if inspect.ismethod(funcion):
-            if funcion.func_code.co_argcount == 3:
+            if funcion.__code__.co_argcount == 3:
                 funcion(actor1, actor2)
             else:
                 funcion()
         else:
-            if funcion.func_code.co_argcount == 2:
+            if funcion.__code__.co_argcount == 2:
                 funcion(actor1, actor2)
             else:
                 funcion()

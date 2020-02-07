@@ -6,7 +6,6 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-from PyQt5 import QtWidgets
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 from pilasengine.imagenes.imagen import Imagen
@@ -19,7 +18,7 @@ class Superficie(Imagen):
 
     def __init__(self, pilas, ancho, alto):
         self.pilas = pilas
-        self._imagen = QtWidgets.QPixmap(ancho, alto)
+        self._imagen = QtGui.QPixmap(int(ancho), int(alto))
         self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
         self.canvas = QtGui.QPainter()
         self.ruta_original = os.urandom(25)
@@ -63,7 +62,7 @@ class Superficie(Imagen):
         else:
             flags = QtCore.Qt.AlignLeft | QtCore.Qt.TextWordWrap | QtCore.Qt.AlignTop
 
-        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
 
         if vertical:
@@ -73,7 +72,7 @@ class Superficie(Imagen):
 
         for line in lineas:
             r = QtCore.QRect(dx, dy, ancho, 2000)
-            rect = self.canvas.drawText(r, flags, line)
+            rect = self.canvas.drawText(r, int(flags), line)
             dy += rect.height()
 
         self.canvas.end()
@@ -84,7 +83,7 @@ class Superficie(Imagen):
 
         r, g, b, _ = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
-        pen = QtWidgets.QPen(color, grosor)
+        pen = QtGui.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         if relleno:
@@ -99,13 +98,13 @@ class Superficie(Imagen):
 
         r, g, b, a = color.obtener_componentes()
         color = QtGui.QColor(r, g, b, a)
-        pen = QtWidgets.QPen(color, grosor)
+        pen = QtGui.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         if relleno:
             self.canvas.setBrush(color)
 
-        self.canvas.drawRect(x, y, ancho, alto)
+        self.canvas.drawRect(int(x), int(y), int(ancho), int(alto))
         self.canvas.end()
 
     def linea(self, x, y, x2, y2, color=colores.negro, grosor=1):
@@ -113,7 +112,7 @@ class Superficie(Imagen):
 
         r, g, b, _ = color.obtener_componentes()
         color = QtGui.QColor(r, g, b)
-        pen = QtWidgets.QPen(color, grosor)
+        pen = QtGui.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         self.canvas.drawLine(x, y, x2, y2)

@@ -1,14 +1,10 @@
 # -*- encoding: utf-8 -*-
 import sys
 import unittest
-from PyQt5 import QtWidgets
-
 import pilasengine
 
 
 class TestHabilidades(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar()
 
@@ -20,7 +16,7 @@ class TestHabilidades(unittest.TestCase):
         actor = self.pilas.actores.Aceituna()
         actor.aprender(self.pilas.habilidades.Habilidad)
         actor.aprender(self.pilas.habilidades.Habilidad)
-        self.assertEquals(len(actor._habilidades), 1,
+        self.assertEqual(len(actor._habilidades), 1,
                           'No puede Repetir la habilidad')
 
     def testPuedeIniciarHabilidad(self):
@@ -39,7 +35,7 @@ class TestHabilidades(unittest.TestCase):
         actor = self.pilas.actores.Aceituna()
         actor.aprender(self.pilas.habilidades.Habilidad)
         actor.habilidades.Habilidad.eliminar()
-        self.assertEquals(actor._habilidades, list(), 'Puede eliminar habilidad')
+        self.assertEqual(actor._habilidades, list(), 'Puede eliminar habilidad')
 
     def testPuedeCrearHabilidadPersonalizada(self):
         class MiHabilidad(pilasengine.habilidades.Habilidad):
@@ -49,7 +45,7 @@ class TestHabilidades(unittest.TestCase):
         actor = self.pilas.actores.Aceituna()
         actor.aprender(MiHabilidad)
 
-        self.assertEquals(1, len(actor._habilidades),
+        self.assertEqual(1, len(actor._habilidades),
                           'Pude aprender habilidad personalizada')
 
     def testFallaConHabilidadInvalida(self):
@@ -89,7 +85,7 @@ class TestHabilidades(unittest.TestCase):
 
         actor.aprender('mihabilidad')
 
-        self.assertEquals(1, len(actor._habilidades), 'Pude aprender habilidad personalizada desde string')
+        self.assertEqual(1, len(actor._habilidades), 'Pude aprender habilidad personalizada desde string')
 
     def testPuedeReportarErroresAlAprenderHabilidadesIncorrectamente(self):
         actor = self.pilas.actores.Aceituna()

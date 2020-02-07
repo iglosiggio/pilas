@@ -7,8 +7,6 @@ import pilasengine
 
 
 class TestMusicaYSonidos(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar()
 
@@ -18,7 +16,7 @@ class TestMusicaYSonidos(unittest.TestCase):
         datos.guardar('mejor_puntaje', 100)
         dato = datos.obtener('mejor_puntaje')
 
-        self.assertTrue(dato is 100)
+        self.assertTrue(dato == 100)
 
         datos.guardar('datos', [1, 2, 3, 4])
         dato = datos.obtener('datos')

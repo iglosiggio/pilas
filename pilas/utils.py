@@ -508,7 +508,7 @@ def iniciar_asistente_desde_argumentos():
 
                 sys.exit(execfile(archivo_a_ejecutar))
             except Exception as e:
-                mostrar_mensaje_de_error_y_salir(e.__class__.name + ": " + e.message)
+                mostrar_mensaje_de_error_y_salir(e.__class__.name + ": " + str(message))
                 return
 
         if opciones.interprete:

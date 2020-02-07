@@ -64,7 +64,7 @@ class WidgetConAceleracion(QGLWidget):
         self.escala = 1
 
         self.fps = fps.FPS(60)  # 60 Cuadros por segundo.
-        self.timer_id = self.startTimer(1000 / 100.0)
+        self.timer_id = self.startTimer(1000 // 100)
 
     def detener_bucle_principal(self):
         if self.timer_id:
@@ -77,7 +77,7 @@ class WidgetConAceleracion(QGLWidget):
         if self.timer_id:
             raise Exception("El bucle está en curso, no se puede reiniciar si se está ejecutando.")
         else:
-            self.timer_id = self.startTimer(1000 / 100.0)
+            self.timer_id = self.startTimer(1000 // 100)
 
     def obtener_centro_fisico(self):
         """Retorna el centro de la ventana en pixels."""

@@ -28,7 +28,7 @@ def generar_color_desde_texto(texto_del_color):
     if isinstance(texto_del_color, Color):
         return texto_del_color
     else:
-        if diccionario_colores.has_key(texto_del_color):
+        if texto_del_color in diccionario_colores:
             return diccionario_colores[texto_del_color.lower()]
         else:
             raise TypeError("No se puede reconocer el color " + texto_del_color)

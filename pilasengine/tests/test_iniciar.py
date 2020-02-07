@@ -1,13 +1,9 @@
 import sys
 import unittest
-from PyQt5 import QtWidgets
-
 import pilasengine
 
 
 class TestIniciar(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar()
 
@@ -23,8 +19,8 @@ class TestIniciar(unittest.TestCase):
     def testPuedeCrearUnActor(self):
         un_actor = self.pilas.actores.Aceituna()
         self.assertTrue(un_actor, "Existe el actor")
-        self.assertEquals(un_actor.x, 0, "Se ubica en la posicion x=0")
-        self.assertEquals(un_actor.y, 0, "Se ubica en la posicion y=0")
+        self.assertEqual(un_actor.x, 0, "Se ubica en la posicion x=0")
+        self.assertEqual(un_actor.y, 0, "Se ubica en la posicion y=0")
 
     def testPuedeEliminarUnActor(self):
         actor = self.pilas.actores.Aceituna()

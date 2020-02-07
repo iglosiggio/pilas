@@ -191,7 +191,7 @@ class Habilidades(object):
 
 
         metodo_iniciar = getattr(clase_del_comportamiento, 'iniciar')
-        argumentos = inspect.getargspec(metodo_iniciar)
+        argumentos = inspect.getfullargspec(metodo_iniciar)
 
         if not 'receptor' in argumentos.args:
             mensaje = "El metodo %s.iniciar tiene que poder recibir el argumento 'receptor' como primer argumento." %(nombre)

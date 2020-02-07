@@ -9,8 +9,6 @@ import pilasengine
 
 
 class TestColisiones(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar(modo_test=True)
 
@@ -19,8 +17,8 @@ class TestColisiones(unittest.TestCase):
         aceituna = self.pilas.actores.Aceituna()
 
         def colisionan(actor1, actor2):
-            self.assertEquals(actor1.id, mono.id)
-            self.assertEquals(actor2.id, aceituna.id)
+            self.assertEqual(actor1.id, mono.id)
+            self.assertEqual(actor2.id, aceituna.id)
 
         self.pilas.colisiones.agregar(mono, aceituna, colisionan)
         self.pilas.colisiones.notificar_colision(mono.figura_de_colision, aceituna.figura_de_colision)
@@ -33,8 +31,8 @@ class TestColisiones(unittest.TestCase):
         aceituna = self.pilas.actores.Aceituna()
 
         def colisionan(actor1, actor2):
-            self.assertEquals(actor1.id, mono.id)
-            self.assertEquals(actor2.id, aceituna.id)
+            self.assertEqual(actor1.id, mono.id)
+            self.assertEqual(actor2.id, aceituna.id)
 
         self.pilas.colisiones.agregar("mono", "aceituna", colisionan)
         self.pilas.colisiones.notificar_colision(mono.figura_de_colision, aceituna.figura_de_colision)
@@ -47,8 +45,8 @@ class TestColisiones(unittest.TestCase):
         rectangulo = self.pilas.fisica.Rectangulo(0, 0, 100, 100)
 
         def colisionan(figura1, figura2):
-            self.assertEquals(figura1.id, circulo.id)
-            self.assertEquals(figura2.id, rectangulo.id)
+            self.assertEqual(figura1.id, circulo.id)
+            self.assertEqual(figura2.id, rectangulo.id)
 
         self.pilas.colisiones.agregar(circulo, rectangulo, colisionan)
         self.pilas.colisiones.notificar_colision(circulo, rectangulo)
@@ -61,8 +59,8 @@ class TestColisiones(unittest.TestCase):
         rectangulo = self.pilas.fisica.Rectangulo(0, 0, 100, 100)
 
         def colisionan(figura1, figura2):
-            self.assertEquals(figura1.id, circulo.id)
-            self.assertEquals(figura2.id, rectangulo.id)
+            self.assertEqual(figura1.id, circulo.id)
+            self.assertEqual(figura2.id, rectangulo.id)
 
         self.pilas.colisiones.agregar("circulo", "rectangulo", colisionan)
         self.pilas.colisiones.notificar_colision(circulo, rectangulo)

@@ -2,10 +2,8 @@
 import sys
 import time
 import unittest
-
-from PyQt5 import QtWidgets
-
 import pilasengine
+
 
 class SubTexto(pilasengine.actores.Texto):
     def iniciar(self):
@@ -13,8 +11,6 @@ class SubTexto(pilasengine.actores.Texto):
 
 
 class TestActores(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar(modo_test=True)
 
@@ -38,11 +34,11 @@ class TestActores(unittest.TestCase):
 
     def testFuncionanInterpolacionesSimples(self):
         actor = self.pilas.actores.Aceituna()
-        self.assertEquals(0, actor.x, "Está en la posición inicial")
+        self.assertEqual(0, actor.x, "Está en la posición inicial")
 
         actor.x = [100]
 
-        self.assertEquals(0, actor.x, "Está en la posición inicial")
+        self.assertEqual(0, actor.x, "Está en la posición inicial")
         escena = self.pilas.obtener_escena_actual()
         escena.actualizar_interpolaciones()
         self.assertTrue(actor.x > 0, "El actor se mueve un poco a la derecha")
@@ -79,7 +75,7 @@ class TestActores(unittest.TestCase):
                          llegó a x=100")
 
     def testPuedeInstanciarTodosLosActoresSinArgumentos(self):
-        nombres = [n for n in dir(self.pilas.actores) if n.istitle() and n is not 'Grupo']
+        nombres = [n for n in dir(self.pilas.actores) if n.istitle() and n != 'Grupo']
         self.assertTrue(nombres, "No se encontraron actores para testear")
 
         funciones = [getattr(self.pilas.actores, n) for n in nombres]
@@ -120,8 +116,6 @@ class TestActores(unittest.TestCase):
         self.assertTrue(actor.esta_dentro_de_la_pantalla(), "y el metodo esta_dentro_de_la_pantalla retorna lo contrario")
 
 class TestActoresPersonalizados(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     class MiActor(pilasengine.actores.Actor):
 
         def iniciar(self):

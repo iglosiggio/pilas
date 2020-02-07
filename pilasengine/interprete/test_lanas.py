@@ -6,7 +6,7 @@
 import sys
 from PyQt5 import QtWidgets
 
-import lanas
+from pilasengine.interprete import lanas
 
 
 app = QtWidgets.QApplication(sys.argv)

@@ -1,14 +1,10 @@
 # -*- encoding: utf-8 -*-
 import sys
 import unittest
-from PyQt5 import QtWidgets
-
 import pilasengine
 
 
 class TestIniciar(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar()
 
@@ -20,34 +16,34 @@ class TestIniciar(unittest.TestCase):
                                            fisica=False,
                                            posiciones=False)
         modos = self.pilas.depurador.obtener_modos_habilitados()
-        self.assertEquals([], modos)
+        self.assertEqual([], modos)
 
     def testHabilitaLosModulosUnoAUno(self):
         self.pilas.depurador.definir_modos(info=True)
         modos = self.pilas.depurador.obtener_modos_habilitados()
-        self.assertEquals(['ModoInformacionDeSistema'], modos,
-                          "Habilita el modo info")
+        self.assertEqual(['ModoInformacionDeSistema'], modos,
+                         "Habilita el modo info")
 
         self.pilas.depurador.definir_modos(puntos_de_control=True)
         modos = self.pilas.depurador.obtener_modos_habilitados()
-        self.assertEquals(['ModoPuntosDeControl'], modos,
-                          "Habilita el modo puntos de control")
+        self.assertEqual(['ModoPuntosDeControl'], modos,
+                         "Habilita el modo puntos de control")
 
         self.pilas.depurador.definir_modos(radios=True)
         modos = self.pilas.depurador.obtener_modos_habilitados()
-        self.assertEquals(['ModoRadiosDeColision'], modos,
+        self.assertEqual(['ModoRadiosDeColision'], modos,
                           "Habilita el modo radios de colisión")
 
         self.pilas.depurador.definir_modos(areas=True)
         modos = self.pilas.depurador.obtener_modos_habilitados()
-        self.assertEquals(['ModoArea'], modos,
-                          "Habilita el modo areas de colisión")
+        self.assertEqual(['ModoArea'], modos,
+                         "Habilita el modo areas de colisión")
 
         self.pilas.depurador.definir_modos(fisica=True)
         modos = self.pilas.depurador.obtener_modos_habilitados()
-        self.assertEquals(['ModoFisica'], modos, "Habilita el modo fisico")
+        self.assertEqual(['ModoFisica'], modos, "Habilita el modo fisico")
 
         self.pilas.depurador.definir_modos(posiciones=True)
         modos = self.pilas.depurador.obtener_modos_habilitados()
-        self.assertEquals(['ModoPosicion'], modos, "Habilita el modo posición")
+        self.assertEqual(['ModoPosicion'], modos, "Habilita el modo posición")
 

@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 import os
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtGui
 from PyQt5 import QtCore
 from pilasengine.imagenes.superficie import Superficie
 from pilasengine import utils
@@ -23,12 +23,12 @@ class Texto(Superficie):
         self.dibujar_texto = self.texto
         self.dibujar_texto(texto, magnitud=magnitud, fuente=fuente,
                            color=color, ancho=ancho, vertical=vertical)
-        self.ruta_original = texto.encode('ascii', 'xmlcharrefreplace') + str(os.urandom(25))
+        self.ruta_original = 'Texto(%s)' % texto
         self.texto = texto
 
     def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False,
                               fuente=None, ancho=0):
-        pic = QtWidgets.QPicture()
+        pic = QtGui.QPicture()
         p = QtGui.QPainter(pic)
 
         if fuente:
@@ -36,7 +36,7 @@ class Texto(Superficie):
         else:
             nombre_de_fuente = p.font().family()
 
-        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
         p.setFont(font)
 
         alto = 0
@@ -55,7 +55,7 @@ class Texto(Superficie):
             if line == '':
                 line = ' '
 
-            brect = p.drawText(QtCore.QRect(0, 0, ancho, 2000), flags, line)
+            brect = p.drawText(QtCore.QRect(0, 0, ancho, 2000), int(flags), line)
             ancho = max(ancho, brect.width())
             alto += brect.height()
 

@@ -1,14 +1,11 @@
 # -*- encoding: utf-8 -*-
 import sys
 import unittest
-from PyQt5 import QtWidgets
 
 import pilasengine
 
 
 class TestEventos(unittest.TestCase):
-    app = QtWidgets.QApplication(sys.argv)
-
     def setUp(self):
         self.pilas = pilasengine.iniciar()
 
@@ -30,7 +27,7 @@ class TestEventos(unittest.TestCase):
         params = {'color': 'rojo', 'yei': ':p', 'pilas': 'pilas engine'}
 
         def funcion(ev):
-            self.assertEquals(ev, params, 'Puede emitir evento')
+            self.assertEqual(ev, params, 'Puede emitir evento')
 
         evento = self.pilas.eventos.Evento('mi_evento')
         evento.conectar(funcion)

@@ -190,12 +190,13 @@ class InterpreteLanas(editor_base.EditorBase):
             for x in range(10):
                 m = m.replace('  ', '&nbsp;&nbsp;')
 
-            self.insertHtml(u" <b style='color: #F00000'> &nbsp; ×</b> # %s <br>" %(m.decode('utf-8')))
+            self.insertHtml(u" <b style='color: #F00000'> &nbsp; ×</b> # %s <br>" % m)
 
 
     def insertar_error_desde_exception(self, e):
+        print(e)
         self.insertPlainText('\n')
-        self.insertar_error("%s: %s" %(e.__class__.__name__, e.message))
+        self.insertar_error("%s: %s" %(e.__class__.__name__, str(e)))
 
         tb = traceback.format_exc()
 
@@ -539,7 +540,7 @@ class InterpreteLanas(editor_base.EditorBase):
         self.ventana.consejo.setText(linea)
 
     def guardar_contenido_con_dialogo(self):
-        ruta = self.abrir_dialogo_guardar_archivo()
+        ruta = self.abrir_dialogo_guardar_archivo()[0]
 
         if ruta:
             self.guardar_contenido_en_el_archivo(ruta)
