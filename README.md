@@ -21,9 +21,13 @@ Una buena forma de comenzar con pilas es instalar todo el kit de desarrollo sigu
 
 - http://www.pilas-engine.com.ar
 
-Y una vez instalada la biblioteca, se puede invocar al comando ``pilas -e`` para ver una lista completa de ejemplos y minijuegos.
+Y una vez instalada la biblioteca, se puede invocar al comando ``pilasengine`` para ver una lista completa de ejemplos y minijuegos.
 
 ## Instalación
+
+La forma más simple de instalarlo es clonando el repo y haciendo `python setup.py install` (`--user` en caso de no querer ensuciar el sistema).
+
+### Binarios para Mac y Windows
 
 TBD - Una vez estemos seguros que todo el código fué migrado correctamente (WebKit por WebEgine y demases) habrá binarios disponibles para descargar
 
