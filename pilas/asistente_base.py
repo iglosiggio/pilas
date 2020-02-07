@@ -36,7 +36,7 @@ class Ui_AsistenteWindow(object):
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.webView = QtWebEngineWidgets.QWebView(self.centralwidget)
+        self.webView = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)

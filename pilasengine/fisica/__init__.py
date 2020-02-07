@@ -9,8 +9,8 @@
 from pilasengine.fisica.contact_listener import ObjetosContactListener
 from pilasengine.fisica import rectangulo
 from pilasengine.fisica import circulo
+from pilasengine.fisica import figura
 from pilasengine.fisica.constantes import constante_de_movimiento
-import figura
 
 PPM = 30
 
@@ -53,10 +53,7 @@ class Fisica(object):
     def optimizar_figuras_estaticas(self, estado=True):
         """Le indica al motor de fisica que no calcule colisiones en figuras que están en reposo."""
         self.mundo.SetAllowSleeping(estado)
-        print(not estado)
-        #print(self.mundo.continuousPhysics)
-        #self.mundo.continuousPhysics = True
-        #self.mundo.continuousPhysics = (not estado)
+        self.mundo.continuousPhysics = (not estado)
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()
@@ -143,31 +140,34 @@ class Fisica(object):
         """
         return self.mundo.CreateBody(definicion_de_cuerpo)
 
-    def crear_suelo(self, (ancho, alto), restitucion=0):
+    def crear_suelo(self, tamanio, restitucion=0):
         """Genera un suelo sólido para el escenario.
 
         :param ancho: El ancho del suelo.
         :param alto: Alto del suelo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
+        ancho, alto = tamanio
         self.suelo = self.Rectangulo(0, -alto/2, ancho, 2, dinamica=False, plataforma=True, restitucion=restitucion)
 
-    def crear_techo(self, (ancho, alto), restitucion=0):
+    def crear_techo(self, tamanio, restitucion=0):
         """Genera un techo sólido para el escenario.
 
         :param ancho: El ancho del techo.
         :param alto: Alto del techo.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
+        ancho, alto = tamanio
         self.techo = self.Rectangulo(0, alto/2, ancho, 2, dinamica=False, plataforma=True, restitucion=restitucion)
 
-    def crear_paredes(self, (ancho, alto), restitucion=0):
+    def crear_paredes(self, tamanio, restitucion=0):
         """Genera dos paredes para el escenario.
 
         :param ancho: El ancho de las paredes.
         :param alto: El alto de las paredes.
         :param restitucion: El grado de conservación de energía ante una colisión.
         """
+        ancho, alto = tamanio
         self.pared_izquierda = self.Rectangulo(-ancho/2, 0, 2, alto, dinamica=False, plataforma=True, restitucion=restitucion)
         self.pared_derecha = self.Rectangulo(ancho/2, 0, 2, alto, dinamica=False, plataforma=True, restitucion=restitucion)
 

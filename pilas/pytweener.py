@@ -162,7 +162,7 @@ class Tween(object):
         """Tween object:
             Can be created directly, but much more easily using Tweener.addTween( ... )
             """
-        #print obj, tduration, kwargs
+        #print(obj, tduration, kwargs)
         self.duration = tduration
         self.delay = delay
         self.target = obj
@@ -242,7 +242,7 @@ class Tween(object):
  
         # check that its compatible
             if not hasattr( self.target, k):
-                print "TWEEN ERROR: " + str(self.target) + " has no function " + k
+                print("TWEEN ERROR: " + str(self.target) + " has no function " + k)
                 self.complete = True
                 break
  
@@ -263,7 +263,7 @@ class Tween(object):
                 try:
                     getFunc = getattr(self.target, funcName.replace("set", "get") )
                     startVal = getFunc()
-                    print getfunc
+                    print(getfunc)
                 except:
                     # no start value, assume its 0
                     # but make sure the start and change
@@ -751,7 +751,7 @@ if __name__=="__main__":
             T.addTween( tweenable, change=-1000, tweenTime=0.7 )
             T.addTween( mt, duration=-0.2, tweenTime=0.2 )
             changed = True
-        #print mt.duration,
+        #print(mt.duration,)
         print(tst.getRotation(), tst.pos)
         time.sleep(0.06)
     print(tst.getRotation(), tst.pos)

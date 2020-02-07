@@ -31,7 +31,7 @@ class MensajeError(Actor):
         descripcion.centro_y = "arriba"
         descripcion.y = 150
 
-        print "ERROR " + mensaje_titulo
+        print("ERROR " + mensaje_titulo)
 
         titulo.fijo = True
         descripcion.fijo = True
@@ -40,6 +40,6 @@ class MensajeError(Actor):
         self.actor_descripcion = descripcion
 
         borde_izquierdo = -self.pilas.obtener_area()[0]/2 + 10
-        print borde_izquierdo
+        print(borde_izquierdo)
         self.actor_titulo.izquierda = borde_izquierdo
         self.actor_descripcion.izquierda = borde_izquierdo

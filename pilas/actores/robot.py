@@ -227,9 +227,9 @@ class Robot(object):
                 wait(seconds)
                 self.stop()
         else:
-            print   """ Rangos de velocidades válidas:
+            print(  """ Rangos de velocidades válidas:
                                 -100 a -10
-                                  10 a 100   """
+                                  10 a 100   """)
 
 
     def backward(self, vel=50, seconds=-1):
@@ -271,9 +271,9 @@ class Robot(object):
                  wait(seconds)
                  self.stop()
         else:
-            print   """ Rangos de velocidades válidas:
+            print(  """ Rangos de velocidades válidas:
                                 -100 a -10
-                                  10 a 100   """
+                                  10 a 100   """)
 
 
     def turnLeft(self, vel=50, seconds=-1):
@@ -410,7 +410,7 @@ class Robot(object):
 
     def speak(self, msj):
         """ Imprime en la terminal el mensaje msj. """
-        print msj
+        print(msj)
 
     def __del__(self):
         self.eliminar()
@@ -479,7 +479,7 @@ class Board(object):
     def report(self):
         """ Retorna los números de ID's de los robots creados en el intérprete  """
         for i in self.listaDeRobots:
-            print i.getId()
+            print(i.getId())
 
     def _mover(self,unRobot, vel, seconds):
         """ Envía un movimiento  vertical/horizontal a toos los robots con el mismo ID  """ 

@@ -20,7 +20,7 @@ class Superficie(Imagen):
     def __init__(self, pilas, ancho, alto):
         self.pilas = pilas
         self._imagen = QtWidgets.QPixmap(ancho, alto)
-        self._imagen.fill(QtWidgets.QColor(255, 255, 255, 0))
+        self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
         self.canvas = QtGui.QPainter()
         self.ruta_original = os.urandom(25)
         self.repetir_horizontal = False
@@ -28,7 +28,7 @@ class Superficie(Imagen):
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
-        self._imagen.fill(QtWidgets.QColor(r, g, b, a))
+        self._imagen.fill(QtGui.QColor(r, g, b, a))
 
     def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto,
                                x, y):
@@ -46,7 +46,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
         color = colores.generar_color_desde_texto(color)
         r, g, b, _ = color.obtener_componentes()
-        self.canvas.setPen(QtWidgets.QColor(r, g, b))
+        self.canvas.setPen(QtGui.QColor(r, g, b))
         dx = x
         dy = y
 
@@ -83,7 +83,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, _ = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
@@ -98,7 +98,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b, a)
+        color = QtGui.QColor(r, g, b, a)
         pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
@@ -112,7 +112,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, _ = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
@@ -134,7 +134,7 @@ class Superficie(Imagen):
         self.circulo(x, y, 3, color=color, relleno=True)
 
     def limpiar(self):
-        self._imagen.fill(QtWidgets.QColor(0, 0, 0, 0))
+        self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
 
     def cargar_fuente(self, fuente_como_ruta):
         """Carga o convierte una fuente para ser utilizada dentro del motor.

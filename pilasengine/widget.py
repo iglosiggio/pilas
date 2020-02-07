@@ -14,7 +14,7 @@ from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5.QtOpenGL import QGLWidget
 
-import fps
+from pilasengine import fps
 
 from pilasengine.controles import Controles
 
@@ -24,7 +24,7 @@ def capturar_errores_decorator(func):
         if self.capturar_errores:
             try:
                 func(self, *args, **kwargs)
-            except Exception, e:
+            except Exception as e:
                 self.procesar_error(e)
         else:
             func(self, *args, **kwargs)
@@ -100,8 +100,8 @@ class WidgetConAceleracion(QGLWidget):
         titulo = repr(e)
         descripcion = traceback.format_exc(e)
         escena = self.pilas.escenas.Error(titulo, descripcion)
-        print titulo
-        print descripcion
+        print(titulo)
+        print(descripcion)
         return escena
 
     def timerEvent(self, event):
@@ -114,7 +114,7 @@ class WidgetConAceleracion(QGLWidget):
             if self.capturar_errores:
                 try:
                     self._realizar_actualizacion_logica()
-                except Exception, e:
+                except Exception as e:
                     self.procesar_error(e)
             else:
                 self._realizar_actualizacion_logica()
@@ -191,7 +191,7 @@ class WidgetConAceleracion(QGLWidget):
         self.mouse_y = y
 
     def _pintar_fondo(self):
-        self.painter.setBrush(QtWidgets.QColor(50, 50, 50))
+        self.painter.setBrush(QtGui.QColor(50, 50, 50))
         size = self.size()
         w = size.width()
         h = size.height()
@@ -249,7 +249,7 @@ class WidgetConAceleracion(QGLWidget):
 
         # Ocultando los bordes de pantalla.
         self.painter.restore()
-        self.painter.setBrush(QtWidgets.QColor(0, 0, 0))
+        self.painter.setBrush(QtGui.QColor(0, 0, 0))
         size = self.size()
         w = size.width()
         h = size.height()
@@ -441,8 +441,8 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
         titulo = repr(e)
         descripcion = traceback.format_exc(e)
         escena = self.pilas.escenas.Error(titulo, descripcion)
-        print titulo
-        print descripcion
+        print(titulo)
+        print(descripcion)
         return escena
 
     def timerEvent(self, event):
@@ -455,7 +455,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
             if self.capturar_errores:
                 try:
                     self._realizar_actualizacion_logica()
-                except Exception, e:
+                except Exception as e:
                     self.procesar_error(e)
             else:
                 self._realizar_actualizacion_logica()
@@ -530,7 +530,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
         self.mouse_y = y
 
     def _pintar_fondo(self):
-        self.painter.setBrush(QtWidgets.QColor(50, 50, 50))
+        self.painter.setBrush(QtGui.QColor(50, 50, 50))
         size = self.size()
         w = size.width()
         h = size.height()
@@ -588,7 +588,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
 
         # Ocultando los bordes de pantalla.
         self.painter.restore()
-        self.painter.setBrush(QtWidgets.QColor(0, 0, 0))
+        self.painter.setBrush(QtGui.QColor(0, 0, 0))
         size = self.size()
         w = size.width()
         h = size.height()

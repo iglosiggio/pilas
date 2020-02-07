@@ -13,35 +13,40 @@ import random
 import signal
 import imp
 import time
-import colores
+
+try:
+    from PyQt5 import QtWebEngineWidgets
+except ModuleNotFoundError:
+    pass
 
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 
-import configuracion
-import etiquetas
-import escenas
-import imagenes
-import actores
-import utils
-import fondos
-import depurador
-import musica
-import interfaz
-import sonidos
-import habilidades
-import comportamientos
-import eventos
-import controles
-import pad
-import watcher
-import plugins
-import simbolos
-import datos
-import fisica
-
-
-import widget
+from pilasengine import (
+    configuracion,
+    etiquetas,
+    escenas,
+    imagenes,
+    actores,
+    utils,
+    fondos,
+    depurador,
+    musica,
+    interfaz,
+    sonidos,
+    habilidades,
+    comportamientos,
+    eventos,
+    controles,
+    pad,
+    watcher,
+    plugins,
+    simbolos,
+    datos,
+    fisica,
+    colores,
+    widget
+)
 
 VERSION = "1.4.12"
 
@@ -205,7 +210,7 @@ class Pilas(object):
             self.depurador = depurador.Depurador(self)
 
         #if not self.configuracion.audio_habilitado():
-        #    print "Nota: Iniciando con el sistema de audio deshabitado."
+        #    print("Nota: Iniciando con el sistema de audio deshabitado.")
 
         self.musica = musica.Musica(self)
         self.sonidos = sonidos.Sonidos(self)
@@ -279,7 +284,7 @@ class Pilas(object):
         contenido = f.read()
         f.close()
 
-        print "%s - Reiniciando" % (time.strftime("%H:%m:%S"))
+        print("%s - Reiniciando" % (time.strftime("%H:%m:%S")))
 
         geometry = self.widget.geometry()
 
@@ -288,7 +293,7 @@ class Pilas(object):
 
         try:
             exec(contenido, scope, scope)
-        except Exception, e:
+        except Exception as e:
             self.procesar_error(e)
 
         self.widget.setGeometry(geometry)
@@ -309,7 +314,7 @@ class Pilas(object):
         for x in contenido.split('\n'):
             if 'import ' in x and not 'import pilasengine' in x and not 'from ' in x:
                 modulo = x.split(' ')[1]
-                contenido = contenido.replace(x, x + '\n' + 'reload(' + modulo + ')\n')
+                contenido = contenido.replace(x, x + '\n' + 'from importlib import reload\n' + 'reload(' + modulo + ')\n')
 
             if "__file__" in x:
                 contenido = contenido.replace(x, "# livecoding: " + x + "\n")
@@ -434,7 +439,7 @@ class Pilas(object):
         try:
             self.escenas.realizar_dibujado(painter)
             self.depurador.realizar_dibujado(painter)
-        except Exception, e:
+        except Exception as e:
             if self._capturar_errores:
                 self.log("Capturando un error: %s", e)
                 self.depurador.desactivar_todos_los_modos()
@@ -547,7 +552,7 @@ class Pilas(object):
             except TypeError:
                 codigo = "<< imposible inspeccionar código para mostrar >>"
 
-        print codigo
+        print(codigo)
 
     def definir_pantalla_completa(self, estado):
         if estado:
@@ -620,31 +625,31 @@ def iniciar(ancho=640, alto=480, titulo='pilas-engine', capturar_errores=True,
 
 
 def abrir_asistente():
-    import asistente
+    from pilasengine import asistente
     return asistente.abrir()
 
 def abrir_manual():
-    import manual
+    from pilasengine import manual
     return manual.abrir()
 
 def abrir_api():
-    import api
+    from pilasengine import api
     return api.abrir()
 
 def abrir_configuracion(parent=None):
-    import configuracion
+    from pilasengine import configuracion
     return configuracion.abrir(parent)
 
 def abrir_interprete():
-    import interprete
+    from pilasengine import interprete
     return interprete.abrir()
 
 def abrir_editor():
-    import interprete
+    from pilasengine import interprete
     return interprete.abrir_editor()
 
 def abrir_script_con_livereload(archivo):
-    import interprete
+    from pilasengine import interprete
     ruta = os.path.dirname(archivo)
     ruta = os.path.abspath(ruta)
 
@@ -664,7 +669,7 @@ def abrir_script(archivo):
     def ejecutar_archivo(nombre):
         try:
             imp.load_source("__main__", nombre)
-        except Exception, e:
+        except Exception as e:
             terminar_con_error("Error al ejecutar " + nombre + ":\n" + str(e))
 
     ruta_absoluta_al_archivo = os.path.abspath(archivo)

@@ -13,7 +13,7 @@ directorio_relativo = 'pilasengine/ejemplos/'
 
 
 def esperar(segundos):
-    #print "Esperando %d segundos:" %(segundos)
+    #print("Esperando %d segundos:" %(segundos))
 
     for x in range(segundos):
         os.system('sleep 1s')
@@ -36,13 +36,13 @@ def probar_ejemplo(directorio_relativo, nombre):
     pid = subprocess.Popen([sys.executable, directorio_relativo + nombre]).pid
     esperar(TIEMPO_A_ESPERAR_POR_EJEMPLO)
 
-    print nombre,
+    print(nombre,)
 
     if check_pid(pid):
         terminar(pid)
-        print "[OK]"
+        print("[OK]")
     else:
-        print "ERROR"
+        print("ERROR")
 
 
 scripts = [script for script in os.listdir(directorio_relativo)

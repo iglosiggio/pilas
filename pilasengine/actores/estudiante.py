@@ -126,7 +126,7 @@ class Estudiante(object):
         :param repetir_por_siempre: Si el comportamiento se volverá a ejecutar
                                     luego de terminar.
         """
-        print "Este metodo entra en desuso, utilice el metodo 'hacer' en su lugar ..."
+        print("Este metodo entra en desuso, utilice el metodo 'hacer' en su lugar ...")
         return self.hacer(classname, *args, **kwargs)
     
     def hacer_inmediatamente(self, classname, *args, **kwargs):

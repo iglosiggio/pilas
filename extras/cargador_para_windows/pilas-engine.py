@@ -27,7 +27,7 @@ from xml.dom import minidom
 def ejecutar_archivo(nombre):
     try:
         imp.load_source("__main__", nombre)
-    except Exception, e:
+    except Exception as e:
         terminar_con_error("Error al ejecutar " + nombre + ":\n" + str(e))
 
 def terminar_con_error(mensaje):

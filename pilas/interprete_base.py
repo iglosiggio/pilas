@@ -35,7 +35,7 @@ class Ui_InterpreteWindow(object):
         self.splitter_vertical = QtWidgets.QSplitter(self.centralwidget)
         self.splitter_vertical.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_vertical.setObjectName(_fromUtf8("splitter_vertical"))
-        self.navegador = QtWebEngineWidgets.QWebView(self.splitter_vertical)
+        self.navegador = QtWebEngineWidgets.QWebEngineView(self.splitter_vertical)
         self.navegador.setMinimumSize(QtCore.QSize(250, 0))
         self.navegador.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.navegador.setObjectName(_fromUtf8("navegador"))

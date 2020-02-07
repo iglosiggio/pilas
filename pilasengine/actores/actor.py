@@ -9,8 +9,7 @@
 import inspect
 
 import pilasengine
-from estudiante import Estudiante
-from __builtin__ import True
+from pilasengine.actores.estudiante import Estudiante
 
 IZQUIERDA = ["izquierda"]
 DERECHA = ["derecha"]
@@ -35,7 +34,7 @@ class ActorEliminado(object):
     def __getattr__(self, *k, **kw):
         plantilla = "Este actor (ex: %s id: %d) ya ha sido eliminado, no se puede utilizar."
         mensaje = plantilla % (self.nombre_de_clase, self.identificador)
-        print mensaje
+        print(mensaje)
         # raise ActorEliminadoException(mensaje)
 
     def esta_eliminado(self):
@@ -334,7 +333,7 @@ class Actor(Estudiante):
     imagen = property(_obtener_imagen, _definir_imagen,
                       doc="Define la imagen a mostrar.")
 
-    def definir_centro(self, (x, y)):
+    def definir_centro(self, punto):
         """ Define en que posición estará el centro del Actor.
 
         Se puede definir la posición mediante unas coordenadas numéricas o
@@ -355,6 +354,7 @@ class Actor(Estudiante):
                   del Actor.
         :type y: int
         """
+        x, y = punto
         self.centro_x = x
         self.centro_y = y
 
@@ -750,7 +750,7 @@ class Actor(Estudiante):
         else:
             self._vy = 0
 
-    def __cmp__(self, otro_actor):
+    def __lt__(self, otro_actor):
         """Compara dos actores para determinar cual esta mas cerca de la camara.
 
         Este metodo se utiliza para ordenar los actores antes de imprimirlos
@@ -758,10 +758,7 @@ class Actor(Estudiante):
         actores se ven mas arriba de otros cambiando los valores de
         los atributos `z`."""
 
-        if otro_actor.z >= self.z:
-            return 1
-        else:
-            return -1
+        return self.z < otro_actor.z
 
     def get_izquierda(self):
         return self.x - (self.centro_x * self.escala)

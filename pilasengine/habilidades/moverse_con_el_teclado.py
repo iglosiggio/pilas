@@ -43,7 +43,7 @@ class MoverseConElTeclado(habilidades.Habilidad):
         else:
             self.control = control
 
-        if not direcciones is 8 and not direcciones is 4:
+        if direcciones != 8 and direcciones != 4:
             raise Exception("El parametro direcciones solo admite:\
                             el numero 4 u 8")
         else:

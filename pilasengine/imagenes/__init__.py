@@ -6,7 +6,6 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-from PyQt5 import QtWidgets
 import pilasengine
 
 
@@ -16,19 +15,19 @@ class Imagenes(object):
         self.pilas = pilas
 
     def cargar(self, ruta_a_imagen):
-        import imagen
+        from pilasengine.imagenes import imagen
         ruta_a_imagen = self.pilas.obtener_ruta_al_recurso(ruta_a_imagen)
         return imagen.Imagen(self.pilas, ruta_a_imagen)
 
     def crear_superficie(self, ancho, alto):
-        import superficie
+        from pilasengine.imagenes import superficie
         return superficie.Superficie(self.pilas, ancho, alto)
 
     cargar_superficie = crear_superficie
 
     def crear_texto(self, cadena_de_texto, magnitud, vertical, fuente,
                     color, ancho):
-        import texto
+        from pilasengine.imagenes import texto
         return texto.Texto(self.pilas, cadena_de_texto, magnitud, vertical,
                            fuente, color, ancho)
 
@@ -53,11 +52,11 @@ class Imagenes(object):
             grilla.avanzar()
             grilla.asignar(actor)
         """
-        import grilla
+        from pilasengine.imagenes import grilla
         ruta_a_imagen = self.pilas.obtener_ruta_al_recurso(ruta)
         return grilla.Grilla(self.pilas, ruta_a_imagen, columnas, filas)
 
     def cargar_animacion(self, ruta, columnas=1, filas=1):
-        import animacion
+        from pilasengine.imagenes import animacion
         ruta_a_imagen = self.pilas.obtener_ruta_al_recurso(ruta)
         return animacion.Animacion(self.pilas, ruta_a_imagen, columnas, filas)

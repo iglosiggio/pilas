@@ -32,12 +32,12 @@ class VentanaApi(Ui_ManualWindow):
         self.webView.history().setMaximumItemCount(0)
 
     def _habilitar_inspector_web(self):
-        print "habilitando inspector"
-        QtWebEngineWidgets.QWebSettings.globalSettings()
-        settings = QtWebEngineWidgets.QWebSettings.globalSettings()
-        settings.setAttribute(QtWebEngineWidgets.QWebSettings.DeveloperExtrasEnabled, True)
+        print("habilitando inspector")
+        QtWebEngineWidgets.QWebEngineSettings.globalSettings()
+        settings = QtWebEngineWidgets.QWebEngineSettings.globalSettings()
+        settings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.DeveloperExtrasEnabled, True)
         try:
-            settings.setAttribute(QtWebEngineWidgets.QWebSettings.LocalContentCanAccessFileUrls, True)
+            settings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.LocalContentCanAccessFileUrls, True)
         except AttributeError:
             pass  # Arreglo para funcionar en ubuntu 10.04
 

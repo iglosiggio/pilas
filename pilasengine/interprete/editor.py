@@ -12,20 +12,21 @@ import os
 import inspect
 import tempfile
 import shutil
+from importlib import reload
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
-from PyQt5.QtWidgets import (QTextEdit, QTextCursor, QFileDialog,
-                         QIcon, QMessageBox, QShortcut,
-                         QInputDialog, QLineEdit, QErrorMessage)
-from PyQt5.QtGui import QKeySequence, QTextFormat, QColor, QKeyEvent
+from PyQt5.QtWidgets import (QTextEdit,  QFileDialog, QMessageBox, QShortcut,
+                             QInputDialog, QLineEdit, QErrorMessage)
+from PyQt5.QtGui import (QKeySequence, QTextFormat, QColor, QKeyEvent,
+                         QTextCursor, QIcon)
 from PyQt5.QtCore import Qt
 from PyQt5 import QtCore
 
 
-from editorbase import editor_base
-import editor_ui
+from pilasengine.interprete.editorbase import editor_base
+from pilasengine.interprete import editor_ui
 import pilasengine
 
 
@@ -133,53 +134,37 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
 
         # Boton Abrir
         self.set_icon(self.boton_abrir, 'iconos/abrir.png')
-        self.boton_abrir.connect(self.boton_abrir,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.editor.abrir_archivo_con_dialogo)
+        self.boton_abrir.clicked.connect(self.editor.abrir_archivo_con_dialogo)
 
         # Boton Guardar
         self.set_icon(self.boton_guardar, 'iconos/guardar.png')
-        self.boton_guardar.connect(self.boton_guardar,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.editor.guardar_contenido_directamente)
+        self.boton_guardar.clicked.connect(self.editor.guardar_contenido_directamente)
 
         # Boton Guardar Como ...
         self.set_icon(self.boton_guardar_como, 'iconos/guardar_como.png')
-        self.boton_guardar_como.connect(self.boton_guardar_como,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.editor.guardar_contenido_con_dialogo)
+        self.boton_guardar_como.clicked.connect(self.editor.guardar_contenido_con_dialogo)
 
         # Boton actualizar
         self.set_icon(self.boton_actualizar, 'iconos/actualizar.png')
-        self.boton_actualizar.connect(self.boton_actualizar,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.actualizar_el_listado_de_archivos)
+        self.boton_actualizar.clicked.connect(self.actualizar_el_listado_de_archivos)
 
         # Boton actualizar
         self.set_icon(self.boton_nuevo, 'iconos/nuevo.png')
-        self.boton_nuevo.connect(self.boton_nuevo,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.pulsa_boton_crear_archivo_nuevo)
+        self.boton_nuevo.clicked.connect(self.pulsa_boton_crear_archivo_nuevo)
 
         self.deshabilitar_boton_nuevo()
 
         # Boton Ejecutar
         self.set_icon(self.boton_ejecutar, 'iconos/ejecutar.png')
-        self.boton_ejecutar.connect(self.boton_ejecutar,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.cuando_pulsa_el_boton_ejecutar)
+        self.boton_ejecutar.clicked.connect(self.cuando_pulsa_el_boton_ejecutar)
 
         # Boton Pausar
         self.set_icon(self.boton_pausar, 'iconos/pausa.png')
-        self.boton_pausar.connect(self.boton_pausar,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.cuando_pulsa_el_boton_pausar)
+        self.boton_pausar.clicked.connect(self.cuando_pulsa_el_boton_pausar)
 
         # Boton Siguiente
         self.set_icon(self.boton_siguiente, 'iconos/siguiente.png')
-        self.boton_siguiente.connect(self.boton_siguiente,
-                                    QtCore.SIGNAL('clicked()'),
-                                    self.cuando_pulsa_el_boton_siguiente)
+        self.boton_siguiente.clicked.connect(self.cuando_pulsa_el_boton_siguiente)
 
         self._vincular_atajos_de_teclado()
 
@@ -290,8 +275,6 @@ class WidgetEditor(QWidget, editor_ui.Ui_Editor):
                 self.selector_archivos.setCurrentIndex(index)
 
     def cuando_cambia_archivo_seleccionado(self, text):
-        text = unicode(text)
-
         if not self.editor.es_archivo_iniciar_sin_guardar():
             self.editor.guardar_contenido_directamente()
             self.editor.abrir_archivo_del_proyecto(text)
@@ -346,9 +329,9 @@ class Editor(editor_base.EditorBase):
 
         if self.ruta_del_archivo_actual:
             base_path = os.path.abspath(os.path.dirname(self.ruta_del_archivo_actual))
-            ruta = os.path.join(base_path, unicode(nombre_de_archivo))
+            ruta = os.path.join(base_path, nombre_de_archivo)
         else:
-            ruta = unicode(nombre_de_archivo)
+            ruta = nombre_de_archivo
 
         if os.path.exists(ruta):
             self._tmp_dialog = QErrorMessage(self)
@@ -406,15 +389,15 @@ class Editor(editor_base.EditorBase):
         if event.key() == Qt.Key_Return:
             cursor = self.textCursor()
             block = self.document().findBlockByNumber(cursor.blockNumber())
-            whitespace = re.match(r"(\s*)", unicode(block.text())).group(1)
+            whitespace = re.match(r"(\s*)", block.text()).group(1)
 
             linea_anterior = str(block.text()[:])
             cantidad_espacios = linea_anterior.count(' ') / 4
 
             if linea_anterior[-1:] == ':':
-                whitespace = '    ' * (cantidad_espacios + 1)
+                whitespace = '    ' * int(cantidad_espacios + 1)
             else:
-                whitespace = '    ' * (cantidad_espacios)
+                whitespace = '    ' * int(cantidad_espacios)
 
             QTextEdit.keyPressEvent(self, event)
             return self.insertPlainText(whitespace)
@@ -426,7 +409,7 @@ class Editor(editor_base.EditorBase):
     def _borrar_un_grupo_de_espacios(self, event):
         cursor = self.textCursor()
         block = self.document().findBlockByNumber(cursor.blockNumber())
-        whitespace = re.match(r"(.*)", unicode(block.text())).group(1)
+        whitespace = re.match(r"(.*)", block.text()).group(1)
 
         if whitespace.endswith('    '):
             QTextEdit.keyPressEvent(self, event)
@@ -449,7 +432,7 @@ class Editor(editor_base.EditorBase):
 
     def cargar_contenido_desde_archivo(self, ruta):
         "Carga todo el contenido del archivo indicado por ruta."
-        with codecs.open(unicode(ruta), 'r', 'utf-8') as archivo:
+        with codecs.open(ruta, 'r', 'utf-8') as archivo:
             contenido = archivo.read()
         self.setText(contenido)
 
@@ -472,9 +455,9 @@ class Editor(editor_base.EditorBase):
 
         if self.ruta_del_archivo_actual:
             base_path = os.path.dirname(self.ruta_del_archivo_actual)
-            ruta = os.path.join(base_path, unicode(nombre_de_archivo))
+            ruta = os.path.join(base_path, nombre_de_archivo)
         else:
-            ruta = unicode(nombre_de_archivo)
+            ruta = nombre_de_archivo
 
         self.cargar_contenido_desde_archivo(ruta)
         self.ruta_del_archivo_actual = ruta
@@ -490,10 +473,10 @@ class Editor(editor_base.EditorBase):
             else:
                 return
 
-        ruta = self.abrir_dialogo_cargar_archivo()
+        ruta = self.abrir_dialogo_cargar_archivo()[0]
 
         if ruta:
-            ruta = unicode(ruta)
+            ruta = ruta
             self.cargar_contenido_desde_archivo(ruta)
             self.ruta_del_archivo_actual = ruta
             self.watcher.cambiar_archivo_a_observar(ruta)
@@ -516,9 +499,9 @@ class Editor(editor_base.EditorBase):
         titulo = u"¿Deseas guardar el contenido antes de abrir un archivo?"
         mensaje = u"El contenido se perdera sino los guardas"
 
-        mensaje = QMessageBox.question(self, titulo, mensaje, "Guardar", "No")
+        respuesta = QMessageBox.question(self, titulo, mensaje, QMessageBox.Save | QMessageBox.No)
 
-        return (not mensaje)
+        return respuesta == QMessageBox.Save
 
     def mensaje_guardar_cambios_salir(self):
         """Realizar una consulta usando un cuadro de dialogo simple
@@ -530,8 +513,19 @@ class Editor(editor_base.EditorBase):
         titulo = u"¿Deseas guardar el contenido antes de salir?"
         mensaje = u"El contenido se perdera sino los guardas"
 
-        return QMessageBox.question(self, titulo, mensaje,
-                                    "Salir sin guardar", "Guardar", "Cancelar")
+        respuesta = QMessageBox.question(
+            self, titulo, mensaje,
+            QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel
+        )
+
+        if respuesta == QMessageBox.No:
+            return 0
+
+        if respuesta == QMessageBox.Yes:
+            return 1
+
+        if respuesta == QMessageBox.Cancel:
+            return 2
 
     def marcar_error_en_la_linea(self, numero, descripcion):
         hi_selection = QTextEdit.ExtraSelection()
@@ -546,12 +540,10 @@ class Editor(editor_base.EditorBase):
         self.setExtraSelections([hi_selection])
 
     def guardar_contenido_con_dialogo(self):
-        ruta = self.abrir_dialogo_guardar_archivo()
+        ruta = self.abrir_dialogo_guardar_archivo()[0]
 
         if not ruta:
             return False
-
-        ruta = unicode(ruta)
 
         if not ruta.endswith('.py'):
             ruta += '.py'
@@ -593,11 +585,11 @@ class Editor(editor_base.EditorBase):
         return True
 
     def obtener_contenido(self):
-        return unicode(self.document().toPlainText())
+        return self.document().toPlainText()
 
     def ejecutar(self):
         ruta_personalizada = os.path.dirname(self.ruta_del_archivo_actual)
-        #print "ejecutando texto desde widget editor"
+        #print("ejecutando texto desde widget editor")
         texto = self.obtener_contenido()
         texto = "from __future__ import print_function\n" + texto
 
@@ -644,7 +636,7 @@ class Editor(editor_base.EditorBase):
 
         try:
             exec(contenido, self.interpreterLocals)
-        except Exception, e:
+        except Exception as e:
             self.consola_lanas.insertar_error_desde_exception(e)
             self.ventana_interprete.mostrar_el_interprete()
             #self.marcar_error_en_la_linea(10, "pepepe")

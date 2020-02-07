@@ -1,1 +1,1 @@
-from constante_de_movimiento import ConstanteDeMovimiento
+from pilasengine.fisica.constantes.constante_de_movimiento import ConstanteDeMovimiento

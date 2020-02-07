@@ -5,11 +5,7 @@ sys.path.append('../')
 from PyQt5 import QtWidgets
 from interfaz_base import Ui_MainWindow as Base
 
-import faulthandler
-faulthandler.enable()
-
 import pilasengine
-import pdb; pdb.set_trace()
 
 class Ventana(Base):
 

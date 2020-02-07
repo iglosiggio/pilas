@@ -15,10 +15,10 @@ try:
 except ImportError:
     import simplejson as json
 
-from PyQt5.QtWidgets import QColor
-from PyQt5.QtWidgets import QTextCharFormat
-from PyQt5.QtWidgets import QFont
-from PyQt5.QtWidgets import QSyntaxHighlighter
+from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QTextCharFormat
+from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QSyntaxHighlighter
 from PyQt5.QtCore import QRegExp
 
 
@@ -204,7 +204,7 @@ class Highlighter(QSyntaxHighlighter):
             while index >= 0:
                 # We actually want the index of the nth match
                 index = expression.pos(nth)
-                length = expression.cap(nth).length()
+                length = len(expression.cap(nth))
                 self.setFormat(index, length, format)
                 index = expression.indexIn(text, index + length)
 
@@ -223,7 +223,7 @@ class Highlighter(QSyntaxHighlighter):
         index = expression.indexIn(text, 0)
         while index >= 0:
             index = expression.pos(0)
-            length = expression.cap(0).length()
+            length = len(expression.cap(0))
             self.setFormat(index, length, STYLES['spaces'])
             index = expression.indexIn(text, index + length)
 

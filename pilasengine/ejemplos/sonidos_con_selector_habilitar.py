@@ -7,7 +7,7 @@ un_sonido = pilas.sonidos.cargar("saltar.wav")
 
 def reproducir_sonido():
     un_sonido.reproducir()
-    print un_sonido
+    print(un_sonido)
 
 b = pilas.interfaz.Boton("Reproducir sonido")
 b.conectar(reproducir_sonido)

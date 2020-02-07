@@ -13,16 +13,14 @@ import traceback
 
 os.environ['lanas'] = 'enabled'
 
-from PyQt5.QtWidgets import (QWidget, QDesktopWidget, QPalette,
-                        QColor, QTextCursor, QTextEdit,
-                        QInputDialog, QApplication,
-                        QKeyEvent)
+from PyQt5.QtWidgets import (QWidget, QDesktopWidget, QTextEdit, QInputDialog,
+                             QApplication)
+from PyQt5.QtGui import (QColor, QPalette, QTextCursor, QKeyEvent)
 from PyQt5.QtCore import Qt, QTimer
 
-from editorbase import editor_base
-import lanas_ui
-
-import io_lanas
+from pilasengine.interprete.editorbase import editor_base
+from pilasengine.interprete import lanas_ui
+from pilasengine.interprete import io_lanas
 
 class PythonInterpreter(code.InteractiveInterpreter):
 
@@ -41,7 +39,7 @@ class PythonInterpreter(code.InteractiveInterpreter):
 
     def imprimir_en_pantalla(self, *arg):
         self.sobreescribir_salida_por_consola(sys)
-        print ' '.join([str(x) for x in arg])
+        print(' '.join([str(x) for x in arg]))
         self.restaurar_salida_por_consola(sys)
 
     def sobreescribir_salida_por_consola(self, sys):
@@ -63,7 +61,7 @@ class PythonInterpreter(code.InteractiveInterpreter):
 
         try:
             tipo_de_dato = eval(codigo, self.locals)
-        except Exception, e:
+        except Exception as e:
             return None
 
         comparacion = tipo_de_dato == "instancemethod"
@@ -254,7 +252,7 @@ class InterpreteLanas(editor_base.EditorBase):
         textCursor.setPosition(position)
         self.setTextCursor(textCursor)
 
-        line = unicode(self.document().lastBlock().text())[2:]
+        line = self.document().lastBlock().text()[2:]
         line.rstrip()
         return line
 
@@ -423,7 +421,7 @@ class InterpreteLanas(editor_base.EditorBase):
 
                 try:
                     self.interpreter.runsource(self.command)
-                except Exception, e:
+                except Exception as e:
                     self.insertar_error_desde_exception(e)
 
                 self.command = '' # clear command
@@ -450,7 +448,7 @@ class InterpreteLanas(editor_base.EditorBase):
                     primer_parte = line.split('=')[0]
 
                     if self.interpreter.es_metodo(primer_parte):
-                        print "ES METOPDO"
+                        print("ES METOPDO")
                         self.insertar_error("No puedes sobre-escribir un metodo, lo siento.")
                         self.command = '' # clear command
                         self.marker() # handle marker style
@@ -461,7 +459,7 @@ class InterpreteLanas(editor_base.EditorBase):
 
                 try:
                     self.interpreter.runsource(self.command)
-                except Exception, e:
+                except Exception as e:
                     self.insertar_error_desde_exception(e)
 
                 self.command = '' # clear command
@@ -492,7 +490,7 @@ class InterpreteLanas(editor_base.EditorBase):
         Por ejemplo, si el usuario escribe 'os.system(' esta función
         intentará mostrar un tooltip con el contenido de 'os.system.__doc__'
         """
-        linea = unicode(self.document().lastBlock().text())[2:]
+        linea = self.document().lastBlock().text()[2:]
         linea.rstrip()
 
         self.limpiar_consejo()
@@ -530,9 +528,9 @@ class InterpreteLanas(editor_base.EditorBase):
 
                 texto_a_ejecutar = 'inspect.getsource(' + texto + ")"
                 codigo = eval(texto_a_ejecutar, self.interpreterLocals)
-            except TypeError, e:
+            except TypeError as e:
                 pass
-        except Exception, e:
+        except Exception as e:
             pass
 
         return codigo
@@ -558,10 +556,10 @@ class InterpreteLanas(editor_base.EditorBase):
         texto = self.document().toPlainText()
         texto = texto.replace(u'‥ ', '')
         texto = texto.replace(u'» ', '')
-        return unicode(texto)
+        return texto
 
     def marker_si_es_necesario(self):
-        line = unicode(self.document().lastBlock().text())
+        line = self.document().lastBlock().text()
         if not line.startswith(u'» ') and not line.startswith(u'‥ '):
             self.insertPlainText("\n")
             self.marker()
@@ -583,4 +581,4 @@ class InterpreteLanas(editor_base.EditorBase):
         if objeto:
             self.interpreterLocals['pilas'].ver(objeto)
         else:
-            print "Escribe help(objeto) para obtener ayuda sobre ese objeto."
+            print("Escribe help(objeto) para obtener ayuda sobre ese objeto.")

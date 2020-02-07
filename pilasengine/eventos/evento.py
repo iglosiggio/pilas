@@ -25,7 +25,7 @@ class Evento():
         for respuesta in set(self.respuestas):
             try:
                 respuesta(**evento)
-            except Exception, e:
+            except Exception as e:
                 a_eliminar.append(respuesta)
                 raise Exception(e)
 
@@ -63,10 +63,10 @@ class Evento():
 
     def imprimir_funciones_conectadas(self):
         if not self.esta_conectado():
-            print "\t << sin funciones conectadas >>"
+            print("\t << sin funciones conectadas >>")
         else:
             for x in self.respuestas:
-                print "\t +", x.nombre, " en ", x.receptor
+                print("\t +", x.nombre, " en ", x.receptor)
 
 
 class AttrDict(dict):
@@ -163,6 +163,11 @@ class ProxyMetodo(object):
             return self.func == other.func and self.inst() == other.inst()
         except Exception:
             return False
+
+    # El hash se construye con los elementos que hacen que un objeto sea igual
+    # a otro
+    def __hash__(self):
+        return hash((self.func, self.inst))
 
     def __ne__(self, other):
         return not self.__eq__(other)

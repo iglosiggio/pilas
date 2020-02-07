@@ -53,7 +53,7 @@ class Habilidades(object):
                 "DispararConClick": self.DispararConClick,
         }
 
-        for k, v in self.diccionario_de_habilidades.items():
+        for k, v in self.diccionario_de_habilidades.copy().items():
             self.diccionario_de_habilidades[k.lower()] = v
 
     def buscar_habilidad_por_nombre(self, nombre):

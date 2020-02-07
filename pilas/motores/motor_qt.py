@@ -135,7 +135,7 @@ class CanvasWidgetAbstracto(object):
 
         if self.gestor_escenas.escena_actual():
             if not(self.gestor_escenas.escena_actual().escena_pausa):
-                self.painter.fillRect(0, 0, self.original_width, self.original_height, QtWidgets.QColor(128, 128, 128))
+                self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
         if self.gestor_escenas.escena_actual():
@@ -536,7 +536,7 @@ class Lienzo(Imagen):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        painter.setPen(QtWidgets.QColor(r, g, b))
+        painter.setPen(QtGui.QColor(r, g, b))
 
         if fuente:
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
@@ -550,14 +550,14 @@ class Lienzo(Imagen):
     def pintar(self, painter, color):
         r, g, b, a = color.obtener_componentes()
         ancho, alto = pilas.mundo.obtener_area()
-        painter.fillRect(0, 0, ancho, alto, QtWidgets.QColor(r, g, b))
+        painter.fillRect(0, 0, ancho, alto, QtGui.QColor(r, g, b))
 
     def linea(self, painter, x0, y0, x1, y1, color=colores.negro, grosor=1):
         x0, y0 = utils.hacer_coordenada_pantalla_absoluta(x0, y0)
         x1, y1 = utils.hacer_coordenada_pantalla_absoluta(x1, y1)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawLine(x0, y0, x1, y1)
@@ -588,7 +588,7 @@ class Lienzo(Imagen):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawEllipse(x-radio, y-radio, radio*2, radio*2)
@@ -597,7 +597,7 @@ class Lienzo(Imagen):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawRect(x, y, ancho, alto)
@@ -607,13 +607,13 @@ class Superficie(Imagen):
 
     def __init__(self, ancho, alto):
         self._imagen = QtWidgets.QPixmap(ancho, alto)
-        self._imagen.fill(QtWidgets.QColor(255, 255, 255, 0))
+        self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
         self.canvas = QtGui.QPainter()
         self.ruta_original = os.urandom(25)
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
-        self._imagen.fill(QtWidgets.QColor(r, g, b, a))
+        self._imagen.fill(QtGui.QColor(r, g, b, a))
 
     def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
         self.canvas.begin(self._imagen)
@@ -626,7 +626,7 @@ class Superficie(Imagen):
     def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0, vertical=False):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
-        self.canvas.setPen(QtWidgets.QColor(r, g, b))
+        self.canvas.setPen(QtGui.QColor(r, g, b))
         dx = x
         dy = y
 
@@ -662,7 +662,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
@@ -676,7 +676,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
@@ -690,7 +690,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtWidgets.QColor(r, g, b)
+        color = QtGui.QColor(r, g, b)
         pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
@@ -712,7 +712,7 @@ class Superficie(Imagen):
         self.circulo(x, y, 3, color=color, relleno=True)
 
     def limpiar(self):
-        self._imagen.fill(QtWidgets.QColor(0, 0, 0, 0))
+        self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
 
 
 class Texto(Superficie):
@@ -1111,7 +1111,7 @@ class Motor(object):
         contenido = f.read()
         f.close()
 
-        print "%s - Reiniciando" %(time.strftime("%H:%m:%S"))
+        print("%s - Reiniciando" %(time.strftime("%H:%m:%S")))
         pilas.reiniciar()
         lineas_a_descartar = ['pilas.iniciar', 'pilas.ejecutar',
                               'pilas.reiniciar_si_cambia', 'import pilas']
@@ -1120,10 +1120,10 @@ class Motor(object):
         try:
             scope = {'pilas': pilas}
             exec(contenido, scope, scope)
-        except Exception, e:
+        except Exception as e:
             pilas.actores.MensajeExcepcion(e)
-            print traceback.format_exc()
-            print sys.exc_info()[0]
+            print(traceback.format_exc())
+            print(sys.exc_info()[0])
 
     def limpiar_lineas_que_contengan(self, codigo, lineas_a_eliminar):
         contenido = []
@@ -1133,7 +1133,7 @@ class Motor(object):
 
             for linea in lineas_a_eliminar:
                 if linea_de_codigo.startswith(linea):
-                    #print "Descartando la linea", [linea_de_codigo]
+                    #print("Descartando la linea", [linea_de_codigo])
                     agregar = False
 
             if agregar:

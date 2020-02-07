@@ -24,7 +24,7 @@ class ModoInformacionDeSistema(ModoDepurador):
             u"Usa aceleración de video: %s" % (usa_aceleracion),
             "Sistema: " + sys.platform,
             "Version de pilas: " + pilasengine.VERSION,
-            "Version de python: " + sys.subversion[0] + " " + sys.subversion[1],
+            "Version de python: " + str(sys.version_info[0]) + " " + str(sys.version_info[1]) + " " + str(sys.version_info[2]),
             "", # Interpolaciones en curso
             "", # Area de juego
             "", # Posición de la cámara

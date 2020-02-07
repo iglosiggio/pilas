@@ -32,7 +32,7 @@ class Ui_ManualWindow(object):
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.webView = QtWebEngineWidgets.QWebView(self.centralwidget)
+        self.webView = QtWebEngineWidgets.QWebEngineView(self.centralwidget)
         self.webView.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.webView.setStatusTip(_fromUtf8(""))
         self.webView.setAccessibleDescription(_fromUtf8(""))

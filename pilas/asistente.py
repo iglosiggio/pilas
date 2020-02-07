@@ -68,11 +68,11 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
 
     def _habilitar_inspector_web(self):
-        QtWebEngineWidgets.QWebSettings.globalSettings()
-        settings = QtWebEngineWidgets.QWebSettings.globalSettings()
-        settings.setAttribute(QtWebEngineWidgets.QWebSettings.DeveloperExtrasEnabled, True)
+        QtWebEngineWidgets.QWebEngineSettings.globalSettings()
+        settings = QtWebEngineWidgets.QWebEngineSettings.globalSettings()
+        settings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.DeveloperExtrasEnabled, True)
         try:
-            settings.setAttribute(QtWebEngineWidgets.QWebSettings.LocalContentCanAccessFileUrls, True)
+            settings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.LocalContentCanAccessFileUrls, True)
         except AttributeError:
             pass  # Arreglo para funcionar en ubuntu 10.04
 
@@ -245,7 +245,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         self.main.close()
 
     def evaluar_javascript(self, codigo):
-        self.webView.page().mainFrame().evaluateJavaScript(codigo)
+        self.webView.page().mainFrame().runJavaScript(codigo)
 
 class MainWindow(QtWidgets.QMainWindow):
 

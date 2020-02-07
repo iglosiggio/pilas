@@ -39,7 +39,7 @@ class Comportamientos(object):
         }
         
         
-        for k, v in self.diccionario_de_comportamientos.items():
+        for k, v in self.diccionario_de_comportamientos.copy().items():
             self.diccionario_de_comportamientos[k.lower()] = v
 
     @property

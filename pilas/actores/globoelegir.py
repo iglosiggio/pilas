@@ -17,7 +17,7 @@ class GloboElegir(Globo):
     .. code-block:: python
 
         def cuando_responde_color_favorito(respuesta):
-            print "Ha seleccionado la opcion: " + respuesta
+            print("Ha seleccionado la opcion: " + respuesta)
 
     """
 

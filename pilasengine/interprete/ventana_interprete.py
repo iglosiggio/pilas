@@ -11,11 +11,12 @@ import os
 import time
 import sys
 
-from PyQt5.QtGui import (QKeySequence, QIcon, QLabel)
+from PyQt5.QtGui import (QKeySequence, QIcon)
+from PyQt5.QtWidgets import QLabel
 from PyQt5 import QtCore
 
-import lanas
 import pilasengine
+from pilasengine.interprete import lanas
 from pilasengine.interprete import editor
 from pilasengine.interprete.interprete_base import Ui_InterpreteWindow
 
@@ -56,7 +57,6 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.colapsar_ayuda()
         self.colapsar_editor()
         self.cargar_ayuda()
-        self.navegador.history().setMaximumItemCount(0)
 
         self._conectar_botones()
         self._conectar_observadores_splitters()
@@ -73,39 +73,26 @@ class VentanaInterprete(Ui_InterpreteWindow):
     def _conectar_botones(self):
         # Botón del editor
         self.definir_icono(self.editor_button, 'iconos/editor.png')
-        self.editor_button.connect(self.editor_button,
-                                   QtCore.SIGNAL("clicked()"),
-                                   self.cuando_pulsa_el_boton_editor)
-
+        self.editor_button.clicked.connect(self.cuando_pulsa_el_boton_editor)
 
         # Botón del manual
         self.definir_icono(self.manual_button, 'iconos/manual.png')
-        self.manual_button.connect(self.manual_button,
-                                   QtCore.SIGNAL("clicked()"),
-                                   self.cuando_pulsa_el_boton_manual)
+        self.manual_button.clicked.connect(self.cuando_pulsa_el_boton_manual)
 
         # Botón del interprete
         self.definir_icono(self.interprete_button, 'iconos/interprete.png')
-        self.interprete_button.connect(self.interprete_button,
-                                       QtCore.SIGNAL("clicked()"),
-                                       self.cuando_pulsa_el_boton_interprete)
+        self.interprete_button.clicked.connect(self.cuando_pulsa_el_boton_interprete)
 
         # Botón guardar del interprete
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
-        self.interprete_button.connect(self.guardar_button,
-                                       QtCore.SIGNAL("clicked()"),
-                                       self.cuando_pulsa_el_boton_guardar_interprete)
+        self.interprete_button.clicked.connect(self.cuando_pulsa_el_boton_guardar_interprete)
 
         # Botón configuración
         self.definir_icono(self.configuracion_button, 'iconos/preferencias.png')
-        self.interprete_button.connect(self.configuracion_button,
-                                       QtCore.SIGNAL("clicked()"),
-                                       self.cuando_pulsa_el_boton_configuracion)
+        self.interprete_button.clicked.connect(self.cuando_pulsa_el_boton_configuracion)
         # Botón para limpiar el intérprete
         self.definir_icono(self.limpiar_button, 'iconos/limpiar.png')
-        self.limpiar_button.connect(self.limpiar_button,
-                                    QtCore.SIGNAL("clicked()"),
-                                    self.cuando_pulsa_el_boton_limpiar)
+        self.limpiar_button.clicked.connect(self.cuando_pulsa_el_boton_limpiar)
 
         # Botón para pasar a modo pantalla completa.
         if sys.platform == 'darwin':
@@ -116,54 +103,36 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
 
         self.definir_icono(self.pantalla_completa_button, 'iconos/pantalla_completa.png')
-        self.pantalla_completa_button.connect(self.pantalla_completa_button,
-                                    QtCore.SIGNAL("clicked()"),
-                                    self.cuando_pulsa_el_boton_pantalla_completa)
+        self.pantalla_completa_button.clicked.connect(self.cuando_pulsa_el_boton_pantalla_completa)
 
         # F7 Modo informacion de sistema
         self.definir_icono(self.pushButton_6, 'iconos/f07.png')
-        self.pushButton_6.connect(self.pushButton_6,
-                                  QtCore.SIGNAL("clicked()"),
-                                  self.pulsa_boton_depuracion)
+        self.pushButton_6.clicked.connect(self.pulsa_boton_depuracion)
 
         # F8 Modo puntos de control
         self.definir_icono(self.pushButton_5, 'iconos/f08.png')
-        self.pushButton_5.connect(self.pushButton_5,
-                                  QtCore.SIGNAL("clicked()"),
-                                  self.pulsa_boton_depuracion)
+        self.pushButton_5.clicked.connect(self.pulsa_boton_depuracion)
 
 
         # F10 Modo areas de colision
         self.definir_icono(self.pushButton_3, 'iconos/f10.png')
-        self.pushButton_3.connect(self.pushButton_3,
-                                  QtCore.SIGNAL("clicked()"),
-                                  self.pulsa_boton_depuracion)
+        self.pushButton_3.clicked.connect(self.pulsa_boton_depuracion)
 
         # F11 Modo fisica
         self.definir_icono(self.pushButton_2, 'iconos/f11.png')
-        self.pushButton_2.connect(self.pushButton_2,
-                                  QtCore.SIGNAL("clicked()"),
-                                  self.pulsa_boton_depuracion)
+        self.pushButton_2.clicked.connect(self.pulsa_boton_depuracion)
 
         # F12 Modo depuracion de posicion
         self.definir_icono(self.pushButton, 'iconos/f12.png')
-        self.pushButton.connect(self.pushButton,
-                                QtCore.SIGNAL("clicked()"),
-                                self.pulsa_boton_depuracion)
+        self.pushButton.clicked.connect(self.pulsa_boton_depuracion)
 
     def _conectar_observadores_splitters(self):
         # Observa los deslizadores para mostrar mostrar los botones de ayuda o consola activados.
-        self.splitter_vertical.connect(self.splitter_vertical,
-                                       QtCore.SIGNAL("splitterMoved(int, int)"),
-                                       self.cuando_mueve_deslizador_vertical)
+        self.splitter_vertical.splitterMoved.connect(self.cuando_mueve_deslizador_vertical)
 
-        self.splitter.connect(self.splitter,
-                              QtCore.SIGNAL("splitterMoved(int, int)"),
-                              self.cuando_mueve_deslizador)
+        self.splitter.splitterMoved.connect(self.cuando_mueve_deslizador)
 
-        self.splitter_editor.connect(self.splitter_editor,
-                                     QtCore.SIGNAL("splitterMoved(int, int)"),
-                                     self.cuando_mueve_deslizador_del_editor)
+        self.splitter_editor.splitterMoved.connect(self.cuando_mueve_deslizador_del_editor)
 
     def colapsar_ayuda(self):
         self.splitter_vertical.setSizes([0])
@@ -283,8 +252,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
     def _mostrar_widget_de_pilas(self):
         self.canvas.setCurrentWidget(self.scope['pilas'].widget)
-	self.scope['pilas'].widget.setFocus(QtCore.Qt.ActiveWindowFocusReason)
-
+        self.scope['pilas'].widget.setFocus(QtCore.Qt.ActiveWindowFocusReason)
 
     def _insertar_editor(self, consola_lanas):
         self.widget_editor = editor.WidgetEditor(self.main, self.scope, consola_lanas, self)
@@ -332,7 +300,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.watcher_ultima_invocacion = time.time()
 
         self._cargar_codigo_del_editor_desde_archivo(archivo)
-        f = codecs.open(unicode(archivo), 'r', 'utf-8')
+        f = codecs.open(archivo, 'r', 'utf-8')
         contenido = f.read()
 
         # Cambia el directorio para que los recursos del directorio

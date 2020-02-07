@@ -11,14 +11,13 @@ import sys
 import time
 
 from PyQt5 import QtCore
-from PyQt5.QtGui import (QKeySequence, QIcon, QLabel, QMainWindow)
+from PyQt5.QtWidgets import QLabel, QMainWindow
+from PyQt5.QtGui import (QKeySequence, QIcon)
 
-import lanas
 from pilasengine import utils
-import pilasengine
-from pilasengine.interprete import editor
+from pilasengine.interprete import editor, lanas
 
-from ventana_interprete import VentanaInterprete
+from pilasengine.interprete.ventana_interprete import VentanaInterprete
 
 
 def abrir():
@@ -30,7 +29,7 @@ def abrir():
     utils.centrar_ventana(MainWindow)
     MainWindow.show()
     MainWindow.raise_()
-    pilasengine.utils.destacar_ventanas()
+    utils.destacar_ventanas()
     return MainWindow
 
 def abrir_editor():
@@ -46,7 +45,7 @@ def abrir_editor():
     ui.ocultar_el_interprete()
     ui.mostrar_editor()
 
-    pilasengine.utils.destacar_ventanas()
+    utils.destacar_ventanas()
     return MainWindow
 
 

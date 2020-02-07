@@ -245,10 +245,10 @@ def realizar_pruebas():
     n = '[0m'
     v = '[01;32m'
 
-    print "Realizando pruebas de dependencias:"
-    print ""
+    print("Realizando pruebas de dependencias:")
+    print("")
 
-    print "Box 2D:",
+    print("Box 2D:",)
 
     try:
         import Box2D as box2d
@@ -256,36 +256,36 @@ def realizar_pruebas():
         ver = box2d.__version_info__
 
         if ver[0] == 2 and ver[1] >= 1:
-            print v + "OK, versión " + str(box2d.__version__) + n
+            print(v + "OK, versión " + str(box2d.__version__) + n)
         else:
-            print "Error -> la versión está obsoleta, instale una versión de la serie 2.1, 2.2 o 2.3"
+            print("Error -> la versión está obsoleta, instale una versión de la serie 2.1, 2.2 o 2.3")
     except ImportError:
-        print "Error -> no se encuentra pybox2d"
+        print("Error -> no se encuentra pybox2d")
 
-    print "pyqt:",
+    print("pyqt:",)
 
     try:
         from PyQt5 import Qt
-        print v + "OK, versión " + Qt.PYQT_VERSION_STR + n
+        print(v + "OK, versión " + Qt.PYQT_VERSION_STR + n)
     except ImportError:
-        print "Error -> no se encuentra pyqt."
+        print("Error -> no se encuentra pyqt.")
 
-    print "pyqt con aceleracion:",
+    print("pyqt con aceleracion:",)
 
     try:
         from PyQt5 import QtOpenGL
         from PyQt5.QtOpenGL import QGLWidget
-        print v + "OK" + n
+        print(v + "OK" + n)
     except ImportError:
-        print "Error -> no se encuentra pyqt4gl."
+        print("Error -> no se encuentra pyqt4gl.")
 
-    print "pygame:",
+    print("pygame:",)
 
     try:
         import pygame
-        print v + "OK" + n
+        print(v + "OK" + n)
     except ImportError:
-        print "Cuidado -> no se encuentra pygame."
+        print("Cuidado -> no se encuentra pygame.")
 
 def destacar_ventanas():
     if getattr(sys, 'frozen', None) and sys.platform == 'darwin':
@@ -317,7 +317,7 @@ def iniciar_desde_terminal():
         utils.realizar_pruebas()
         sys.exit(1)
     elif '-u' in sys.argv:
-        print "Evitando iniciar el modo depuracion desde eclipse..."
+        print("Evitando iniciar el modo depuracion desde eclipse...")
         sys.exit(0)
     else:
         if len(sys.argv) > 1:

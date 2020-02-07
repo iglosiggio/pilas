@@ -37,4 +37,4 @@ file = codecs.open('data/asistente/js/version.js', 'wt', 'utf-8')
 file.write(template)
 file.close()
 
-print "Generando el archivo 'data/asistente/js/version.js' con los datos de versión actualizados."
+print("Generando el archivo 'data/asistente/js/version.js' con los datos de versión actualizados.")

@@ -3,12 +3,12 @@ import codecs
 import pilasengine
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (QTextEdit, QTextCursor, QFileDialog,
-                         QMessageBox)
+from PyQt5.QtWidgets import (QTextEdit, QFileDialog, QMessageBox)
+from PyQt5.QtGui import QTextCursor
 
-import autocomplete
-import editor_con_deslizador
-import highlighter
+from pilasengine.interprete.editorbase import (
+    autocomplete, editor_con_deslizador, highlighter
+)
 
 
 class EditorBase(autocomplete.CompletionTextEdit,
@@ -92,7 +92,7 @@ class EditorBase(autocomplete.CompletionTextEdit,
 
     def guardar_contenido_en_el_archivo(self, ruta):
         texto = self.obtener_contenido()
-        with codecs.open(unicode(ruta), 'w', 'utf-8') as archivo:
+        with codecs.open(ruta, 'w', 'utf-8') as archivo:
             archivo.write(texto)
 
     def mensaje_contenido_guardado(self):

@@ -13,10 +13,11 @@ import json
 
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
+from PyQt5 import QtWebChannel
 from PyQt5 import QtWebEngineWidgets
 from PyQt5 import QtNetwork
 
-from asistente_base import Ui_AsistenteWindow as Base
+from pilasengine.asistente.asistente_base import Ui_AsistenteWindow as Base
 import pilasengine
 
 class Interlocutor(QtCore.QObject):
@@ -95,7 +96,7 @@ class Interlocutor(QtCore.QObject):
 
     def definir_version(self, version, version_local):
         codigo = "definir_version('VR', 'VL')".replace('VR', version).replace('VL', version_local)
-        self.ventana.webView.page().mainFrame().evaluateJavaScript(codigo)
+        self.ventana.webView.page().runJavaScript(codigo)
 
 
 class VentanaAsistente(Base):
@@ -111,8 +112,9 @@ class VentanaAsistente(Base):
         self.interlocutor = Interlocutor()
         self.interlocutor.iniciar_con_ventana(self)
 
-        objeto_js = self.webView.page().mainFrame().javaScriptWindowObjectCleared
-        objeto_js.connect(self._vincular_con_javascript)
+        web_channel = QtWebChannel.QWebChannel(self.webView.page())
+        web_channel.registerObject('interlocutor', self.interlocutor)
+        self.webView.page().setWebChannel(web_channel)
 
         self._cargar_pagina_principal()
         self._habilitar_inspector_web()
@@ -120,7 +122,6 @@ class VentanaAsistente(Base):
         self.webView.setAcceptDrops(False)
         self._deshabilitar_barras_de_scroll()
 
-        self.webView.history().setMaximumItemCount(0)
         self.webView.setAcceptDrops(True)
 
         self.webView.dragEnterEvent = self.dragEnterEvent
@@ -147,16 +148,12 @@ class VentanaAsistente(Base):
     def _iniciar_consulta_de_version(self):
         self._consultar_ultima_version_del_servidor()
 
-    def _vincular_con_javascript(self):
-        self.webView.page().mainFrame().addToJavaScriptWindowObject("interlocutor", self.interlocutor)
-
     def _consultar_ultima_version_del_servidor(self):
         direccion = QtCore.QUrl("https://raw.githubusercontent.com/hugoruscitti/pilas/gh-pages/version.json")
         self.manager = QtNetwork.QNetworkAccessManager(self.MainWindow)
         self.manager.get(QtNetwork.QNetworkRequest(direccion))
 
-        self.manager.connect(self.manager, QtCore.SIGNAL("finished(QNetworkReply*)"),
-                self._cuando_termina_de_consultar_version)
+        self.manager.finished.connect(self._cuando_termina_de_consultar_version)
 
     def _cuando_termina_de_consultar_version(self, respuesta):
         respuesta_como_texto = respuesta.readAll().data()
@@ -165,21 +162,17 @@ class VentanaAsistente(Base):
             respuesta_como_json = json.loads(str(respuesta_como_texto))
             version_en_el_servidor = respuesta_como_json['nueva_version']
             self.interlocutor.definir_version(version_en_el_servidor, pilasengine.VERSION)
-        except ValueError, e:
+        except ValueError as e:
             self.interlocutor.definir_version("", pilasengine.VERSION)
 
     def _habilitar_inspector_web(self):
-        QtWebEngineWidgets.QWebSettings.globalSettings()
-        settings = QtWebEngineWidgets.QWebSettings.globalSettings()
-        settings.setAttribute(QtWebEngineWidgets.QWebSettings.DeveloperExtrasEnabled, True)
-        try:
-            settings.setAttribute(QtWebEngineWidgets.QWebSettings.LocalContentCanAccessFileUrls, True)
-        except AttributeError:
-            pass  # Arreglo para funcionar en ubuntu 10.04
+        QtWebEngineWidgets.QWebEngineSettings.globalSettings()
+        settings = QtWebEngineWidgets.QWebEngineSettings.globalSettings()
+        settings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.LocalContentCanAccessFileUrls, True)
 
     def _deshabilitar_barras_de_scroll(self):
-        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Horizontal, QtCore.Qt.ScrollBarAlwaysOff)
-        self.webView.page().mainFrame().setScrollBarPolicy(QtCore.Qt.Vertical, QtCore.Qt.ScrollBarAsNeeded)
+        # TODO: El código original ocultaba la barra vertical y mostraba la horizontal de ser necesario
+        self.webView.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.ShowScrollBars, False)
 
     def _cargar_pagina_principal(self):
         file_path = pilasengine.utils.obtener_ruta_al_recurso('asistente/index.html')
@@ -193,7 +186,7 @@ class VentanaAsistente(Base):
         #(nombre_archivo_script, directorio_trabajo))
 
     def evaluar_javascript(self, codigo):
-        self.webView.page().mainFrame().evaluateJavaScript(codigo)
+        self.webView.page().runJavaScript(codigo)
 
     def definir_receptor_de_comandos(self, ui):
         self.ui = ui
@@ -212,11 +205,11 @@ class VentanaAsistente(Base):
             for url in event.mimeData().urls():
                 archivo = url.toLocalFile()
 
-                if not unicode(archivo).endswith('.py'):
-                    print(u"ERROR, se envió el archivo " + unicode(archivo))
+                if not archivo.endswith('.py'):
+                    print(u"ERROR, se envió el archivo " + archivo)
                     QtWidgets.QMessageBox.critical(self.MainWindow, "Error", "Solo se aceptan archivos terminados con .py")
                 else:
-                    self._ejecutar_programa_con_livereload(unicode(archivo))
+                    self._ejecutar_programa_con_livereload(archivo)
                     event.acceptProposedAction()
 
         self.evaluar_javascript("resaltar_caja_destino_para_soltar(false);")

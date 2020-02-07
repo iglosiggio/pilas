@@ -14,7 +14,7 @@ from pilasengine.actores.actor import Actor
 from pilasengine.actores.aceituna import Aceituna
 from pilasengine.actores.actor_invisible import ActorInvisible
 from pilasengine.actores.animacion import Animacion
-import pilasengine
+import pilasengine.colores
 
 
 
@@ -85,9 +85,9 @@ class Actores(object):
             try:
                 nuevo_actor = clase_del_actor(self.pilas, *k, **kw)
                 return nuevo_actor
-            except TypeError, error:
+            except TypeError as error:
                 if not self.pilas.modo_test:
-                    print traceback.format_exc()
+                    print(traceback.format_exc())
                 mensaje_extendido = "\n\t(en la clase %s ya que se llamó con los argumentos: %s %s" %(str(clase_del_actor.__name__), str(k), str(kw))
                 raise TypeError(str(error) + mensaje_extendido)
 
@@ -136,17 +136,17 @@ class Actores(object):
 
             try:
                 actor.pre_iniciar(*k, **kv)
-            except TypeError, error:
-                #print "ERROR en " + actor.__class__.__name__ + ":"
-                #print traceback.format_exc()
+            except TypeError as error:
+                #print("ERROR en " + actor.__class__.__name__ + ":")
+                #print(traceback.format_exc())
                 falla_pre_iniciar = True
                 mensaje_error_pre_iniciar = str(error)
 
             try:
                 actor.iniciar(*k, **kv)
-            except TypeError, error:
+            except TypeError as error:
                 if not self.pilas.modo_test:
-                    print traceback.format_exc()
+                    print(traceback.format_exc())
 
                     if falla_pre_iniciar:
                         print("Tambien ocurrio un error al pre_iniciar" + mensaje_error_pre_iniciar)
@@ -581,7 +581,7 @@ class Actores(object):
 
         try:
             nuevo_actor = referencia_a_clase(self.pilas, *k, **kw)
-        except TypeError, error:
+        except TypeError as error:
             mensaje_extendido = "\n\t(en la clase %s ya que se llamó con los argumentos: %s %s" %(str(referencia_a_clase.__name__), str(k), str(kw))
             raise TypeError(str(error) + mensaje_extendido)
 

@@ -15,6 +15,6 @@ if not os.path.exists('ejecutar.py'):
 
 try:
     imp.load_source("__main__", "ejecutar.py")
-except Exception, e:
+except Exception as e:
     tkMessageBox.showerror("Error al ejecutar ejecutar.py", e)
     sys.exit(1)

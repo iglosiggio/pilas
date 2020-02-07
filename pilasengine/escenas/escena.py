@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import camara
+import pilasengine.escenas.camara as camara
 import pilasengine
 from pilasengine.actores import grupo
 from pilasengine.utils import pitweener

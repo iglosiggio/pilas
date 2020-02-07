@@ -10,7 +10,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-import deslizador
+from pilasengine.interprete.editorbase import deslizador
 
 EXPRESION_SENTENCIA = r'.*\s*\=\s*(-*\d+\.*\d*)$'
 

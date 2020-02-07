@@ -12,7 +12,7 @@ try:
 
     ULTIMO_CUADRO_BASURA = opencv.adaptors.Ipl2PIL(opencv.cvGetMat(ULTIMO_CUADRO_BASURA)).convert('RGBA')
 except ImportError:
-    print "Falta la biblioteca opencv o PIL"
+    print("Falta la biblioteca opencv o PIL")
     pass
 
 

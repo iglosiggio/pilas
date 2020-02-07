@@ -23,7 +23,7 @@ class MissingOpencv(Exception):
         return repr(self.value)
 
 def error(biblioteca, web):
-    print "Error, no ecuentra la biblioteca '%s' (de %s)" %(biblioteca, web)
+    print("Error, no ecuentra la biblioteca '%s' (de %s)" %(biblioteca, web))
 
 def no_opencv():
     from pilas.utils import esta_en_sesion_interactiva

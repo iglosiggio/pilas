@@ -44,4 +44,4 @@ class NormalOutput(Output):
         self.destino.ensureCursorVisible()
 
         if '<bound method' in linea:
-            print "\n\n ... Hey, tal vez olvidaste poner () al final de la anterior sentencia no?"
+            print("\n\n ... Hey, tal vez olvidaste poner () al final de la anterior sentencia no?")

@@ -109,7 +109,7 @@ class ModoFisica(ModoDepurador):
         x, y = self.hacer_coordenada_pantalla_absoluta(x, y)
 
         #r, g, b, a = color.obtener_componentes()
-        #color = QtWidgets.QColor(r, g, b)
+        #color = QtGui.QColor(r, g, b)
         #pen = QtWidgets.QPen(color, grosor)
         #painter.setPen(pen)
 

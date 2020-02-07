@@ -5,7 +5,7 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import Qt
 
 BRACES = {'(':')', '[':']', '{':'}'}
@@ -20,16 +20,16 @@ class DictionaryCompleter(QtWidgets.QCompleter):
         QtWidgets.QCompleter.__init__(self, [], parent)
 
     def set_dictionary(self, words):
-        model = QtWidgets.QStringListModel(words, self)
+        model = QtCore.QStringListModel(words, self)
         self.setModel(model)
 
 
 class CompletionTextEdit(QtWidgets.QTextEdit):
 
     def __init__(self, parent=None):
-        super(CompletionTextEdit, self).__init__(parent)
+        super().__init__(parent)
         self.completer = None
-        self.moveCursor(QtWidgets.QTextCursor.End)
+        self.moveCursor(QtGui.QTextCursor.End)
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
         self.set_dictionary([])
@@ -44,11 +44,11 @@ class CompletionTextEdit(QtWidgets.QTextEdit):
         completer.setCompletionMode(QtWidgets.QCompleter.PopupCompletion)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.completer = completer
-        self.connect(self.completer, QtCore.SIGNAL("activated(const QString&)"), self.insert_completation)
+        self.completer.activated.connect(self.insert_completation)
 
     def insert_completation(self, completion):
         tc = self.textCursor()
-        tc.select(QtWidgets.QTextCursor.WordUnderCursor)
+        tc.select(QtGui.QTextCursor.WordUnderCursor)
         tc.removeSelectedText()
 
         if str(completion).endswith('('):
@@ -99,10 +99,10 @@ class CompletionTextEdit(QtWidgets.QTextEdit):
         if is_shift_pressed:
             return
 
-        codigo_completo = unicode(self._get_current_line() + event.text())
+        codigo_completo = self._get_current_line() + event.text()
         values = self.funcion_valores_autocompletado(codigo_completo)
 
-        if unicode(word).endswith('.'):
+        if word.endswith('.'):
             word = ''
 
         # Evita todos los metodos privados si no se escribe un _
@@ -148,8 +148,8 @@ class CompletionTextEdit(QtWidgets.QTextEdit):
         line = self._get_current_line()
         position = self._get_position_in_block()
         if position < len(line) - 1:
-            char = unicode(line[position])
-            nextchar = unicode(line[position+1])
+            char = line[position]
+            nextchar = line[position+1]
             if char in CHARACTERS and nextchar in CHARACTERS.values():
                 tc.deleteChar()
 

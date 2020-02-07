@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import sonido
+from pilasengine.sonidos import sonido
 
 
 class Sonidos(object):

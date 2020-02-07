@@ -26,7 +26,7 @@ class Control(object):
     puedes ejecutar::
 
         if pilas.escena_actual().control.izquierda:
-            print 'Ha pulsado hacia la izquierda'
+            print('Ha pulsado hacia la izquierda')
 
     Es decir, si bien Control es una clase, no hace falta
     instanciarla. Ya existe un objeto que se puede consultar
@@ -48,7 +48,7 @@ class Control(object):
     la sentencia ``print``. Esto es útil para ver el estado completo
     del control de una sola vez:
 
-        >>> print pilas.mundo.control
+        >>> print(pilas.mundo.control)
         <Control izquierda: False derecha: False arriba: False abajo: False boton: False>
 
     También tienes la posibilidad de crearte un control estableciendo las teclas

@@ -29,6 +29,6 @@ m.decir("Cuidado!!!!!")
 
 # Detener el Robot        
 r.stop() 
-print r.getName()
+print(r.getName())
 
 pilas.ejecutar()

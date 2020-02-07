@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-import musica
+from pilasengine.musica import musica
 from pilasengine import configuracion
 
 

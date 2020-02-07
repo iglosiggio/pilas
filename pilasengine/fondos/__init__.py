@@ -20,7 +20,7 @@ class Fondos(object):
         self.pilas = pilas
 
     def Plano(self):
-        import plano
+        from pilasengine.fondos import plano
         nuevo_fondo = plano.Plano(self.pilas)
         # Importante: cuando se inicializa el actor, el método __init__
         #             realiza una llamada a pilas.actores.agregar_actor
@@ -28,60 +28,60 @@ class Fondos(object):
         return nuevo_fondo
 
     def Galaxia(self, dx=0, dy=-1):
-        import galaxia
+        from pilasengine.fondos import galaxia
         nuevo_fondo = galaxia.Galaxia(self.pilas)
         nuevo_fondo.dx = dx
         nuevo_fondo.dy = dy
         return nuevo_fondo
 
     def Tarde(self):
-        import tarde
+        from pilasengine.fondos import tarde
         return tarde.Tarde(self.pilas)
 
     def Selva(self):
-        import selva
+        from pilasengine.fondos import selva
         return selva.Selva(self.pilas)
 
     def Noche(self):
-        import noche
+        from pilasengine.fondos import noche
         return noche.Noche(self.pilas)
 
     def Espacio(self):
-        import espacio
+        from pilasengine.fondos import espacio
         return espacio.Espacio(self.pilas)
 
     def Nubes(self):
-        import nubes
+        from pilasengine.fondos import nubes
         return nubes.Nubes(self.pilas)
 
     def Pasto(self):
-        import pasto
+        from pilasengine.fondos import pasto
         return pasto.Pasto(self.pilas)
 
     def Volley(self):
-        import volley
+        from pilasengine.fondos import volley
         return volley.Volley(self.pilas)
 
     def Color(self, _color=colores.blanco):
-        import color
+        from pilasengine.fondos import color
         return color.Color(self.pilas, _color)
 
     def Blanco(self):
-        import blanco
+        from pilasengine.fondos import blanco
         return blanco.Blanco(self.pilas)
 
     def Fondo(self, imagen=None):
-        import fondo
+        from pilasengine.fondos import fondo
         return fondo.Fondo(self.pilas, imagen)
 
     def FondoMozaico(self, imagen=None):
-        import fondo_mozaico
+        from pilasengine.fondos import fondo_mozaico
         return fondo_mozaico.FondoMozaico(self.pilas, imagen)
 
     def Cesped(self):
-        import cesped
+        from pilasengine.fondos import cesped
         return cesped.Cesped(self.pilas)
 
     def DesplazamientoHorizontal(self):
-        import desplazamiento_horizontal
+        from pilasengine.fondos import desplazamiento_horizontal
         return desplazamiento_horizontal.DesplazamientoHorizontal(self.pilas)

@@ -31,7 +31,7 @@ class Configuracion(object):
     def cargar(self):
         if os.path.exists(self.obtener_ruta()):
             with open(self.obtener_ruta(), 'rt') as archivo:
-                self.valores = json.load(archivo, 'ascii')
+                self.valores = json.load(archivo)
         else:
             self.cargar_configuracion_por_omision()
 
@@ -79,7 +79,7 @@ class Configuracion(object):
 
     def obtener_fuente(self):
         fuente_como_tupla = self.valores['fuente'].rsplit(' ', 1)
-        return QtWidgets.QFont(fuente_como_tupla[0], int(fuente_como_tupla[1]))
+        return QtGui.QFont(fuente_como_tupla[0], int(fuente_como_tupla[1]))
 
     def audio_habilitado(self):
         return self.valores['audio_habilitado']
@@ -149,16 +149,14 @@ class DialogoConfiguracion(Ui_Dialog):
         self.mensaje.setVisible(False)
 
     def _conectar_eventos(self):
-        self.fuente.connect(self.fuente, QtCore.SIGNAL("clicked()"),
-                            self.cuando_pulsa_el_boton_fuente)
-        self.guardar.connect(self.guardar, QtCore.SIGNAL("clicked()"),
-                            self.cuando_pulsa_el_boton_guardar)
+        self.fuente.clicked.connect(self.cuando_pulsa_el_boton_fuente)
+        self.guardar.clicked.connect(self.cuando_pulsa_el_boton_guardar)
 
-        self.checkBox.connect(self.checkBox, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
-        self.checkBox_2.connect(self.checkBox_2, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
-        self.checkbox_aceleracion.connect(self.checkbox_aceleracion, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
-        self.checkbox_autocompletar.connect(self.checkbox_autocompletar, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
-        self.checkbox_atajos.connect(self.checkbox_atajos, QtCore.SIGNAL("clicked()"), self._mostrar_mensaje)
+        self.checkBox.clicked.connect(self._mostrar_mensaje)
+        self.checkBox_2.clicked.connect(self._mostrar_mensaje)
+        self.checkbox_aceleracion.clicked.connect(self._mostrar_mensaje)
+        self.checkbox_autocompletar.clicked.connect(self._mostrar_mensaje)
+        self.checkbox_atajos.clicked.connect(self._mostrar_mensaje)
 
     def _mostrar_mensaje(self):
         self.mensaje.setVisible(True)

@@ -63,7 +63,7 @@ class ListaSeleccion(elemento.Elemento):
                 if self.funcion_a_ejecutar:
                     self.funcion_a_ejecutar(self.opciones[opcion_debajo_del_cursor])
                 else:
-                    print "Cuidado, no has definido funcion a ejecutar en la lista de seleccion."
+                    print("Cuidado, no has definido funcion a ejecutar en la lista de seleccion.")
 
     def _detectar_opcion_bajo_el_mouse(self, evento):
         opcion = int((self.arriba - evento.y ) / (self.alto_opcion + (self.separacion_entre_opciones * 2)))

@@ -6,8 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 from pilasengine.colores import negro
-from PyQt5 import QtWidgets
 from PyQt5 import QtCore
+from PyQt5 import QtGui
 
 
 class ModoDepurador(object):
@@ -34,15 +34,15 @@ class ModoDepurador(object):
                fuente=None, color=negro, alineado_a_derecha=False):
         "Imprime un texto respespetando el desplazamiento de la camara."
         r, g, b, _ = color.obtener_componentes()
-        painter.setPen(QtWidgets.QColor(r, g, b))
+        painter.setPen(QtGui.QColor(r, g, b))
 
         nombre_de_fuente = painter.font().family()
 
-        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
+        font = QtGui.QFont(nombre_de_fuente, magnitud)
         painter.setFont(font)
         
         if alineado_a_derecha:
-            fm = QtWidgets.QFontMetrics(font)
+            fm = QtGui.QFontMetrics(font)
             w = fm.width(cadena) + 1
             h = fm.height()
             painter.drawText(x-w, y-h, cadena)
@@ -59,8 +59,8 @@ class ModoDepurador(object):
 
     def _definir_trazo_negro(self, painter):
         "Define las propiedades para pintar en color negro."
-        negro = QtWidgets.QColor(0, 0, 0)
-        pen = QtWidgets.QPen(negro, 4)
+        negro = QtGui.QColor(0, 0, 0)
+        pen = QtGui.QPen(negro, 4)
         painter.setBrush(QtCore.Qt.NoBrush)
         pen.setJoinStyle(QtCore.Qt.MiterJoin)
         painter.setPen(pen)
@@ -68,8 +68,8 @@ class ModoDepurador(object):
 
     def _definir_trazo_blanco(self, painter):
         "Define las propiedades para pintar en color blanco."
-        blanco = QtWidgets.QColor(255, 255, 255)
-        pen = QtWidgets.QPen(blanco, 2)
+        blanco = QtGui.QColor(255, 255, 255)
+        pen = QtGui.QPen(blanco, 2)
         painter.setBrush(QtCore.Qt.NoBrush)
         pen.setJoinStyle(QtCore.Qt.MiterJoin)
         painter.setPen(pen)
@@ -77,8 +77,8 @@ class ModoDepurador(object):
 
     def _definir_trazo_gris(self, painter):
         "Define las propiedades para pintar en color blanco."
-        blanco = QtWidgets.QColor(100, 100, 100)
-        pen = QtWidgets.QPen(blanco, 2)
+        blanco = QtGui.QColor(100, 100, 100)
+        pen = QtGui.QPen(blanco, 2)
         painter.setBrush(QtCore.Qt.NoBrush)
         pen.setJoinStyle(QtCore.Qt.MiterJoin)
         painter.setPen(pen)
@@ -86,8 +86,8 @@ class ModoDepurador(object):
 
     def _definir_trazo_verde(self, painter):
         "Define las propiedades para pintar en color blanco."
-        blanco = QtWidgets.QColor(150, 255, 150)
-        pen = QtWidgets.QPen(blanco, 2)
+        blanco = QtGui.QColor(150, 255, 150)
+        pen = QtGui.QPen(blanco, 2)
         painter.setBrush(QtCore.Qt.NoBrush)
         pen.setJoinStyle(QtCore.Qt.MiterJoin)
         painter.setPen(pen)
@@ -95,8 +95,8 @@ class ModoDepurador(object):
 
     def _definir_trazo_verde_oscuro(self, painter):
         "Define las propiedades para pintar en color blanco."
-        blanco = QtWidgets.QColor(50, 175, 50)
-        pen = QtWidgets.QPen(blanco, 2)
+        blanco = QtGui.QColor(50, 175, 50)
+        pen = QtGui.QPen(blanco, 2)
         painter.setBrush(QtCore.Qt.NoBrush)
         pen.setJoinStyle(QtCore.Qt.MiterJoin)
         painter.setPen(pen)

@@ -22,7 +22,7 @@ r.forward()
 iq, dr = r.getLine()  
 while  iq != 255.0 and  dr != 255.0 :
     iq, dr = r.getLine()
-    print iq, dr
+    print(iq, dr)
 
 r.stop()
 pilas.ejecutar()
