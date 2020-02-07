@@ -11,7 +11,7 @@ import datetime
 import traceback
 import random
 import signal
-import imp
+from importlib.machinery import SourceFileLoader
 import time
 
 import faulthandler
@@ -664,16 +664,14 @@ def abrir_script_con_livereload(archivo):
 
 
 def abrir_script(archivo):
-
     def terminar_con_error(mensaje):
-        # TODO: Asegurarse de que haya una instancia de QApplication
         error = QtWidgets.QMessageBox()
         error.critical(None, "Uh, algo anda mal...", mensaje)
         sys.exit(1)
 
     def ejecutar_archivo(nombre):
         try:
-            imp.load_source("__main__", nombre)
+            SourceFileLoader('__main__', nombre).load_module()
         except Exception as e:
             terminar_con_error("Error al ejecutar " + nombre + ":\n" + str(e))
 
