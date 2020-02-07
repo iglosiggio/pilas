@@ -45,7 +45,7 @@ class EditorBase(autocomplete.CompletionTextEdit,
 
     def wheelEvent(self, event):
         if event.modifiers() & Qt.ControlModifier:
-            self.cambiar_tamano_fuente(event.delta())
+            self.cambiar_tamano_fuente(event.angleDelta().y())
             return
 
         return QTextEdit.wheelEvent(self, event)

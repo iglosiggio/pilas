@@ -98,7 +98,8 @@ class WidgetConAceleracion(QGLWidget):
 
     def procesar_error(self, e):
         titulo = repr(e)
-        descripcion = traceback.format_exc(e)
+        descripcion = traceback.format_exception(type(e), e, e.__traceback__)
+        descripcion = ''.join(descripcion)
         escena = self.pilas.escenas.Error(titulo, descripcion)
         print(titulo)
         print(descripcion)
@@ -175,7 +176,7 @@ class WidgetConAceleracion(QGLWidget):
 
     @capturar_errores_decorator
     def wheelEvent(self, event):
-        self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
+        self.pilas.escena_actual().mueve_rueda.emitir(delta=event.angleDelta().y() / 120)
 
     @capturar_errores_decorator
     def mouseMoveEvent(self, event):
@@ -237,7 +238,7 @@ class WidgetConAceleracion(QGLWidget):
         self.pilas.realizar_dibujado(self.painter)
 
         if self.pausa:
-            font = QtWidgets.QFont(self.painter.font().family(), 30)
+            font = QtGui.QFont(self.painter.font().family(), 30)
             self.painter.setFont(font)
             w = self.original_width
             h = self.original_height
@@ -285,7 +286,6 @@ class WidgetConAceleracion(QGLWidget):
 
     def centrar(self):
         """Coloca la ventana en el centro del escritorio."""
-        from PyQt5 import QtWidgets
         desktop = QtWidgets.QApplication.desktop()
         centro = desktop.screen().rect().center()
 
@@ -439,7 +439,8 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
 
     def procesar_error(self, e):
         titulo = repr(e)
-        descripcion = traceback.format_exc(e)
+        descripcion = traceback.format_exception(type(e), e, e.__traceback__)
+        descripcion = ''.join(descripcion)
         escena = self.pilas.escenas.Error(titulo, descripcion)
         print(titulo)
         print(descripcion)
@@ -514,7 +515,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
 
     @capturar_errores_decorator
     def wheelEvent(self, event):
-        self.pilas.escena_actual().mueve_rueda.emitir(delta=event.delta() / 120)
+        self.pilas.escena_actual().mueve_rueda.emitir(delta=event.angleDelta().y() / 120)
 
     @capturar_errores_decorator
     def mouseMoveEvent(self, event):
@@ -576,7 +577,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
         self.pilas.realizar_dibujado(self.painter)
 
         if self.pausa:
-            font = QtWidgets.QFont(self.painter.font().family(), 30)
+            font = QtGui.QFont(self.painter.font().family(), 30)
             self.painter.setFont(font)
             w = self.original_width
             h = self.original_height

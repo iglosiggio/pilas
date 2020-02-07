@@ -9,7 +9,7 @@ import os
 import sys
 
 from PyQt5 import QtCore, QtWidgets
-from api_base import Ui_ManualWindow
+from pilasengine.api.api_base import Ui_ManualWindow
 from PyQt5 import QtWebEngineWidgets
 from PyQt5 import QtNetwork
 
@@ -20,7 +20,7 @@ class VentanaApi(Ui_ManualWindow):
     def setupUi(self, main):
         self.main = main
         Ui_ManualWindow.setupUi(self, main)
-        self._habilitar_inspector_web()
+        self.webView.page().settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.LocalContentCanAccessFileUrls, True)
         self.cargar_api()
 
     def cargar_api(self):
@@ -29,17 +29,6 @@ class VentanaApi(Ui_ManualWindow):
 
         base_dir =  QtCore.QUrl.fromLocalFile(file_path)
         self.webView.load(base_dir)
-        self.webView.history().setMaximumItemCount(0)
-
-    def _habilitar_inspector_web(self):
-        print("habilitando inspector")
-        QtWebEngineWidgets.QWebEngineSettings.globalSettings()
-        settings = QtWebEngineWidgets.QWebEngineSettings.globalSettings()
-        settings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.DeveloperExtrasEnabled, True)
-        try:
-            settings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.LocalContentCanAccessFileUrls, True)
-        except AttributeError:
-            pass  # Arreglo para funcionar en ubuntu 10.04
 
 def abrir():
     MainWindow = QtWidgets.QMainWindow()

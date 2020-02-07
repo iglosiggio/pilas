@@ -165,13 +165,13 @@ class DialogoConfiguracion(Ui_Dialog):
         font, ok = QtWidgets.QFontDialog.getFont(self.configuracion.obtener_fuente())
 
         if ok:
-            etiqueta = "%s %d" %(font.rawName(), font.pointSize())
+            etiqueta = "%s %d" % (font.family(), font.pointSize())
             self.configuracion.cambiar_fuente(etiqueta)
             self.configuracion.guardar()
             self.definir_fuente(self.configuracion.obtener_fuente())
 
     def definir_fuente(self, font):
-        etiqueta = "%s %d" %(font.rawName(), font.pointSize())
+        etiqueta = "%s %d" %(font.family(), font.pointSize())
         self.fuente.setText(etiqueta)
 
     def cuando_pulsa_el_boton_guardar(self):

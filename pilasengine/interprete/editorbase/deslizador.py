@@ -39,7 +39,7 @@ class Deslizador(QtWidgets.QWidget):
         
         self.layout.addWidget(self.slider)
         self.layout.addWidget(self.checkbox_es_float)
-        self.layout.setContentsMarginss(7, 7, 7, 7)
+        self.layout.setContentsMargins(7, 7, 7, 7)
         
         self.setLayout(self.layout)
         self.adjustSize()

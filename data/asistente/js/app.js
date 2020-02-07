@@ -45,16 +45,22 @@ app.controller("EjemplosCtrl", function($scope, $location){
     };
 
 
-    var listado_plano = JSON.parse(window.interlocutor.obtener_ejemplos());
-    $scope.data.ejemplos = [];
+    window.interlocutor.obtener_ejemplos().then(json => {
+        var listado_plano = JSON.parse(json);
+        console.log(listado_plano);
+        $scope.data.ejemplos = [];
 
-    for (var i in listado_plano.ejemplos) {
-        var nombre = listado_plano.ejemplos[i];
+        for (var i in listado_plano.ejemplos) {
+            var nombre = listado_plano.ejemplos[i];
 
-        $scope.data.ejemplos.push({
-            titulo: nombre.replace(/_/g, ' '),
-            nick:  nombre,
-            tags: []
-        });
-    }
+            $scope.data.ejemplos.push({
+                titulo: nombre.replace(/_/g, ' '),
+                nick:  nombre,
+                tags: []
+            });
+        }
+
+        /* Forzar re-render */
+        $scope.$apply();
+    });
 });

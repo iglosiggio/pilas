@@ -85,11 +85,12 @@ class VentanaInterprete(Ui_InterpreteWindow):
 
         # Botón guardar del interprete
         self.definir_icono(self.guardar_button, 'iconos/guardar.png')
-        self.interprete_button.clicked.connect(self.cuando_pulsa_el_boton_guardar_interprete)
+        self.guardar_button.clicked.connect(self.cuando_pulsa_el_boton_guardar_interprete)
 
         # Botón configuración
         self.definir_icono(self.configuracion_button, 'iconos/preferencias.png')
-        self.interprete_button.clicked.connect(self.cuando_pulsa_el_boton_configuracion)
+        self.configuracion_button.clicked.connect(self.cuando_pulsa_el_boton_configuracion)
+
         # Botón para limpiar el intérprete
         self.definir_icono(self.limpiar_button, 'iconos/limpiar.png')
         self.limpiar_button.clicked.connect(self.cuando_pulsa_el_boton_limpiar)

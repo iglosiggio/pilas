@@ -23,6 +23,7 @@ except ModuleNotFoundError:
     pass
 
 from PyQt5 import QtWidgets
+from PyQt5 import QtGui
 from PyQt5 import QtCore
 
 from pilasengine import (
@@ -304,7 +305,8 @@ class Pilas(object):
 
     def procesar_error(self, e):
         titulo = repr(e)
-        descripcion = traceback.format_exc(e)
+        descripcion = traceback.format_exception(type(e), e, e.__traceback__)
+        descripcion = ''.join(descripcion)
         escena = self.escenas.Error(titulo, descripcion)
         return escena
 
@@ -507,10 +509,10 @@ class Pilas(object):
         self.texto_avisar_anterior = self.actores.TextoInferior(texto)
 
     def ocultar_puntero_del_mouse(self):
-        self.widget.setCursor(QtWidgets.QCursor(QtCore.Qt.BlankCursor))
+        self.widget.setCursor(QtGui.QCursor(QtCore.Qt.BlankCursor))
 
     def mostrar_puntero_del_mouse(self):
-        self.widget.setCursor(QtWidgets.QCursor(QtCore.Qt.ArrowCursor))
+        self.widget.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
 
     def obtener_posicion_del_mouse(self):
         return (self.widget.mouse_x, self.widget.mouse_y)

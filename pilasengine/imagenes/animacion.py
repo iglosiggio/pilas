@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 import os
 
-from grilla import Grilla
+from pilasengine.imagenes.grilla import Grilla
 
 class Animacion(Grilla):
 

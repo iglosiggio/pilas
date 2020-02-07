@@ -40,8 +40,8 @@ class ActorEliminado(object):
     def esta_eliminado(self):
         return True
 
-    def __cmp__(self, otro_actor):
-        return 1
+    def __lt__(self, otro_actor):
+        return True
 
     def eliminar(self):
         pass
@@ -751,7 +751,7 @@ class Actor(Estudiante):
         actores se ven mas arriba de otros cambiando los valores de
         los atributos `z`."""
 
-        return self.z < otro_actor.z
+        return self.z > otro_actor.z
 
     def get_izquierda(self):
         return self.x - (self.centro_x * self.escala)

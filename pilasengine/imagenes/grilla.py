@@ -44,7 +44,7 @@ class Grilla(Imagen):
         self._cuadro = cuadro
 
         frame_col = cuadro % self.columnas
-        frame_row = cuadro / self.columnas
+        frame_row = cuadro // self.columnas
 
         self.dx = frame_col * self.cuadro_ancho
         self.dy = frame_row * self.cuadro_alto

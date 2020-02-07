@@ -31,7 +31,7 @@ class ErrorOutput(Output):
         if 'NameError' in linea:
             linea = linea.replace('name', 'el nombre').replace('is not defined', 'no existe')
 
-        self.destino.insertar_error(linea.decode('utf-8'))
+        self.destino.insertar_error(linea)
         self.destino.ensureCursorVisible()
 
 
@@ -40,7 +40,7 @@ class NormalOutput(Output):
 
     def write(self, linea):
         sys.__stdout__.write(linea)
-        self.destino.imprimir_linea(linea.decode('utf-8'))
+        self.destino.imprimir_linea(linea)
         self.destino.ensureCursorVisible()
 
         if '<bound method' in linea:
