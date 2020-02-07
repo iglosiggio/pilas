@@ -11,7 +11,7 @@ import os
 import time
 import sys
 
-from PyQt5.QtWidgets import (QKeySequence, QIcon, QLabel)
+from PyQt5.QtGui import (QKeySequence, QIcon, QLabel)
 from PyQt5 import QtCore
 
 import lanas

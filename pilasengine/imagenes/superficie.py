@@ -7,6 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 import os
 from PyQt5 import QtWidgets
+from PyQt5 import QtGui
 from PyQt5 import QtCore
 from pilasengine.imagenes.imagen import Imagen
 from pilasengine import colores
@@ -20,7 +21,7 @@ class Superficie(Imagen):
         self.pilas = pilas
         self._imagen = QtWidgets.QPixmap(ancho, alto)
         self._imagen.fill(QtWidgets.QColor(255, 255, 255, 0))
-        self.canvas = QtWidgets.QPainter()
+        self.canvas = QtGui.QPainter()
         self.ruta_original = os.urandom(25)
         self.repetir_horizontal = False
         self.repetir_vertical = False
@@ -151,12 +152,12 @@ class Superficie(Imagen):
 
         if not fuente_como_ruta in Superficie.CACHE_FUENTES.keys():
             ruta_a_la_fuente = utils.obtener_ruta_al_recurso(fuente_como_ruta)
-            fuente_id = QtWidgets.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
             Superficie.CACHE_FUENTES[fuente_como_ruta] = fuente_id
         else:
             fuente_id = Superficie.CACHE_FUENTES[fuente_como_ruta]
 
-        return str(QtWidgets.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
 
     def __repr__(self):
         return "<Superficie>"

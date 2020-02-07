@@ -29,7 +29,7 @@ class Texto(Superficie):
     def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False,
                               fuente=None, ancho=0):
         pic = QtWidgets.QPicture()
-        p = QtWidgets.QPainter(pic)
+        p = QtGui.QPainter(pic)
 
         if fuente:
             nombre_de_fuente = self.cargar_fuente(fuente)

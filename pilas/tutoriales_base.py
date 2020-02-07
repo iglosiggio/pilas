@@ -31,9 +31,9 @@ class Ui_TutorialesWindow(object):
         self.centralwidget = QtWidgets.QWidget(TutorialesWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setMargin(0)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.webView = QtWebKit.QWebView(self.centralwidget)
+        self.webView = QtWebEngineWidgets.QWebView(self.centralwidget)
         self.webView.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.webView.setStatusTip(_fromUtf8(""))
         self.webView.setAccessibleDescription(_fromUtf8(""))
@@ -55,7 +55,7 @@ class Ui_TutorialesWindow(object):
     def retranslateUi(self, TutorialesWindow):
         TutorialesWindow.setWindowTitle(_translate("TutorialesWindow", "Tutoriales de pilas-engine", None))
 
-from PyQt5 import QtWebKit
+from PyQt5 import QtWebEngineWidgets
 
 if __name__ == "__main__":
     import sys

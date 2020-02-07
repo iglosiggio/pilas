@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5.QtWidgets import QWidget
@@ -85,7 +85,7 @@ class CanvasWidgetAbstracto(object):
                  rendimiento):
         QGLWidget.__init__(self, None)
 
-        self.painter = QtWidgets.QPainter()
+        self.painter = QtGui.QPainter()
 
         self.pausa_habilitada = False
 
@@ -129,9 +129,9 @@ class CanvasWidgetAbstracto(object):
         self.painter.begin(self)
         self.painter.scale(self.escala, self.escala)
 
-        self.painter.setRenderHint(QtWidgets.QPainter.HighQualityAntialiasing, True)
-        self.painter.setRenderHint(QtWidgets.QPainter.SmoothPixmapTransform, True)
-        self.painter.setRenderHint(QtWidgets.QPainter.Antialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
+        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
         if self.gestor_escenas.escena_actual():
             if not(self.gestor_escenas.escena_actual().escena_pausa):
@@ -608,7 +608,7 @@ class Superficie(Imagen):
     def __init__(self, ancho, alto):
         self._imagen = QtWidgets.QPixmap(ancho, alto)
         self._imagen.fill(QtWidgets.QColor(255, 255, 255, 0))
-        self.canvas = QtWidgets.QPainter()
+        self.canvas = QtGui.QPainter()
         self.ruta_original = os.urandom(25)
 
     def pintar(self, color):
@@ -744,12 +744,12 @@ class Texto(Superficie):
 
         if not fuente_como_ruta in Texto.CACHE_FUENTES.keys():
             ruta_a_la_fuente = pilas.utils.obtener_ruta_al_recurso(fuente_como_ruta)
-            fuente_id = QtWidgets.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
             Texto.CACHE_FUENTES[fuente_como_ruta] = fuente_id
         else:
             fuente_id = Texto.CACHE_FUENTES[fuente_como_ruta]
 
-        return str(QtWidgets.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
 
 
 class Actor(BaseActor):
@@ -1221,7 +1221,7 @@ class Motor(object):
 
     def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
         pic = QtWidgets.QPicture()
-        p = QtWidgets.QPainter(pic)
+        p = QtGui.QPainter(pic)
 
         if fuente:
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)

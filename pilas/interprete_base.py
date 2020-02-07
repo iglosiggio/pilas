@@ -35,7 +35,7 @@ class Ui_InterpreteWindow(object):
         self.splitter_vertical = QtWidgets.QSplitter(self.centralwidget)
         self.splitter_vertical.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_vertical.setObjectName(_fromUtf8("splitter_vertical"))
-        self.navegador = QtWebKit.QWebView(self.splitter_vertical)
+        self.navegador = QtWebEngineWidgets.QWebView(self.splitter_vertical)
         self.navegador.setMinimumSize(QtCore.QSize(250, 0))
         self.navegador.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.navegador.setObjectName(_fromUtf8("navegador"))
@@ -45,7 +45,7 @@ class Ui_InterpreteWindow(object):
         self.layoutWidget = QtWidgets.QWidget(self.splitter)
         self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.layoutWidget)
-        self.verticalLayout_2.setMargin(0)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.canvas = QtWidgets.QStackedWidget(self.layoutWidget)
         self.canvas.setMinimumSize(QtCore.QSize(320, 240))
@@ -134,7 +134,7 @@ class Ui_InterpreteWindow(object):
         self.layoutWidget1 = QtWidgets.QWidget(self.splitter)
         self.layoutWidget1.setObjectName(_fromUtf8("layoutWidget1"))
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget1)
-        self.verticalLayout.setMargin(0)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.console = QtWidgets.QStackedWidget(self.layoutWidget1)
         self.console.setObjectName(_fromUtf8("console"))
@@ -183,7 +183,7 @@ class Ui_InterpreteWindow(object):
         self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
-from PyQt5 import QtWebKit
+from PyQt5 import QtWebEngineWidgets
 
 if __name__ == "__main__":
     import sys

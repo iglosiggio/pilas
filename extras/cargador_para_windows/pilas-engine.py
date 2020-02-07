@@ -7,7 +7,8 @@ from PyQt5 import *
 from PyQt5 import Qt
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
-from PyQt5 import QtWebKit
+from PyQt5 import QtGui
+from PyQt5 import QtWebEngineWidgets
 from PyQt5 import QtOpenGL
 import Box2D
 import pygame
@@ -72,7 +73,7 @@ else:
     _ = pilasengine.abrir_asistente()
 
 icono = pilasengine.utils.obtener_ruta_al_recurso('icono.ico')
-app.setWindowIcon(QtWidgets.QIcon(icono))
+app.setWindowIcon(QtGui.QIcon(icono))
 #mainwindow.setWindowIcon(QtWidgets.QIcon(icono))
 
 sys.exit(app.exec_())

@@ -53,7 +53,10 @@ class Fisica(object):
     def optimizar_figuras_estaticas(self, estado=True):
         """Le indica al motor de fisica que no calcule colisiones en figuras que están en reposo."""
         self.mundo.SetAllowSleeping(estado)
-        self.mundo.continuousPhysics = (not estado)
+        print(not estado)
+        #print(self.mundo.continuousPhysics)
+        #self.mundo.continuousPhysics = True
+        #self.mundo.continuousPhysics = (not estado)
 
     def iniciar(self):
         self.area = self.pilas.obtener_widget().obtener_area()

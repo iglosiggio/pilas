@@ -15,6 +15,7 @@ import pickle
 import json
 
 from PyQt5 import QtCore
+from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 
 from pilasengine.configuracion.configuracion_base import Ui_Dialog
@@ -45,8 +46,8 @@ class Configuracion(object):
         font_path = self._buscar_fuente_personalizada()
 
         if font_path:
-            fuente_id = QtWidgets.QFontDatabase.addApplicationFont(font_path)
-            fuente = str(QtWidgets.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+            fuente_id = QtGui.QFontDatabase.addApplicationFont(font_path)
+            fuente = str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
         else:
             fuente = "Courier New"
 

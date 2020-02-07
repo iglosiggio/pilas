@@ -10,7 +10,7 @@ import sys
 
 from PyQt5 import QtCore, QtWidgets
 from manual_base import Ui_ManualWindow
-from PyQt5 import QtWebKit
+from PyQt5 import QtWebEngineWidgets
 from PyQt5 import QtNetwork
 
 import pilasengine
@@ -33,11 +33,11 @@ class VentanaManual(Ui_ManualWindow):
 
     def _habilitar_inspector_web(self):
         print "habilitando inspector"
-        QtWebKit.QWebSettings.globalSettings()
-        settings = QtWebKit.QWebSettings.globalSettings()
-        settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
+        QtWebEngineWidgets.QWebSettings.globalSettings()
+        settings = QtWebEngineWidgets.QWebSettings.globalSettings()
+        settings.setAttribute(QtWebEngineWidgets.QWebSettings.DeveloperExtrasEnabled, True)
         try:
-            settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
+            settings.setAttribute(QtWebEngineWidgets.QWebSettings.LocalContentCanAccessFileUrls, True)
         except AttributeError:
             pass  # Arreglo para funcionar en ubuntu 10.04
 

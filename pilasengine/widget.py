@@ -11,6 +11,7 @@ import traceback
 from PyQt5 import Qt
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
+from PyQt5 import QtGui
 from PyQt5.QtOpenGL import QGLWidget
 
 import fps
@@ -53,7 +54,7 @@ class WidgetConAceleracion(QGLWidget):
         self.parent_guardado = None
 
     def iniciar_interface(self, ancho, alto):
-        self.painter = QtWidgets.QPainter()
+        self.painter = QtGui.QPainter()
         self.setMouseTracking(True)
         self.mouse_x = 0
         self.mouse_y = 0
@@ -225,10 +226,10 @@ class WidgetConAceleracion(QGLWidget):
     def _dibujar_widget(self):
         # Suavizar efectos y transformaciones de imágenes.
         self.painter.save()
-        self.painter.setRenderHint(QtWidgets.QPainter.Antialiasing, True)
-        self.painter.setRenderHint(QtWidgets.QPainter.HighQualityAntialiasing, True)
-        self.painter.setRenderHint(QtWidgets.QPainter.SmoothPixmapTransform, self._borrosidad)
-        self.painter.setRenderHint(QtWidgets.QPainter.TextAntialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
+        self.painter.setRenderHint(QtGui.QPainter.TextAntialiasing, True)
 
         self.painter.translate(self.window_dx, self.window_dy)
         self.painter.scale(self.escala, self.escala)
@@ -394,7 +395,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
         self.parent_guardado = None
 
     def iniciar_interface(self, ancho, alto):
-        self.painter = QtWidgets.QPainter()
+        self.painter = QtGui.QPainter()
         self.setMouseTracking(True)
         self.mouse_x = 0
         self.mouse_y = 0
@@ -564,10 +565,10 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
     def _dibujar_widget(self):
         # Suavizar efectos y transformaciones de imágenes.
         self.painter.save()
-        self.painter.setRenderHint(QtWidgets.QPainter.Antialiasing, True)
-        self.painter.setRenderHint(QtWidgets.QPainter.HighQualityAntialiasing, True)
-        self.painter.setRenderHint(QtWidgets.QPainter.SmoothPixmapTransform, self._borrosidad)
-        self.painter.setRenderHint(QtWidgets.QPainter.TextAntialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
+        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
+        self.painter.setRenderHint(QtGui.QPainter.TextAntialiasing, True)
 
         self.painter.translate(self.window_dx, self.window_dy)
         self.painter.scale(self.escala, self.escala)

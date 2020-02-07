@@ -7,7 +7,7 @@
 # website - http://www.pilas-engine.com.ar
 
 import os
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 class WidgetLog(QtWidgets.QMainWindow):
     """ Representa una ventana de log.
@@ -23,23 +23,23 @@ class WidgetLog(QtWidgets.QMainWindow):
 
         self.setWindowTitle('Pilas Log')
 
-        self.setWindowIcon(QtWidgets.QIcon(self._ruta_icono('tux.png')))
+        self.setWindowIcon(QtGui.QIcon(self._ruta_icono('tux.png')))
 
         self.centralwidget = QtWidgets.QWidget(self)
 
-        accionSalir = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('door_out.png')), 'Salir', self)
+        accionSalir = QtWidgets.QAction(QtGui.QIcon(self._ruta_icono('door_out.png')), 'Salir', self)
         accionSalir.setShortcut('Ctrl+S')
         accionSalir.triggered.connect(self.close)
 
-        accionEjecutar = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('control_play.png')), 'Ejecutar', self)
+        accionEjecutar = QtWidgets.QAction(QtGui.QIcon(self._ruta_icono('control_play.png')), 'Ejecutar', self)
         accionEjecutar.setShortcut('Ctrl+E')
         accionEjecutar.triggered.connect(self._ejecutar)
 
-        accionPausar = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('control_pause.png')), 'Pausar', self)
+        accionPausar = QtWidgets.QAction(QtGui.QIcon(self._ruta_icono('control_pause.png')), 'Pausar', self)
         accionPausar.setShortcut('Ctrl+P')
         accionPausar.triggered.connect(self._pausar)
 
-        accionResetear = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('arrow_refresh.png')), 'Resetear', self)
+        accionResetear = QtWidgets.QAction(QtGui.QIcon(self._ruta_icono('arrow_refresh.png')), 'Resetear', self)
         accionResetear.setShortcut('Ctrl+R')
         accionResetear.triggered.connect(self._resetear)
 

@@ -3,7 +3,7 @@ import sys
 import inspect
 
 try:
-    from PyQt5 import QtCore, QtWidgets
+    from PyQt5 import QtCore, QtWidgets, QtGui
     from .interprete_base import Ui_InterpreteWindow
 except:
     print("ERROR: No se encuentra pyqt")
@@ -106,8 +106,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.navegador.load(base_dir)
 
     def definir_icono(self, boton, ruta):
-        icon = QtWidgets.QIcon();
-        icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtWidgets.QIcon.Normal, QtWidgets.QIcon.Off)
+        icon = QtGui.QIcon();
+        icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
 

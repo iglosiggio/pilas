@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -28,16 +28,16 @@ class Ui_AsistenteWindow(object):
         AsistenteWindow.resize(615, 480)
         AsistenteWindow.setMinimumSize(QtCore.QSize(615, 480))
         AsistenteWindow.setAcceptDrops(False)
-        icon = QtWidgets.QIcon()
-        icon.addPixmap(QtWidgets.QPixmap(_fromUtf8("../../../pilas/pilas/data/pilas.ico")), QtWidgets.QIcon.Normal, QtWidgets.QIcon.Off)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("../../../pilas/pilas/data/pilas.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AsistenteWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(AsistenteWindow)
         self.centralwidget.setAcceptDrops(False)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setMargin(0)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.webView = QtWebKit.QWebView(self.centralwidget)
+        self.webView = QtWebEngineWidgets.QWebView(self.centralwidget)
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
@@ -55,7 +55,7 @@ class Ui_AsistenteWindow(object):
         AsistenteWindow.setWindowTitle(_translate("AsistenteWindow", "pilas-engine", None))
         self.salir_action.setText(_translate("AsistenteWindow", "Salir", None))
 
-from PyQt5 import QtWebKit
+from PyQt5 import QtWebEngineWidgets
 
 if __name__ == "__main__":
     import sys

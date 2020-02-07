@@ -13,7 +13,7 @@ import json
 
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
-from PyQt5 import QtWebKit
+from PyQt5 import QtWebEngineWidgets
 from PyQt5 import QtNetwork
 
 from asistente_base import Ui_AsistenteWindow as Base
@@ -169,11 +169,11 @@ class VentanaAsistente(Base):
             self.interlocutor.definir_version("", pilasengine.VERSION)
 
     def _habilitar_inspector_web(self):
-        QtWebKit.QWebSettings.globalSettings()
-        settings = QtWebKit.QWebSettings.globalSettings()
-        settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
+        QtWebEngineWidgets.QWebSettings.globalSettings()
+        settings = QtWebEngineWidgets.QWebSettings.globalSettings()
+        settings.setAttribute(QtWebEngineWidgets.QWebSettings.DeveloperExtrasEnabled, True)
         try:
-            settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
+            settings.setAttribute(QtWebEngineWidgets.QWebSettings.LocalContentCanAccessFileUrls, True)
         except AttributeError:
             pass  # Arreglo para funcionar en ubuntu 10.04
 

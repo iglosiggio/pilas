@@ -61,7 +61,7 @@ class Ui_InterpreteWindow(object):
         self.splitter_vertical = QtWidgets.QSplitter(self.centralwidget)
         self.splitter_vertical.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_vertical.setObjectName(_fromUtf8("splitter_vertical"))
-        self.navegador = QtWebKit.QWebView(self.splitter_vertical)
+        self.navegador = QtWebEngineWidgets.QWebView(self.splitter_vertical)
         self.navegador.setMinimumSize(QtCore.QSize(250, 0))
         self.navegador.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.navegador.setObjectName(_fromUtf8("navegador"))
@@ -211,7 +211,7 @@ class Ui_InterpreteWindow(object):
         self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
-from PyQt5 import QtWebKit
+from PyQt5 import QtWebEngineWidgets
 
 if __name__ == "__main__":
     import sys

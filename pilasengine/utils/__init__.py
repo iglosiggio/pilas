@@ -14,6 +14,7 @@ from pilasengine import colores
 
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
+from PyQt5 import QtGui
 
 PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
@@ -325,7 +326,7 @@ def iniciar_desde_terminal():
             _ = pilasengine.abrir_asistente()
 
     icono = pilasengine.utils.obtener_ruta_al_recurso('icono.ico')
-    app.setWindowIcon(QtWidgets.QIcon(icono))
+    app.setWindowIcon(QtGui.QIcon(icono))
     #mainwindow.setWindowIcon(QtWidgets.QIcon(icono))
 
     sys.exit(app.exec_())

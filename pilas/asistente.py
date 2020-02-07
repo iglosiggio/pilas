@@ -8,7 +8,7 @@
 
 import sys
 import os
-from PyQt5 import QtCore, QtWidgets, QtWebKit, QtNetwork
+from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets, QtNetwork
 import json
 
 from .asistente_base import Ui_AsistenteWindow
@@ -25,7 +25,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         main.resize(550, 442)
 
         self.webView.setAcceptDrops(False)
-        self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
+        self.webView.page().setLinkDelegationPolicy(QtWebEngineWidgets.QWebPage.DelegateExternalLinks)
         self.webView.connect(self.webView, QtCore.SIGNAL("linkClicked(const QUrl&)"), self.cuando_pulsa_link)
         self._cargar_pagina_principal()
         self._deshabilitar_barras_de_scroll()
@@ -68,11 +68,11 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
 
     def _habilitar_inspector_web(self):
-        QtWebKit.QWebSettings.globalSettings()
-        settings = QtWebKit.QWebSettings.globalSettings()
-        settings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
+        QtWebEngineWidgets.QWebSettings.globalSettings()
+        settings = QtWebEngineWidgets.QWebSettings.globalSettings()
+        settings.setAttribute(QtWebEngineWidgets.QWebSettings.DeveloperExtrasEnabled, True)
         try:
-            settings.setAttribute(QtWebKit.QWebSettings.LocalContentCanAccessFileUrls, True)
+            settings.setAttribute(QtWebEngineWidgets.QWebSettings.LocalContentCanAccessFileUrls, True)
         except AttributeError:
             pass  # Arreglo para funcionar en ubuntu 10.04
 

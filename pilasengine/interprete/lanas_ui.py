@@ -28,7 +28,7 @@ class Ui_Lanas(object):
         Lanas.resize(656, 349)
         self.verticalLayout = QtWidgets.QVBoxLayout(Lanas)
         self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
-        self.verticalLayout.setMargin(0)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.widget_interprete = QtWidgets.QStackedWidget(Lanas)
         self.widget_interprete.setObjectName(_fromUtf8("widget_interprete"))

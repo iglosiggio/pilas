@@ -18,8 +18,8 @@ from PyQt5.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
 from PyQt5.QtWidgets import (QTextEdit, QTextCursor, QFileDialog,
                          QIcon, QMessageBox, QShortcut,
-                         QInputDialog, QLineEdit, QErrorMessage,
-                         QKeySequence, QTextFormat, QColor, QKeyEvent)
+                         QInputDialog, QLineEdit, QErrorMessage)
+from PyQt5.QtGui import QKeySequence, QTextFormat, QColor, QKeyEvent
 from PyQt5.QtCore import Qt
 from PyQt5 import QtCore
 
