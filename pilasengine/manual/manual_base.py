@@ -27,7 +27,7 @@ class Ui_ManualWindow(object):
         ManualWindow.setObjectName(_fromUtf8("ManualWindow"))
         ManualWindow.resize(844, 508)
         ManualWindow.setMinimumSize(QtCore.QSize(500, 400))
-        self.centralwidget = QtGui.QWidget(ManualWindow)
+        self.centralwidget = QtWidgets.QWidget(ManualWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setMargin(0)

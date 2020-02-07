@@ -31,7 +31,7 @@ class Ui_AsistenteWindow(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("../../../pilas/pilas/data/pilas.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AsistenteWindow.setWindowIcon(icon)
-        self.centralwidget = QtGui.QWidget(AsistenteWindow)
+        self.centralwidget = QtWidgets.QWidget(AsistenteWindow)
         self.centralwidget.setAcceptDrops(False)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)

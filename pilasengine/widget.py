@@ -372,7 +372,7 @@ class WidgetConAceleracion(QGLWidget):
     def usa_aceleracion_de_video(self):
         return True
 
-class WidgetSinAceleracion(QtGui.QWidget):
+class WidgetSinAceleracion(QtWidgets.QWidget):
 
     """Representa el componente que contiene toda la escena de pilas.
 

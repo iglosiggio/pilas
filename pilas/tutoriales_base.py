@@ -28,7 +28,7 @@ class Ui_TutorialesWindow(object):
         TutorialesWindow.setObjectName(_fromUtf8("TutorialesWindow"))
         TutorialesWindow.resize(844, 508)
         TutorialesWindow.setMinimumSize(QtCore.QSize(500, 400))
-        self.centralwidget = QtGui.QWidget(TutorialesWindow)
+        self.centralwidget = QtWidgets.QWidget(TutorialesWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setMargin(0)

@@ -25,7 +25,7 @@ class WidgetLog(QtGui.QMainWindow):
 
         self.setWindowIcon(QtGui.QIcon(self._ruta_icono('tux.png')))
 
-        self.centralwidget = QtGui.QWidget(self)
+        self.centralwidget = QtWidgets.QWidget(self)
 
         accionSalir = QtGui.QAction(QtGui.QIcon(self._ruta_icono('door_out.png')), 'Salir', self)
         accionSalir.setShortcut('Ctrl+S')

@@ -53,7 +53,7 @@ class Ui_Lanas(object):
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
-    Lanas = QtGui.QWidget()
+    Lanas = QtWidgets.QWidget()
     ui = Ui_Lanas()
     ui.setupUi(Lanas)
     Lanas.show()

@@ -9,7 +9,7 @@ from PyQt5 import QtGui
 from PyQt5 import QtCore
 
 
-class Deslizador(QtGui.QWidget):
+class Deslizador(QtWidgets.QWidget):
     """Representa el popup que nos permite ajustar valores numéricos.
     
     Este popup aparece cuando se pulsa el botón derecho del mouse
@@ -18,7 +18,7 @@ class Deslizador(QtGui.QWidget):
     """
     
     def __init__(self, parent, cursor, valor_inicial, funcion_cuando_cambia):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         self.funcion_cuando_cambia = funcion_cuando_cambia
 
         self._crear_interfaz()        
