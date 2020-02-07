@@ -2,7 +2,7 @@
 import sys
 import unittest
 
-from PyQt4 import QtGui
+from PyQt5 import QtGui
 
 import pilasengine
 

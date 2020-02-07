@@ -11,7 +11,7 @@ import os
 import sys
 import glob
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 
 from . import syntax
 import pilas

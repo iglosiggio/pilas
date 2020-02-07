@@ -13,11 +13,11 @@ import traceback
 
 os.environ['lanas'] = 'enabled'
 
-from PyQt4.QtGui import (QWidget, QDesktopWidget, QPalette,
+from PyQt5.QtGui import (QWidget, QDesktopWidget, QPalette,
                         QColor, QTextCursor, QTextEdit,
                         QInputDialog, QApplication,
                         QKeyEvent)
-from PyQt4.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt, QTimer
 
 from editorbase import editor_base
 import lanas_ui

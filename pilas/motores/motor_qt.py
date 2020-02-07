@@ -6,10 +6,10 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import Qt
-from PyQt4.QtOpenGL import QGLWidget
-from PyQt4.QtGui import QWidget
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtCore import Qt
+from PyQt5.QtOpenGL import QGLWidget
+from PyQt5.QtGui import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 from pilas import dev
@@ -915,7 +915,7 @@ class SonidoPhonon:
     deshabilitado = False
 
     def __init__(self, media, ruta):
-        from PyQt4 import phonon
+        from PyQt5 import phonon
         self.media = media
         self.ruta = ruta
 
@@ -1074,7 +1074,7 @@ class Motor(object):
             except ImportError:
                 raise Exception("Error, el sistema de audio GST (gstreamer) no esta disponible.")
         elif audio == 'phonon':
-            from PyQt4 import phonon
+            from PyQt5 import phonon
             self.media = phonon.Phonon.MediaObject()
             self.audio = phonon.Phonon.AudioOutput(phonon.Phonon.MusicCategory)
             self.path = phonon.Phonon.createPath(self.media, self.audio)

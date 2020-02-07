@@ -6,8 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-from PyQt4 import QtGui
-from PyQt4 import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtCore
 from pilasengine.imagenes.imagen import Imagen
 from pilasengine import colores
 from pilasengine import utils

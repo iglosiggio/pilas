@@ -8,7 +8,7 @@
 
 import sys
 import os
-from PyQt4 import QtCore, QtGui, QtWebKit, QtNetwork
+from PyQt5 import QtCore, QtGui, QtWebKit, QtNetwork
 import json
 
 from .asistente_base import Ui_AsistenteWindow

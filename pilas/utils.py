@@ -325,7 +325,7 @@ def realizar_pruebas():
     print("pyqt:", end=' ')
 
     try:
-        from PyQt4 import Qt
+        from PyQt5 import Qt
         print("OK, versión", Qt.PYQT_VERSION_STR)
     except ImportError:
         print("Error -> no se encuentra pyqt.")
@@ -333,8 +333,8 @@ def realizar_pruebas():
     print("pyqt con aceleracion:", end=' ')
 
     try:
-        from PyQt4 import QtOpenGL
-        from PyQt4.QtOpenGL import QGLWidget
+        from PyQt5 import QtOpenGL
+        from PyQt5.QtOpenGL import QGLWidget
         print("OK")
     except ImportError:
         print("Error -> no se encuentra pyqt4gl.")
@@ -395,7 +395,7 @@ def centrar_ventana(widget):
 
     :param widget: Widget que representa la ventana.
     """
-    from PyQt4 import QtGui
+    from PyQt5 import QtGui
     desktop = QtGui.QApplication.desktop()
     widget.move(desktop.screen().rect().center() - widget.rect().center())
 
@@ -427,7 +427,7 @@ def imprimir_todos_los_eventos():
 
 def habilitar_depuracion():
     """Permite habilitar un breakpoint para depuracion una vez inicializado pilas."""
-    from PyQt4.QtCore import pyqtRemoveInputHook
+    from PyQt5.QtCore import pyqtRemoveInputHook
     from pdb import set_trace
     pyqtRemoveInputHook()
     set_trace()
@@ -438,7 +438,7 @@ def mostrar_mensaje_de_error_y_salir(motivo):
 
     :param motivo: Un mensaje que explica el problema o la razón del cierre de pilas.
     """
-    from PyQt4 import QtGui
+    from PyQt5 import QtGui
     app = QtGui.QApplication(sys.argv[:1])
     app.setApplicationName("pilas-engine error")
     main_window = QtGui.QMainWindow()

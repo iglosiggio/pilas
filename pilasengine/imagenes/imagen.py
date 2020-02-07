@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-from PyQt4 import QtGui
+from PyQt5 import QtGui
 
 
 class Imagen(object):

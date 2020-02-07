@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import sys
 import unittest
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4.QtTest import QTest
+from PyQt5 import QtGui
+from PyQt5 import QtCore
+from PyQt5.QtTest import QTest
 
 import pilasengine
 from pilasengine.controles import Controles

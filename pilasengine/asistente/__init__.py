@@ -11,10 +11,10 @@ import os
 import webbrowser
 import json
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4 import QtWebKit
-from PyQt4 import QtNetwork
+from PyQt5 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtWebKit
+from PyQt5 import QtNetwork
 
 from asistente_base import Ui_AsistenteWindow as Base
 import pilasengine
@@ -135,7 +135,7 @@ class VentanaAsistente(Base):
 
         :param widget: Widget que representa la ventana.
         """
-        from PyQt4 import QtGui
+        from PyQt5 import QtGui
         desktop = QtGui.QApplication.desktop()
         centro = desktop.screen().rect().center()
 

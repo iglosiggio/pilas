@@ -13,15 +13,15 @@ import inspect
 import tempfile
 import shutil
 
-from PyQt4.QtCore import Qt, QTimer
-from PyQt4.Qt import (QFrame, QWidget, QPainter,
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
-from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
+from PyQt5.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QIcon, QMessageBox, QShortcut,
                          QInputDialog, QLineEdit, QErrorMessage,
                          QKeySequence, QTextFormat, QColor, QKeyEvent)
-from PyQt4.QtCore import Qt
-from PyQt4 import QtCore
+from PyQt5.QtCore import Qt
+from PyQt5 import QtCore
 
 
 from editorbase import editor_base
@@ -660,7 +660,7 @@ class Editor(editor_base.EditorBase):
 
 
 if __name__ == '__main__':
-    from PyQt4.QtGui import QApplication
+    from PyQt5.QtGui import QApplication
     app = QApplication(sys.argv)
     weditor = WidgetEditor()
     weditor.show()

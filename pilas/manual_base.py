@@ -3,11 +3,11 @@
 # Form implementation generated from reading ui file 'pilas/data/manual.ui'
 #
 # Created: Fri Feb 21 18:52:30 2014
-#      by: PyQt4 UI code generator 4.10.3
+#      by: PyQt5 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -55,7 +55,7 @@ class Ui_ManualWindow(object):
     def retranslateUi(self, ManualWindow):
         ManualWindow.setWindowTitle(_translate("ManualWindow", "manual de pilas-engine", None))
 
-from PyQt4 import QtWebKit
+from PyQt5 import QtWebKit
 
 if __name__ == "__main__":
     import sys

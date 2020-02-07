@@ -6,8 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 from pilasengine.colores import negro
-from PyQt4 import QtGui
-from PyQt4 import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtCore
 
 
 class ModoDepurador(object):

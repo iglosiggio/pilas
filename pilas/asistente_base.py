@@ -3,11 +3,11 @@
 # Form implementation generated from reading ui file 'pilas/data/asistente.ui'
 #
 # Created: Fri Feb 21 18:52:30 2014
-#      by: PyQt4 UI code generator 4.10.3
+#      by: PyQt5 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -54,7 +54,7 @@ class Ui_AsistenteWindow(object):
         AsistenteWindow.setWindowTitle(_translate("AsistenteWindow", "pilas-engine", None))
         self.salir_action.setText(_translate("AsistenteWindow", "Salir", None))
 
-from PyQt4 import QtWebKit
+from PyQt5 import QtWebKit
 
 if __name__ == "__main__":
     import sys

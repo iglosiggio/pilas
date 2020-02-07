@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PyQt4 import QtCore
+from PyQt5 import QtCore
 
 from pilasengine.controles import simbolos
 from pilasengine.controles import control

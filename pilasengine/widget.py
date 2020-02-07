@@ -8,10 +8,10 @@
 import sys
 import traceback
 
-from PyQt4 import Qt
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4.QtOpenGL import QGLWidget
+from PyQt5 import Qt
+from PyQt5 import QtGui
+from PyQt5 import QtCore
+from PyQt5.QtOpenGL import QGLWidget
 
 import fps
 
@@ -284,7 +284,7 @@ class WidgetConAceleracion(QGLWidget):
 
     def centrar(self):
         """Coloca la ventana en el centro del escritorio."""
-        from PyQt4 import QtGui
+        from PyQt5 import QtGui
         desktop = QtGui.QApplication.desktop()
         centro = desktop.screen().rect().center()
 
@@ -623,7 +623,7 @@ class WidgetSinAceleracion(QtGui.QWidget):
 
     def centrar(self):
         """Coloca la ventana en el centro del escritorio."""
-        from PyQt4 import QtGui
+        from PyQt5 import QtGui
         desktop = QtGui.QApplication.desktop()
         centro = desktop.screen().rect().center()
 

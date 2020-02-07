@@ -6,9 +6,9 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import re
-from PyQt4 import QtGui
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5 import QtGui
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 
 import deslizador
 

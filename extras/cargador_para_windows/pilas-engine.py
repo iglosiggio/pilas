@@ -3,12 +3,12 @@ import sys
 import signal
 
 import importlib
-from PyQt4 import *
-from PyQt4 import Qt
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4 import QtWebKit
-from PyQt4 import QtOpenGL
+from PyQt5 import *
+from PyQt5 import Qt
+from PyQt5 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtWebKit
+from PyQt5 import QtOpenGL
 import Box2D
 import pygame
 import tkMessageBox

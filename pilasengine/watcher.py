@@ -8,8 +8,8 @@
 import os
 import glob
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtCore
 
 class Watcher(QtCore.QObject):
 

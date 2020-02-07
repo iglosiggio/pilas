@@ -1,6 +1,6 @@
 import pilas
 import sys
-from PyQt4 import QtGui, QtCore, uic
+from PyQt5 import QtGui, QtCore, uic
 
 class Sense(QtGui.QMainWindow):
     def __init__(self, unRobot):

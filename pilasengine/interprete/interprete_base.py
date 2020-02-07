@@ -2,11 +2,11 @@
 
 # Form implementation generated from reading ui file 'pilasengine/interprete/interprete.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created by: PyQt5 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -211,7 +211,7 @@ class Ui_InterpreteWindow(object):
         self.pushButton.setText(_translate("InterpreteWindow", "F12", None))
         self.actionSalir.setText(_translate("InterpreteWindow", "Salir", None))
 
-from PyQt4 import QtWebKit
+from PyQt5 import QtWebKit
 
 if __name__ == "__main__":
     import sys

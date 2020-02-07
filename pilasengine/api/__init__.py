@@ -8,10 +8,10 @@
 import os
 import sys
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 from api_base import Ui_ManualWindow
-from PyQt4 import QtWebKit
-from PyQt4 import QtNetwork
+from PyQt5 import QtWebKit
+from PyQt5 import QtNetwork
 
 import pilasengine
 

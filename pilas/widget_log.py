@@ -7,7 +7,7 @@
 # website - http://www.pilas-engine.com.ar
 
 import os
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 
 class WidgetLog(QtGui.QMainWindow):
     """ Representa una ventana de log.

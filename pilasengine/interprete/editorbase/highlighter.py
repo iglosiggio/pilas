@@ -15,11 +15,11 @@ try:
 except ImportError:
     import simplejson as json
 
-from PyQt4.QtGui import QColor
-from PyQt4.QtGui import QTextCharFormat
-from PyQt4.QtGui import QFont
-from PyQt4.QtGui import QSyntaxHighlighter
-from PyQt4.QtCore import QRegExp
+from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QTextCharFormat
+from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QSyntaxHighlighter
+from PyQt5.QtCore import QRegExp
 
 
 COLOR_SCHEME = {

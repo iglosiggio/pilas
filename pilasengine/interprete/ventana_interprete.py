@@ -11,8 +11,8 @@ import os
 import time
 import sys
 
-from PyQt4.QtGui import (QKeySequence, QIcon, QLabel)
-from PyQt4 import QtCore
+from PyQt5.QtGui import (QKeySequence, QIcon, QLabel)
+from PyQt5 import QtCore
 
 import lanas
 import pilasengine

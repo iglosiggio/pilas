@@ -2,8 +2,8 @@
 import codecs
 import pilasengine
 
-from PyQt4.QtCore import Qt
-from PyQt4.QtGui import (QTextEdit, QTextCursor, QFileDialog,
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QTextEdit, QTextCursor, QFileDialog,
                          QMessageBox)
 
 import autocomplete

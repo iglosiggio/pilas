@@ -8,10 +8,10 @@
 #
 # Creditos: http://stackoverflow.com/questions/6852038/threading-in-pyqt4
 
-from PyQt4.QtCore import QUrl, QFile, QIODevice
-from PyQt4.QtGui import QDialog, QProgressBar
-from PyQt4.QtGui import QLabel, QPushButton, QDialogButtonBox, QVBoxLayout, QMessageBox
-from PyQt4.QtNetwork import QHttp
+from PyQt5.QtCore import QUrl, QFile, QIODevice
+from PyQt5.QtGui import QDialog, QProgressBar
+from PyQt5.QtGui import QLabel, QPushButton, QDialogButtonBox, QVBoxLayout, QMessageBox
+from PyQt5.QtNetwork import QHttp
 import os
 
 

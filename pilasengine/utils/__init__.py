@@ -12,8 +12,8 @@ import math
 
 from pilasengine import colores
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtGui
 
 PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
@@ -264,7 +264,7 @@ def realizar_pruebas():
     print "pyqt:",
 
     try:
-        from PyQt4 import Qt
+        from PyQt5 import Qt
         print v + "OK, versión " + Qt.PYQT_VERSION_STR + n
     except ImportError:
         print "Error -> no se encuentra pyqt."
@@ -272,8 +272,8 @@ def realizar_pruebas():
     print "pyqt con aceleracion:",
 
     try:
-        from PyQt4 import QtOpenGL
-        from PyQt4.QtOpenGL import QGLWidget
+        from PyQt5 import QtOpenGL
+        from PyQt5.QtOpenGL import QGLWidget
         print v + "OK" + n
     except ImportError:
         print "Error -> no se encuentra pyqt4gl."
@@ -294,7 +294,7 @@ def destacar_ventanas():
 def iniciar_desde_terminal():
     import sys
     import signal
-    from PyQt4 import QtGui
+    from PyQt5 import QtGui
 
     import pilasengine
 

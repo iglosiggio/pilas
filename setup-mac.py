@@ -10,7 +10,7 @@ setup(
     options={
         "py2app": {
             "argv_emulation": True,
-            "includes": ["sip", "PyQt4", 'PyQt4.QtWebKit', 'PyQt4.QtNetwork'],
+            "includes": ["sip", "PyQt5", 'PyQt5.QtWebKit', 'PyQt5.QtNetwork'],
             "resources": ['./README.md', 'data'],
             'packages': ['pilasengine'],
             'iconfile': 'data/iconos/pilas.icns',

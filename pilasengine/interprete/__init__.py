@@ -10,8 +10,8 @@ import os
 import sys
 import time
 
-from PyQt4 import QtCore
-from PyQt4.QtGui import (QKeySequence, QIcon, QLabel, QMainWindow)
+from PyQt5 import QtCore
+from PyQt5.QtGui import (QKeySequence, QIcon, QLabel, QMainWindow)
 
 import lanas
 from pilasengine import utils

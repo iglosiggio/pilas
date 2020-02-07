@@ -2,7 +2,7 @@
 import sys
 sys.path.append('./')
 sys.path.append('../')
-from PyQt4 import QtGui
+from PyQt5 import QtGui
 from interfaz_base import Ui_MainWindow as Base
 
 import pilasengine

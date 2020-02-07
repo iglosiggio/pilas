@@ -9,7 +9,7 @@ import numpy
 import Image
 import weakref
 
-from PyQt4 import QtGui, uic
+from PyQt5 import QtGui, uic
 
 from datetime import datetime, timedelta
 

@@ -5,8 +5,8 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtCore import Qt
 
 BRACES = {'(':')', '[':']', '{':'}'}
 COMILLAS = {'"':'"', "'":"'"}
