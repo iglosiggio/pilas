@@ -395,8 +395,8 @@ def centrar_ventana(widget):
 
     :param widget: Widget que representa la ventana.
     """
-    from PyQt5 import QtGui
-    desktop = QtGui.QApplication.desktop()
+    from PyQt5 import QtWidgets
+    desktop = QtWidgets.QApplication.desktop()
     widget.move(desktop.screen().rect().center() - widget.rect().center())
 
 
@@ -438,13 +438,13 @@ def mostrar_mensaje_de_error_y_salir(motivo):
 
     :param motivo: Un mensaje que explica el problema o la razón del cierre de pilas.
     """
-    from PyQt5 import QtGui
-    app = QtGui.QApplication(sys.argv[:1])
+    from PyQt5 import QtWidgets
+    app = QtWidgets.QApplication(sys.argv[:1])
     app.setApplicationName("pilas-engine error")
-    main_window = QtGui.QMainWindow()
+    main_window = QtWidgets.QMainWindow()
     main_window.show()
     main_window.raise_()
-    QtGui.QMessageBox.critical(main_window, "Error", motivo)
+    QtWidgets.QMessageBox.critical(main_window, "Error", motivo)
     app.exit()
     sys.exit(1)
 

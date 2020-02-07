@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,12 +16,12 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_TutorialesWindow(object):
     def setupUi(self, TutorialesWindow):
@@ -30,7 +30,7 @@ class Ui_TutorialesWindow(object):
         TutorialesWindow.setMinimumSize(QtCore.QSize(500, 400))
         self.centralwidget = QtWidgets.QWidget(TutorialesWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setMargin(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.webView = QtWebKit.QWebView(self.centralwidget)
@@ -41,11 +41,11 @@ class Ui_TutorialesWindow(object):
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
         TutorialesWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(TutorialesWindow)
+        self.menubar = QtWidgets.QMenuBar(TutorialesWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 844, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         TutorialesWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(TutorialesWindow)
+        self.statusbar = QtWidgets.QStatusBar(TutorialesWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         TutorialesWindow.setStatusBar(self.statusbar)
 
@@ -59,8 +59,8 @@ from PyQt5 import QtWebKit
 
 if __name__ == "__main__":
     import sys
-    app = QtGui.QApplication(sys.argv)
-    TutorialesWindow = QtGui.QMainWindow()
+    app = QtWidgets.QApplication(sys.argv)
+    TutorialesWindow = QtWidgets.QMainWindow()
     ui = Ui_TutorialesWindow()
     ui.setupUi(TutorialesWindow)
     TutorialesWindow.show()

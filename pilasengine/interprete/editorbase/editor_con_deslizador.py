@@ -6,8 +6,8 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import re
-from PyQt5 import QtGui
-from PyQt5.QtGui import *
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 import deslizador
@@ -23,7 +23,7 @@ class EditorConDeslizador(object):
             numero = self._obtener_numero_de_la_linea(linea)
 
             tc = self.textCursor()
-            tc.select(QtGui.QTextCursor.LineUnderCursor)
+            tc.select(QtWidgets.QTextCursor.LineUnderCursor)
 
             texto = tc.selectedText()
             texto = texto.replace(numero, str(nueva))
@@ -42,7 +42,7 @@ class EditorConDeslizador(object):
         return grupos[0]
 
     def mousePressEvent(self, event):
-        retorno = QtGui.QTextEdit.mousePressEvent(self, event)
+        retorno = QtWidgets.QTextEdit.mousePressEvent(self, event)
 
         if event.button() == Qt.RightButton:
             pos = event.pos()

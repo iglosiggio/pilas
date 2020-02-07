@@ -11,7 +11,7 @@ import os
 import webbrowser
 import json
 
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 from PyQt5 import QtWebKit
 from PyQt5 import QtNetwork
@@ -135,8 +135,8 @@ class VentanaAsistente(Base):
 
         :param widget: Widget que representa la ventana.
         """
-        from PyQt5 import QtGui
-        desktop = QtGui.QApplication.desktop()
+        from PyQt5 import QtWidgets
+        desktop = QtWidgets.QApplication.desktop()
         centro = desktop.screen().rect().center()
 
         if centro.x() > 1000:
@@ -214,7 +214,7 @@ class VentanaAsistente(Base):
 
                 if not unicode(archivo).endswith('.py'):
                     print(u"ERROR, se envió el archivo " + unicode(archivo))
-                    QtGui.QMessageBox.critical(self.MainWindow, "Error", "Solo se aceptan archivos terminados con .py")
+                    QtWidgets.QMessageBox.critical(self.MainWindow, "Error", "Solo se aceptan archivos terminados con .py")
                 else:
                     self._ejecutar_programa_con_livereload(unicode(archivo))
                     event.acceptProposedAction()
@@ -228,7 +228,7 @@ class VentanaAsistente(Base):
         self.programa = pilasengine.abrir_script_con_livereload(archivo)
 
 def abrir():
-    MainWindow = QtGui.QMainWindow()
+    MainWindow = QtWidgets.QMainWindow()
 
     ui = VentanaAsistente()
     ui.setupUi(MainWindow)

@@ -5,7 +5,7 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 
 
@@ -27,13 +27,13 @@ class Deslizador(QtWidgets.QWidget):
         self._posicionar_ventana_debajo_del_mouse(parent, cursor)
 
     def _crear_interfaz(self):
-        self.layout = QtGui.QGridLayout(self)
+        self.layout = QtWidgets.QGridLayout(self)
         
-        self.slider = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
         self.slider.setMinimumWidth(200)
         self.slider.valueChanged[int].connect(self.on_change)
         
-        self.checkbox_es_float = QtGui.QCheckBox()
+        self.checkbox_es_float = QtWidgets.QCheckBox()
         self.checkbox_es_float.setText(u"Es número fraccionario")
         self.checkbox_es_float.stateChanged.connect(self.cuando_pulsa_checkbox)
         

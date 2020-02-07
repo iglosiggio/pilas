@@ -3,7 +3,7 @@ import sys
 import time
 import unittest
 
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 import pilasengine
 
@@ -13,7 +13,7 @@ class SubTexto(pilasengine.actores.Texto):
 
 
 class TestActores(unittest.TestCase):
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     def setUp(self):
         self.pilas = pilasengine.iniciar(modo_test=True)
@@ -120,7 +120,7 @@ class TestActores(unittest.TestCase):
         self.assertTrue(actor.esta_dentro_de_la_pantalla(), "y el metodo esta_dentro_de_la_pantalla retorna lo contrario")
 
 class TestActoresPersonalizados(unittest.TestCase):
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     class MiActor(pilasengine.actores.Actor):
 

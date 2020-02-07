@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 import sys
 import unittest
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 import pilasengine
 
 
 class TestMusicaYSonidos(unittest.TestCase):
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     def setUp(self):
         self.pilas = pilasengine.iniciar()

@@ -5,7 +5,7 @@ import signal
 import importlib
 from PyQt5 import *
 from PyQt5 import Qt
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 from PyQt5 import QtWebKit
 from PyQt5 import QtOpenGL
@@ -30,8 +30,8 @@ def ejecutar_archivo(nombre):
         terminar_con_error("Error al ejecutar " + nombre + ":\n" + str(e))
 
 def terminar_con_error(mensaje):
-    app = QtGui.QApplication(sys.argv)
-    error = QtGui.QMessageBox()
+    app = QtWidgets.QApplication(sys.argv)
+    error = QtWidgets.QMessageBox()
     error.critical(None, "Uh, algo anda mal...", mensaje)
     sys.exit(1)
 
@@ -57,7 +57,7 @@ if len(sys.argv) > 1:
 #window.wm_withdraw()
 
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 
 pilasengine.configuracion.Configuracion()
 
@@ -72,7 +72,7 @@ else:
     _ = pilasengine.abrir_asistente()
 
 icono = pilasengine.utils.obtener_ruta_al_recurso('icono.ico')
-app.setWindowIcon(QtGui.QIcon(icono))
-#mainwindow.setWindowIcon(QtGui.QIcon(icono))
+app.setWindowIcon(QtWidgets.QIcon(icono))
+#mainwindow.setWindowIcon(QtWidgets.QIcon(icono))
 
 sys.exit(app.exec_())

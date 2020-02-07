@@ -9,7 +9,7 @@ import numpy
 import Image
 import weakref
 
-from PyQt5 import QtGui, uic
+from PyQt5 import QtWidgets, uic
 
 from datetime import datetime, timedelta
 
@@ -112,7 +112,7 @@ def wait(seconds = 0):
 
     now = datetime.now()
     while now + timedelta(0, seconds, 0) > datetime.now():
-        QtGui.QApplication.processEvents()
+        QtWidgets.QApplication.processEvents()
 
 
 def _puntosParaLaRecta(x, y, grados, distancia):
@@ -169,7 +169,7 @@ class Robot(object):
                         "setId", "setName" , "getName", "speak", "bajalapiz" , "subelapiz",
                         "set_x", "set_y", "get_x", "get_y" ]
         if metodo in atributos:
-            QtGui.QApplication.processEvents()
+            QtWidgets.QApplication.processEvents()
 
         return object.__getattribute__(self, metodo)
              
@@ -196,7 +196,7 @@ class Robot(object):
         """ El robot avanza con velocidad vel durante seconds segundos. """
         self.stop()
         self.board._mover(self, vel,  seconds)
-        QtGui.QApplication.processEvents()
+        QtWidgets.QApplication.processEvents()
 
 
     def _realizarMovimiento(self, vel, seconds):
@@ -500,9 +500,9 @@ class Board(object):
 
 
         
-class Sense(QtGui.QMainWindow):
+class Sense(QtWidgets.QMainWindow):
     def __init__(self, unRobot):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         self.ui = uic.loadUi("/usr/local/lib/python2.7/dist-packages/pilas-0.81-py2.7.egg/pilas/data/senses.ui")
         self.activo = True
         self._mostrarInfo(unRobot)

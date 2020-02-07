@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 
 class Imagen(object):
@@ -17,16 +17,16 @@ class Imagen(object):
         self.repetir_horizontal = False
         self.repetir_vertical = False
 
-        if isinstance(ruta, QtGui.QPixmap):
+        if isinstance(ruta, QtWidgets.QPixmap):
             self._imagen = ruta
         else:
             if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
                 try:
                     self._imagen = self.cargar_jpeg(ruta)
                 except:
-                    self._imagen = QtGui.QPixmap(ruta)
+                    self._imagen = QtWidgets.QPixmap(ruta)
             else:
-                self._imagen = QtGui.QPixmap(ruta)
+                self._imagen = QtWidgets.QPixmap(ruta)
 
     def ancho(self):
         return self._imagen.size().width()

@@ -5,7 +5,7 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 
 BRACES = {'(':')', '[':']', '{':'}'}
@@ -14,22 +14,22 @@ CHARACTERS = {}
 for d in (BRACES, COMILLAS): CHARACTERS.update(d)
 
 
-class DictionaryCompleter(QtGui.QCompleter):
+class DictionaryCompleter(QtWidgets.QCompleter):
 
     def __init__(self, parent=None):
-        QtGui.QCompleter.__init__(self, [], parent)
+        QtWidgets.QCompleter.__init__(self, [], parent)
 
     def set_dictionary(self, words):
-        model = QtGui.QStringListModel(words, self)
+        model = QtWidgets.QStringListModel(words, self)
         self.setModel(model)
 
 
-class CompletionTextEdit(QtGui.QTextEdit):
+class CompletionTextEdit(QtWidgets.QTextEdit):
 
     def __init__(self, parent=None):
         super(CompletionTextEdit, self).__init__(parent)
         self.completer = None
-        self.moveCursor(QtGui.QTextCursor.End)
+        self.moveCursor(QtWidgets.QTextCursor.End)
         self.dictionary = DictionaryCompleter()
         self.set_completer(self.dictionary)
         self.set_dictionary([])
@@ -41,14 +41,14 @@ class CompletionTextEdit(QtGui.QTextEdit):
 
     def set_completer(self, completer):
         completer.setWidget(self)
-        completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)
+        completer.setCompletionMode(QtWidgets.QCompleter.PopupCompletion)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.completer = completer
         self.connect(self.completer, QtCore.SIGNAL("activated(const QString&)"), self.insert_completation)
 
     def insert_completation(self, completion):
         tc = self.textCursor()
-        tc.select(QtGui.QTextCursor.WordUnderCursor)
+        tc.select(QtWidgets.QTextCursor.WordUnderCursor)
         tc.removeSelectedText()
 
         if str(completion).endswith('('):
@@ -63,7 +63,7 @@ class CompletionTextEdit(QtGui.QTextEdit):
     def focusInEvent(self, event):
         if self.completer:
             self.completer.setWidget(self);
-        QtGui.QTextEdit.focusInEvent(self, event)
+        QtWidgets.QTextEdit.focusInEvent(self, event)
 
     def autocomplete(self, event):
         if not self.interpreterLocals['pilas'].configuracion.autocompletado_habilitado():

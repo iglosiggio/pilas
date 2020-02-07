@@ -6,10 +6,10 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtOpenGL import QGLWidget
-from PyQt5.QtGui import QWidget
+from PyQt5.QtWidgets import QWidget
 from pilas import actores, colores, depurador, eventos, fps
 from pilas import imagenes, simbolos, utils
 from pilas import dev
@@ -65,10 +65,10 @@ class LibreriaImagenes(object):
         return len(self._imagenes)
 
 
-class Ventana(QtGui.QMainWindow):
+class Ventana(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
         self.setStyleSheet("QWidget {background-color : #222}")
 
     def set_canvas(self, canvas):
@@ -85,7 +85,7 @@ class CanvasWidgetAbstracto(object):
                  rendimiento):
         QGLWidget.__init__(self, None)
 
-        self.painter = QtGui.QPainter()
+        self.painter = QtWidgets.QPainter()
 
         self.pausa_habilitada = False
 
@@ -129,13 +129,13 @@ class CanvasWidgetAbstracto(object):
         self.painter.begin(self)
         self.painter.scale(self.escala, self.escala)
 
-        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
-        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
-        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.HighQualityAntialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.SmoothPixmapTransform, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.Antialiasing, True)
 
         if self.gestor_escenas.escena_actual():
             if not(self.gestor_escenas.escena_actual().escena_pausa):
-                self.painter.fillRect(0, 0, self.original_width, self.original_height, QtGui.QColor(128, 128, 128))
+                self.painter.fillRect(0, 0, self.original_width, self.original_height, QtWidgets.QColor(128, 128, 128))
         self.depurador.comienza_dibujado(self.motor, self.painter)
 
         if self.gestor_escenas.escena_actual():
@@ -156,8 +156,8 @@ class CanvasWidgetAbstracto(object):
 
     def save_to_disk(self, filename):
         try:
-            image =  QtGui.QPixmap(self.width(), self.height())
-            image = QtGui.QPixmap.grabWidget(self, 0, 0, self.width(), self.height())
+            image =  QtWidgets.QPixmap(self.width(), self.height())
+            image = QtWidgets.QPixmap.grabWidget(self, 0, 0, self.width(), self.height())
             if not image.save(filename, "PNG", -1):
                 print("Imposible guardar la captura de pantalla.")
         except Exception:
@@ -400,13 +400,13 @@ class Imagen(object):
     def __init__(self, ruta):
         self.ruta_original = ruta
 
-        if isinstance(ruta, QtGui.QPixmap):
+        if isinstance(ruta, QtWidgets.QPixmap):
             self._imagen = ruta
         else:
             if ruta.lower().endswith("jpeg") or ruta.lower().endswith("jpg"):
-                self._imagen = QtGui.QPixmap(ruta)
+                self._imagen = QtWidgets.QPixmap(ruta)
             else:
-                self._imagen = QtGui.QPixmap(ruta)
+                self._imagen = QtWidgets.QPixmap(ruta)
 
         #pilas.mundo.motor.libreria_imagenes.agregar_imagen(self)
         #
@@ -415,7 +415,7 @@ class Imagen(object):
         qi = self._imagen.toImage()
         rect = QtCore.QRect(dx, dy, ancho, alto)
         qi = qi.copy(rect)
-        return Imagen(QtGui.QPixmap.fromImage(qi))
+        return Imagen(QtWidgets.QPixmap.fromImage(qi))
 
     def ancho(self):
         return self._imagen.size().width()
@@ -536,29 +536,29 @@ class Lienzo(Imagen):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        painter.setPen(QtGui.QColor(r, g, b))
+        painter.setPen(QtWidgets.QColor(r, g, b))
 
         if fuente:
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
         else:
             nombre_de_fuente = painter.font().family()
 
-        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
         painter.setFont(font)
         painter.drawText(x, y, cadena)
 
     def pintar(self, painter, color):
         r, g, b, a = color.obtener_componentes()
         ancho, alto = pilas.mundo.obtener_area()
-        painter.fillRect(0, 0, ancho, alto, QtGui.QColor(r, g, b))
+        painter.fillRect(0, 0, ancho, alto, QtWidgets.QColor(r, g, b))
 
     def linea(self, painter, x0, y0, x1, y1, color=colores.negro, grosor=1):
         x0, y0 = utils.hacer_coordenada_pantalla_absoluta(x0, y0)
         x1, y1 = utils.hacer_coordenada_pantalla_absoluta(x1, y1)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawLine(x0, y0, x1, y1)
 
@@ -588,8 +588,8 @@ class Lienzo(Imagen):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawEllipse(x-radio, y-radio, radio*2, radio*2)
 
@@ -597,8 +597,8 @@ class Lienzo(Imagen):
         x, y = utils.hacer_coordenada_pantalla_absoluta(x, y)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         painter.setPen(pen)
         painter.drawRect(x, y, ancho, alto)
 
@@ -606,14 +606,14 @@ class Lienzo(Imagen):
 class Superficie(Imagen):
 
     def __init__(self, ancho, alto):
-        self._imagen = QtGui.QPixmap(ancho, alto)
-        self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
-        self.canvas = QtGui.QPainter()
+        self._imagen = QtWidgets.QPixmap(ancho, alto)
+        self._imagen.fill(QtWidgets.QColor(255, 255, 255, 0))
+        self.canvas = QtWidgets.QPainter()
         self.ruta_original = os.urandom(25)
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
-        self._imagen.fill(QtGui.QColor(r, g, b, a))
+        self._imagen.fill(QtWidgets.QColor(r, g, b, a))
 
     def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto, x, y):
         self.canvas.begin(self._imagen)
@@ -626,7 +626,7 @@ class Superficie(Imagen):
     def texto(self, cadena, x=0, y=0, magnitud=10, fuente=None, color=colores.negro, ancho=0, vertical=False):
         self.canvas.begin(self._imagen)
         r, g, b, a = color.obtener_componentes()
-        self.canvas.setPen(QtGui.QColor(r, g, b))
+        self.canvas.setPen(QtWidgets.QColor(r, g, b))
         dx = x
         dy = y
 
@@ -641,9 +641,9 @@ class Superficie(Imagen):
         else:
             flags = QtCore.Qt.AlignLeft | QtCore.Qt.TextWordWrap | QtCore.Qt.AlignTop
 
-        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
-        metrica = QtGui.QFontMetrics(font)
+        metrica = QtWidgets.QFontMetrics(font)
 
 
         if vertical:
@@ -662,8 +662,8 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         if relleno:
@@ -676,8 +676,8 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         if relleno:
@@ -690,8 +690,8 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         self.canvas.drawLine(x, y, x2, y2)
@@ -712,7 +712,7 @@ class Superficie(Imagen):
         self.circulo(x, y, 3, color=color, relleno=True)
 
     def limpiar(self):
-        self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
+        self._imagen.fill(QtWidgets.QColor(0, 0, 0, 0))
 
 
 class Texto(Superficie):
@@ -744,12 +744,12 @@ class Texto(Superficie):
 
         if not fuente_como_ruta in Texto.CACHE_FUENTES.keys():
             ruta_a_la_fuente = pilas.utils.obtener_ruta_al_recurso(fuente_como_ruta)
-            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
+            fuente_id = QtWidgets.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
             Texto.CACHE_FUENTES[fuente_como_ruta] = fuente_id
         else:
             fuente_id = Texto.CACHE_FUENTES[fuente_como_ruta]
 
-        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+        return str(QtWidgets.QFontDatabase.applicationFontFamilies(fuente_id)[0])
 
 
 class Actor(BaseActor):
@@ -1052,7 +1052,7 @@ class Motor(object):
         self._widgetlog = None
 
     def _iniciar_aplicacion(self):
-        self.app = QtGui.QApplication([])
+        self.app = QtWidgets.QApplication([])
         self.app.setApplicationName("pilas")
 
     def _inicializar_variables(self):
@@ -1154,7 +1154,7 @@ class Motor(object):
         self.ventana.resize(ancho, alto)
 
         if centrado:
-            resolucion_pantalla = QtGui.QDesktopWidget().screenGeometry()
+            resolucion_pantalla = QtWidgets.QDesktopWidget().screenGeometry()
             self.ventana.move((resolucion_pantalla.width() - ancho)/2, (resolucion_pantalla.height() - alto)/2)
 
         mostrar_ventana = True
@@ -1194,10 +1194,10 @@ class Motor(object):
             self.canvas.pantalla_modo_ventana()
 
     def ocultar_puntero_del_mouse(self):
-        self.canvas.setCursor(QtGui.QCursor(Qt.BlankCursor))
+        self.canvas.setCursor(QtWidgets.QCursor(Qt.BlankCursor))
 
     def mostrar_puntero_del_mouse(self):
-        self.canvas.setCursor(QtGui.QCursor(Qt.ArrowCursor))
+        self.canvas.setCursor(QtWidgets.QCursor(Qt.ArrowCursor))
 
     def ejecutar_bucle_principal(self):
         if getattr(self, 'app', None):
@@ -1220,15 +1220,15 @@ class Motor(object):
         return (self.ancho_original, self.alto_original)
 
     def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False, fuente=None, ancho=0):
-        pic = QtGui.QPicture()
-        p = QtGui.QPainter(pic)
+        pic = QtWidgets.QPicture()
+        p = QtWidgets.QPainter(pic)
 
         if fuente:
             nombre_de_fuente = Texto.cargar_fuente_desde_cache(fuente)
         else:
             nombre_de_fuente = p.font().family()
 
-        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
         p.setFont(font)
 
         alto = 0

@@ -238,8 +238,8 @@ def abrir_interprete(parent=None, do_raise=False, con_aplicacion=False):
     en una consola del sistema.
     """
     if con_aplicacion:
-        from PyQt5 import QtGui
-        app = QtGui.QApplication(sys.argv)
+        from PyQt5 import QtWidgets
+        app = QtWidgets.QApplication(sys.argv)
         app.setApplicationName("pilas-engine")
 
     interprete.main(parent, do_raise)

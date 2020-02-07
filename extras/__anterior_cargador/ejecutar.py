@@ -1,6 +1,6 @@
 import sys
 import signal
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 # Permitiendo cerrar pilas usando CTRL+C
 signal.signal(signal.SIGINT, signal.SIG_DFL)
@@ -10,6 +10,6 @@ sys.path.append('../')
 
 import pilasengine
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 asistente = pilasengine.abrir_asistente()
 sys.exit(app.exec_())

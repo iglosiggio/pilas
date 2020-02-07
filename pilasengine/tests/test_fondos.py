@@ -1,12 +1,12 @@
 import sys
 import unittest
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 import pilasengine
 
 
 class TestFondos(unittest.TestCase):
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     def setUp(self):
         self.pilas = pilasengine.iniciar()

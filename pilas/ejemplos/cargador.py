@@ -11,7 +11,7 @@ import os
 import sys
 import glob
 
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 
 from . import syntax
 import pilas
@@ -65,7 +65,7 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
         self.arbol.currentItem().childCount() == 0:
             self.cuando_pulsa_boton_ejecutar()
 
-        return QtGui.QMainWindow.keyPressEvent(self, event)
+        return QtWidgets.QMainWindow.keyPressEvent(self, event)
 
     def _cargar_lista_de_ejemplos(self):
         self.ejemplos = {}
@@ -75,7 +75,7 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
         directorios = glob.glob(self.example_dir + '/*')
 
         for directorio in directorios:
-            raiz = QtGui.QTreeWidgetItem([os.path.basename(directorio), ""])
+            raiz = QtWidgets.QTreeWidgetItem([os.path.basename(directorio), ""])
             self.arbol.addTopLevelItem(raiz)
 
             archivos = glob.glob(directorio + '/*.py')
@@ -83,7 +83,7 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
 
             for archivo in archivos:
                 nombre_legible = os.path.basename(archivo).replace(".py", "")
-                item = QtGui.QTreeWidgetItem([nombre_legible, archivo])
+                item = QtWidgets.QTreeWidgetItem([nombre_legible, archivo])
                 raiz.addChild(item)
                 self.ejemplos[nombre_legible] = archivo
 
@@ -93,14 +93,14 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
 
     def cuando_pulsa_boton_fuente(self):
         font = self.codigo.font()
-        font, ok = QtGui.QFontDialog.getFont(font)
+        font, ok = QtWidgets.QFontDialog.getFont(font)
 
         if ok:
             self.codigo.setFont(font)
 
     def cuando_pulsa_boton_guardar(self):
         nombre = self._obtener_item_actual()
-        path = str(QtGui.QFileDialog.getSaveFileName(self.main, 'Guardar ejemplo', nombre, "py (*.py)"))
+        path = str(QtWidgets.QFileDialog.getSaveFileName(self.main, 'Guardar ejemplo', nombre, "py (*.py)"))
         if path:
             contenido = self._obtener_codigo_del_ejemplo(nombre)
 
@@ -126,9 +126,9 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
             return items[0]
 
     def _mostrar_imagen_del_ejemplo(self, ruta):
-        escena = QtGui.QGraphicsScene()
+        escena = QtWidgets.QGraphicsScene()
         self.imagen.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta.replace('.py', '.png')))
+        pixmap = QtWidgets.QGraphicsPixmapItem(QtWidgets.QPixmap(ruta.replace('.py', '.png')))
         #ancho = self.imagen.width()
         escena.addItem(pixmap)
 
@@ -167,13 +167,13 @@ class VentanaEjemplos(ui.Ui_Ejemplos):
         salida = str(self.process.readAll())
 
         if estado:
-            QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
+            QtWidgets.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
         self._definir_estado_habilitado(True)
         self.arbol.setFocus()
 
 def main(parent=None):
-    dialog = QtGui.QDialog(parent)
+    dialog = QtWidgets.QDialog(parent)
     dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
     ui = VentanaEjemplos()
     ui.setupUi(dialog)

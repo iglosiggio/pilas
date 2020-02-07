@@ -3,13 +3,13 @@ import sys
 import time
 import unittest
 
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 import pilasengine
 
 
 class TestColisiones(unittest.TestCase):
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     def setUp(self):
         self.pilas = pilasengine.iniciar(modo_test=True)

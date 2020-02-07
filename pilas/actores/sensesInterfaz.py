@@ -1,10 +1,10 @@
 import pilas
 import sys
-from PyQt5 import QtGui, QtCore, uic
+from PyQt5 import QtWidgets, QtCore, uic
 
-class Sense(QtGui.QMainWindow):
+class Sense(QtWidgets.QMainWindow):
     def __init__(self, unRobot):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         self.ui = uic.loadUi("/usr/local/lib/python2.7/dist-packages/pilas-0.81-py2.7.egg/pilas/data/senses.ui")
         self.ui.show()
         self._mostrarInfo()
@@ -30,7 +30,7 @@ class Sense(QtGui.QMainWindow):
 
 
 # if __name__ == "__main__":
-#    app = QtGui.QApplication(sys.argv)
+#    app = QtWidgets.QApplication(sys.argv)
 #    from robot import *
 #    from board  import *
 #    from pilas.actores import Pizarra

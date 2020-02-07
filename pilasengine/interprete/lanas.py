@@ -13,7 +13,7 @@ import traceback
 
 os.environ['lanas'] = 'enabled'
 
-from PyQt5.QtGui import (QWidget, QDesktopWidget, QPalette,
+from PyQt5.QtWidgets import (QWidget, QDesktopWidget, QPalette,
                         QColor, QTextCursor, QTextEdit,
                         QInputDialog, QApplication,
                         QKeyEvent)

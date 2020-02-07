@@ -3,7 +3,7 @@ import os
 import sys
 
 try:
-    from PyQt5 import QtCore, QtGui
+    from PyQt5 import QtCore, QtWidgets
     from .tutoriales_base import Ui_TutorialesWindow
 except:
     print("ERROR: No se encuentra pyqt")
@@ -30,7 +30,7 @@ class VentanaTutoriales(Ui_TutorialesWindow):
         self.webView.history().setMaximumItemCount(0)
 
 def main(parent=None, do_raise=False):
-    dialog = QtGui.QMainWindow(parent)
+    dialog = QtWidgets.QMainWindow(parent)
     dialog.setWindowFlags(dialog.windowFlags() | QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowMinMaxButtonsHint)
     ui = VentanaTutoriales()
     ui.setupUi(dialog)
@@ -47,6 +47,6 @@ def main(parent=None, do_raise=False):
         dialog.raise_()
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("pilas-engine")
     main()

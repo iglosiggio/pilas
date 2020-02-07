@@ -7,7 +7,7 @@
 # Website - http://www.pilas-engine.com.ar
 import os
 
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 from pilasengine.imagenes.superficie import Superficie
 from pilasengine import utils
@@ -28,15 +28,15 @@ class Texto(Superficie):
 
     def obtener_area_de_texto(self, cadena, magnitud=10, vertical=False,
                               fuente=None, ancho=0):
-        pic = QtGui.QPicture()
-        p = QtGui.QPainter(pic)
+        pic = QtWidgets.QPicture()
+        p = QtWidgets.QPainter(pic)
 
         if fuente:
             nombre_de_fuente = self.cargar_fuente(fuente)
         else:
             nombre_de_fuente = p.font().family()
 
-        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
         p.setFont(font)
 
         alto = 0

@@ -2,7 +2,7 @@
 import sys
 sys.path.append('./')
 sys.path.append('../')
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from interfaz_base import Ui_MainWindow as Base
 
 import pilasengine
@@ -20,8 +20,8 @@ class Ventana(Base):
         self.canvas.setCurrentWidget(widget)
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
-    MainWindow = QtGui.QMainWindow()
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
 
     ui = Ventana()
     ui.setupUi(MainWindow)

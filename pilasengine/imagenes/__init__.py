@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 import pilasengine
 
 

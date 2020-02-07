@@ -3,7 +3,7 @@ import sys
 import inspect
 
 try:
-    from PyQt5 import QtCore, QtGui
+    from PyQt5 import QtCore, QtWidgets
     from .interprete_base import Ui_InterpreteWindow
 except:
     print("ERROR: No se encuentra pyqt")
@@ -106,8 +106,8 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.navegador.load(base_dir)
 
     def definir_icono(self, boton, ruta):
-        icon = QtGui.QIcon();
-        icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon = QtWidgets.QIcon();
+        icon.addFile(pilas.utils.obtener_ruta_al_recurso(ruta), QtCore.QSize(), QtWidgets.QIcon.Normal, QtWidgets.QIcon.Off)
         boton.setIcon(icon)
         boton.setText('')
 
@@ -141,11 +141,11 @@ class VentanaInterprete(Ui_InterpreteWindow):
                 )
 
     def raw_input(self, mensaje):
-        text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
+        text, state = QtWidgets.QInputDialog.getText(self, "raw_input", mensaje)
         return str(text)
 
     def input(self, mensaje):
-        text, state = QtGui.QInputDialog.getText(self, "raw_input", mensaje)
+        text, state = QtWidgets.QInputDialog.getText(self, "raw_input", mensaje)
         return eval(str(text))
 
     def help(self, objeto=None):
@@ -206,7 +206,7 @@ class VentanaInterprete(Ui_InterpreteWindow):
         self.consola.text_edit.guardar_contenido_con_dialogo()
 
 def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
-    main = QtGui.QMainWindow(parent)
+    main = QtWidgets.QMainWindow(parent)
     ui = VentanaInterprete()
     ui.setupUi(main, ejecutar_codigo_inicial=False)
 
@@ -236,7 +236,7 @@ def cargar_ejemplo(parent=None, do_raise=False, ruta=None):
     return main
 
 def main(parent=None, do_raise=False):
-    main = QtGui.QMainWindow(parent)
+    main = QtWidgets.QMainWindow(parent)
     ui = VentanaInterprete()
     ui.setupUi(main, ejecutar_codigo_inicial=True)
 
@@ -254,7 +254,7 @@ def main(parent=None, do_raise=False):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("pilas-engine")
     main()
     app.exec_()

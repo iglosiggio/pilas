@@ -15,7 +15,7 @@ import pickle
 import json
 
 from PyQt5 import QtCore
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 from pilasengine.configuracion.configuracion_base import Ui_Dialog
 
@@ -45,8 +45,8 @@ class Configuracion(object):
         font_path = self._buscar_fuente_personalizada()
 
         if font_path:
-            fuente_id = QtGui.QFontDatabase.addApplicationFont(font_path)
-            fuente = str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+            fuente_id = QtWidgets.QFontDatabase.addApplicationFont(font_path)
+            fuente = str(QtWidgets.QFontDatabase.applicationFontFamilies(fuente_id)[0])
         else:
             fuente = "Courier New"
 
@@ -78,7 +78,7 @@ class Configuracion(object):
 
     def obtener_fuente(self):
         fuente_como_tupla = self.valores['fuente'].rsplit(' ', 1)
-        return QtGui.QFont(fuente_como_tupla[0], int(fuente_como_tupla[1]))
+        return QtWidgets.QFont(fuente_como_tupla[0], int(fuente_como_tupla[1]))
 
     def audio_habilitado(self):
         return self.valores['audio_habilitado']
@@ -163,7 +163,7 @@ class DialogoConfiguracion(Ui_Dialog):
         self.mensaje.setVisible(True)
 
     def cuando_pulsa_el_boton_fuente(self):
-        font, ok = QtGui.QFontDialog.getFont(self.configuracion.obtener_fuente())
+        font, ok = QtWidgets.QFontDialog.getFont(self.configuracion.obtener_fuente())
 
         if ok:
             etiqueta = "%s %d" %(font.rawName(), font.pointSize())
@@ -187,7 +187,7 @@ class DialogoConfiguracion(Ui_Dialog):
 
 
 def abrir(parent=None):
-    MainDialog = QtGui.QDialog(parent)
+    MainDialog = QtWidgets.QDialog(parent)
 
     d = DialogoConfiguracion()
     d.setupUi(MainDialog)

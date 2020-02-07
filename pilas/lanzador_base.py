@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,60 +16,60 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(486, 288)
-        self.gridLayout_2 = QtGui.QGridLayout(Dialog)
+        self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.graphicsView = QtGui.QGraphicsView(Dialog)
+        self.graphicsView = QtWidgets.QGraphicsView(Dialog)
         self.graphicsView.setObjectName(_fromUtf8("graphicsView"))
         self.gridLayout_2.addWidget(self.graphicsView, 0, 0, 1, 1)
-        self.groupBox = QtGui.QGroupBox(Dialog)
+        self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
-        self.gridLayout = QtGui.QGridLayout(self.groupBox)
+        self.gridLayout = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.label = QtGui.QLabel(self.groupBox)
+        self.label = QtWidgets.QLabel(self.groupBox)
         self.label.setObjectName(_fromUtf8("label"))
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        self.comboBox = QtGui.QComboBox(self.groupBox)
+        self.comboBox = QtWidgets.QComboBox(self.groupBox)
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
         self.comboBox.addItem(_fromUtf8(""))
         self.comboBox.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.comboBox, 0, 1, 1, 1)
-        self.label_2 = QtGui.QLabel(self.groupBox)
+        self.label_2 = QtWidgets.QLabel(self.groupBox)
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
-        self.comboBox_2 = QtGui.QComboBox(self.groupBox)
+        self.comboBox_2 = QtWidgets.QComboBox(self.groupBox)
         self.comboBox_2.setObjectName(_fromUtf8("comboBox_2"))
         self.comboBox_2.addItem(_fromUtf8(""))
         self.comboBox_2.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.comboBox_2, 1, 1, 1, 1)
-        self.label_3 = QtGui.QLabel(self.groupBox)
+        self.label_3 = QtWidgets.QLabel(self.groupBox)
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
-        self.comboBox_3 = QtGui.QComboBox(self.groupBox)
+        self.comboBox_3 = QtWidgets.QComboBox(self.groupBox)
         self.comboBox_3.setObjectName(_fromUtf8("comboBox_3"))
         self.comboBox_3.addItem(_fromUtf8(""))
         self.comboBox_3.addItem(_fromUtf8(""))
         self.comboBox_3.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.comboBox_3, 2, 1, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox, 1, 0, 1, 1)
-        self.line = QtGui.QFrame(Dialog)
-        self.line.setFrameShape(QtGui.QFrame.HLine)
-        self.line.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line = QtWidgets.QFrame(Dialog)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
         self.gridLayout_2.addWidget(self.line, 2, 0, 1, 1)
-        self.buttonBox = QtGui.QDialogButtonBox(Dialog)
+        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.gridLayout_2.addWidget(self.buttonBox, 3, 0, 1, 1)
@@ -97,8 +97,8 @@ class Ui_Dialog(object):
 
 if __name__ == "__main__":
     import sys
-    app = QtGui.QApplication(sys.argv)
-    Dialog = QtGui.QDialog()
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()

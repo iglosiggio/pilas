@@ -109,8 +109,8 @@ class ModoFisica(ModoDepurador):
         x, y = self.hacer_coordenada_pantalla_absoluta(x, y)
 
         #r, g, b, a = color.obtener_componentes()
-        #color = QtGui.QColor(r, g, b)
-        #pen = QtGui.QPen(color, grosor)
+        #color = QtWidgets.QColor(r, g, b)
+        #pen = QtWidgets.QPen(color, grosor)
         #painter.setPen(pen)
 
         painter.drawEllipse(x-radio+1, y-radio+1, radio*2, radio*2)

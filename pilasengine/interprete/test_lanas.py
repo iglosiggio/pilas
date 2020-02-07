@@ -4,12 +4,12 @@
 # rápida.
 
 import sys
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 import lanas
 
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 
 widget = lanas.WidgetLanas(scope={"lanas": lanas})
 widget.show()

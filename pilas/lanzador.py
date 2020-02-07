@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 import sys
 from .lanzador_base import Ui_Dialog
 from . import utils
@@ -34,9 +34,9 @@ class Ventana(Ui_Dialog):
         self.graphicsView.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
 
     def mostrar_imagen(self, ruta):
-        escena = QtGui.QGraphicsScene()
+        escena = QtWidgets.QGraphicsScene()
         self.graphicsView.setScene(escena)
-        pixmap = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(ruta))
+        pixmap = QtWidgets.QGraphicsPixmapItem(QtWidgets.QPixmap(ruta))
 
         # Define el size para la imagen
         width = pixmap.boundingRect().width()
@@ -52,8 +52,8 @@ app = None
 def ejecutar(imagen, titulo):
     global app
 
-    app = QtGui.QApplication(sys.argv)
-    Dialog = QtGui.QDialog()
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
     Dialog.setWindowTitle(titulo)
     ui = Ventana()
     ui.setupUi(Dialog)

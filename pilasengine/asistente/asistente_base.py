@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -15,12 +15,12 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_AsistenteWindow(object):
     def setupUi(self, AsistenteWindow):
@@ -28,13 +28,13 @@ class Ui_AsistenteWindow(object):
         AsistenteWindow.resize(615, 480)
         AsistenteWindow.setMinimumSize(QtCore.QSize(615, 480))
         AsistenteWindow.setAcceptDrops(False)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("../../../pilas/pilas/data/pilas.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon = QtWidgets.QIcon()
+        icon.addPixmap(QtWidgets.QPixmap(_fromUtf8("../../../pilas/pilas/data/pilas.ico")), QtWidgets.QIcon.Normal, QtWidgets.QIcon.Off)
         AsistenteWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(AsistenteWindow)
         self.centralwidget.setAcceptDrops(False)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setMargin(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.webView = QtWebKit.QWebView(self.centralwidget)
@@ -42,10 +42,10 @@ class Ui_AsistenteWindow(object):
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
         AsistenteWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtGui.QStatusBar(AsistenteWindow)
+        self.statusbar = QtWidgets.QStatusBar(AsistenteWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         AsistenteWindow.setStatusBar(self.statusbar)
-        self.salir_action = QtGui.QAction(AsistenteWindow)
+        self.salir_action = QtWidgets.QAction(AsistenteWindow)
         self.salir_action.setObjectName(_fromUtf8("salir_action"))
 
         self.retranslateUi(AsistenteWindow)
@@ -59,8 +59,8 @@ from PyQt5 import QtWebKit
 
 if __name__ == "__main__":
     import sys
-    app = QtGui.QApplication(sys.argv)
-    AsistenteWindow = QtGui.QMainWindow()
+    app = QtWidgets.QApplication(sys.argv)
+    AsistenteWindow = QtWidgets.QMainWindow()
     ui = Ui_AsistenteWindow()
     ui.setupUi(AsistenteWindow)
     AsistenteWindow.show()

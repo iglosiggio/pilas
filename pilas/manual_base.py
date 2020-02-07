@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,12 +16,12 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_ManualWindow(object):
     def setupUi(self, ManualWindow):
@@ -30,7 +30,7 @@ class Ui_ManualWindow(object):
         ManualWindow.setMinimumSize(QtCore.QSize(500, 400))
         self.centralwidget = QtWidgets.QWidget(ManualWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setMargin(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.webView = QtWebKit.QWebView(self.centralwidget)
@@ -41,11 +41,11 @@ class Ui_ManualWindow(object):
         self.webView.setObjectName(_fromUtf8("webView"))
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
         ManualWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(ManualWindow)
+        self.menubar = QtWidgets.QMenuBar(ManualWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 844, 19))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         ManualWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(ManualWindow)
+        self.statusbar = QtWidgets.QStatusBar(ManualWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         ManualWindow.setStatusBar(self.statusbar)
 
@@ -59,8 +59,8 @@ from PyQt5 import QtWebKit
 
 if __name__ == "__main__":
     import sys
-    app = QtGui.QApplication(sys.argv)
-    ManualWindow = QtGui.QMainWindow()
+    app = QtWidgets.QApplication(sys.argv)
+    ManualWindow = QtWidgets.QMainWindow()
     ui = Ui_ManualWindow()
     ui.setupUi(ManualWindow)
     ManualWindow.show()

@@ -8,7 +8,7 @@
 import os
 import glob
 
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 
 class Watcher(QtCore.QObject):

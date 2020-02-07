@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,12 +16,12 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,11 +29,11 @@ class Ui_MainWindow(object):
         MainWindow.resize(469, 299)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.canvas = QtGui.QStackedWidget(self.centralwidget)
-        self.canvas.setFrameShape(QtGui.QFrame.Box)
-        self.canvas.setFrameShadow(QtGui.QFrame.Plain)
+        self.canvas = QtWidgets.QStackedWidget(self.centralwidget)
+        self.canvas.setFrameShape(QtWidgets.QFrame.Box)
+        self.canvas.setFrameShadow(QtWidgets.QFrame.Plain)
         self.canvas.setObjectName(_fromUtf8("canvas"))
         self.page = QtWidgets.QWidget()
         self.page.setObjectName(_fromUtf8("page"))
@@ -43,16 +43,16 @@ class Ui_MainWindow(object):
         self.canvas.addWidget(self.page_2)
         self.gridLayout.addWidget(self.canvas, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(MainWindow)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 469, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
-        self.menuArchivo = QtGui.QMenu(self.menubar)
+        self.menuArchivo = QtWidgets.QMenu(self.menubar)
         self.menuArchivo.setObjectName(_fromUtf8("menuArchivo"))
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(MainWindow)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         MainWindow.setStatusBar(self.statusbar)
-        self.actionSalir = QtGui.QAction(MainWindow)
+        self.actionSalir = QtWidgets.QAction(MainWindow)
         self.actionSalir.setObjectName(_fromUtf8("actionSalir"))
         self.menuArchivo.addAction(self.actionSalir)
         self.menubar.addAction(self.menuArchivo.menuAction())
@@ -68,8 +68,8 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
-    app = QtGui.QApplication(sys.argv)
-    MainWindow = QtGui.QMainWindow()
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()

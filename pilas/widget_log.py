@@ -7,9 +7,9 @@
 # website - http://www.pilas-engine.com.ar
 
 import os
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 
-class WidgetLog(QtGui.QMainWindow):
+class WidgetLog(QtWidgets.QMainWindow):
     """ Representa una ventana de log.
     Mediante pilas.log.imprimir() añadiremos elementos a esta ventana
     """
@@ -23,23 +23,23 @@ class WidgetLog(QtGui.QMainWindow):
 
         self.setWindowTitle('Pilas Log')
 
-        self.setWindowIcon(QtGui.QIcon(self._ruta_icono('tux.png')))
+        self.setWindowIcon(QtWidgets.QIcon(self._ruta_icono('tux.png')))
 
         self.centralwidget = QtWidgets.QWidget(self)
 
-        accionSalir = QtGui.QAction(QtGui.QIcon(self._ruta_icono('door_out.png')), 'Salir', self)
+        accionSalir = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('door_out.png')), 'Salir', self)
         accionSalir.setShortcut('Ctrl+S')
         accionSalir.triggered.connect(self.close)
 
-        accionEjecutar = QtGui.QAction(QtGui.QIcon(self._ruta_icono('control_play.png')), 'Ejecutar', self)
+        accionEjecutar = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('control_play.png')), 'Ejecutar', self)
         accionEjecutar.setShortcut('Ctrl+E')
         accionEjecutar.triggered.connect(self._ejecutar)
 
-        accionPausar = QtGui.QAction(QtGui.QIcon(self._ruta_icono('control_pause.png')), 'Pausar', self)
+        accionPausar = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('control_pause.png')), 'Pausar', self)
         accionPausar.setShortcut('Ctrl+P')
         accionPausar.triggered.connect(self._pausar)
 
-        accionResetear = QtGui.QAction(QtGui.QIcon(self._ruta_icono('arrow_refresh.png')), 'Resetear', self)
+        accionResetear = QtWidgets.QAction(QtWidgets.QIcon(self._ruta_icono('arrow_refresh.png')), 'Resetear', self)
         accionResetear.setShortcut('Ctrl+R')
         accionResetear.triggered.connect(self._resetear)
 
@@ -49,9 +49,9 @@ class WidgetLog(QtGui.QMainWindow):
         self.toolbar.addAction(accionPausar)
         self.toolbar.addAction(accionResetear)
 
-        hbox = QtGui.QHBoxLayout(self.centralwidget)
+        hbox = QtWidgets.QHBoxLayout(self.centralwidget)
 
-        self.treeView = QtGui.QTreeWidget(self.centralwidget)
+        self.treeView = QtWidgets.QTreeWidget(self.centralwidget)
 
         self.treeView.setColumnCount(2)
 
@@ -128,17 +128,17 @@ class WidgetLog(QtGui.QMainWindow):
 
     def _insertar_texto_en_lista(self, texto, itemPadre=None):
         if (itemPadre == None):
-            item = QtGui.QTreeWidgetItem(self.treeView)
+            item = QtWidgets.QTreeWidgetItem(self.treeView)
         else:
-            item = QtGui.QTreeWidgetItem(itemPadre)
+            item = QtWidgets.QTreeWidgetItem(itemPadre)
         item.setText(0, str(texto))
         return item
 
     def _insertar_diccionario_en_lista(self, clave, valor, itemPadre=None):
         if (itemPadre == None):
-            item = QtGui.QTreeWidgetItem(self.treeView)
+            item = QtWidgets.QTreeWidgetItem(self.treeView)
         else:
-            item = QtGui.QTreeWidgetItem(itemPadre)
+            item = QtWidgets.QTreeWidgetItem(itemPadre)
         item.setText(0, str(clave))
         item.setText(1, str(valor))
         return item

@@ -15,7 +15,7 @@ import imp
 import time
 import colores
 
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 
 import configuracion
@@ -92,12 +92,12 @@ class Pilas(object):
                                                             "habilitar_mensajes_log": habilitar_mensajes_log,
                                                             "x": x,
                                                             "y": y}))
-        if QtGui.QApplication.instance():
-            self.app = QtGui.QApplication.instance()
+        if QtWidgets.QApplication.instance():
+            self.app = QtWidgets.QApplication.instance()
             self._necesita_ejecutar_loop = False
             self.log("Obteniendo instancia a la aplicacion QT (no se re-genero el objeto de aplicacion)")
         else:
-            self.app = QtGui.QApplication(sys.argv)
+            self.app = QtWidgets.QApplication(sys.argv)
             self._necesita_ejecutar_loop = True
             self.log("Creando un objeto de aplicacion QT (porque no estaba inicializado)")
 
@@ -499,10 +499,10 @@ class Pilas(object):
         self.texto_avisar_anterior = self.actores.TextoInferior(texto)
 
     def ocultar_puntero_del_mouse(self):
-        self.widget.setCursor(QtGui.QCursor(QtCore.Qt.BlankCursor))
+        self.widget.setCursor(QtWidgets.QCursor(QtCore.Qt.BlankCursor))
 
     def mostrar_puntero_del_mouse(self):
-        self.widget.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.widget.setCursor(QtWidgets.QCursor(QtCore.Qt.ArrowCursor))
 
     def obtener_posicion_del_mouse(self):
         return (self.widget.mouse_x, self.widget.mouse_y)
@@ -656,8 +656,8 @@ def abrir_script_con_livereload(archivo):
 def abrir_script(archivo):
 
     def terminar_con_error(mensaje):
-        _ = QtGui.QApplication(sys.argv)
-        error = QtGui.QMessageBox()
+        _ = QtWidgets.QApplication(sys.argv)
+        error = QtWidgets.QMessageBox()
         error.critical(None, "Uh, algo anda mal...", mensaje)
         sys.exit(1)
 

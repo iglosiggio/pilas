@@ -8,7 +8,7 @@
 
 import sys
 import os
-from PyQt5 import QtCore, QtGui, QtWebKit, QtNetwork
+from PyQt5 import QtCore, QtWidgets, QtWebKit, QtNetwork
 import json
 
 from .asistente_base import Ui_AsistenteWindow
@@ -144,7 +144,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
                 self.process.finished.connect(self._cuando_termina_la_ejecucion_del_ejemplo)
                 self.process.start(sys.executable, [ruta], QtCore.QIODevice.ReadWrite)
             except Exception as name:
-                QtGui.QMessageBox.critical(self.main, "Error", str(name))
+                QtWidgets.QMessageBox.critical(self.main, "Error", str(name))
 
     def _mostrar_codigo(self, categoria, nombre):
         try:
@@ -164,7 +164,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             base_dir =  QtCore.QUrl.fromLocalFile(file_path)
             self.webView.setHtml(contenido, base_dir)
         except Exception as name:
-            QtGui.QMessageBox.critical(self.main, "Error", str(name))
+            QtWidgets.QMessageBox.critical(self.main, "Error", str(name))
 
     def _obtener_ruta_al_ejemplo(self, categoria, nombre):
         recurso = "../ejemplos/ejemplos/" + categoria + "/" + nombre + ".py"
@@ -175,7 +175,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
         salida = str(self.process.readAll())
 
         if codigo and salida:
-            QtGui.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
+            QtWidgets.QMessageBox.critical(self.main, "Error al iniciar ejemplo", "Error: \n" + salida)
 
     def _cuando_selecciona_interprete(self):
         if sys.platform == "darwin":
@@ -200,7 +200,7 @@ class VentanaAsistente(Ui_AsistenteWindow):
             try:
                 self._ejecutar_comando(sys.executable, [nombre_archivo_script], directorio_trabajo)
             except Exception as e:
-                QtGui.QMessageBox.critical(self.main, "Error", str(e))
+                QtWidgets.QMessageBox.critical(self.main, "Error", str(e))
 
     def _ejecutar_comando(self, comando, argumentos, directorio_trabajo):
         "Ejecuta un comando en segundo plano."
@@ -238,8 +238,8 @@ class VentanaAsistente(Ui_AsistenteWindow):
 
     def _consultar(self, parent, titulo, mensaje):
         "Realizar una consulta usando un cuadro de dialogo."
-        return QtGui.QMessageBox.question(parent, titulo, mensaje,
-                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        return QtWidgets.QMessageBox.question(parent, titulo, mensaje,
+                                    QtWidgets.QMessageBox.Yes, QtWidgets.QMessageBox.No)
 
     def salir(self, *_):
         self.main.close()
@@ -247,10 +247,10 @@ class VentanaAsistente(Ui_AsistenteWindow):
     def evaluar_javascript(self, codigo):
         self.webView.page().mainFrame().evaluateJavaScript(codigo)
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         self.setAcceptDrops(True)
 
     def definir_receptor_de_comandos(self, ui):
@@ -284,12 +284,12 @@ class MainWindow(QtGui.QMainWindow):
         # problema se produce a causa del objeto widget de pilas. En
         # una situación normal, la este método no devería ser necesario, pyqt
         # tiene que cerrar la aplicación cuando la última ventana se cierra.
-        QtGui.qApp.closeAllWindows()
+        QtWidgets.qApp.closeAllWindows()
         import sys
         sys.exit(0)
 
 def ejecutar():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("pilas-engine")
 
     main = MainWindow()

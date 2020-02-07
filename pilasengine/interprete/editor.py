@@ -16,7 +16,7 @@ import shutil
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.Qt import (QFrame, QWidget, QPainter,
                       QSize, QVariant)
-from PyQt5.QtGui import (QTextEdit, QTextCursor, QFileDialog,
+from PyQt5.QtWidgets import (QTextEdit, QTextCursor, QFileDialog,
                          QIcon, QMessageBox, QShortcut,
                          QInputDialog, QLineEdit, QErrorMessage,
                          QKeySequence, QTextFormat, QColor, QKeyEvent)
@@ -660,7 +660,7 @@ class Editor(editor_base.EditorBase):
 
 
 if __name__ == '__main__':
-    from PyQt5.QtGui import QApplication
+    from PyQt5.QtWidgets import QApplication
     app = QApplication(sys.argv)
     weditor = WidgetEditor()
     weditor.show()

@@ -6,7 +6,7 @@
 #
 # Website - http://www.pilas-engine.com.ar
 import os
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 from pilasengine.imagenes.imagen import Imagen
 from pilasengine import colores
@@ -18,16 +18,16 @@ class Superficie(Imagen):
 
     def __init__(self, pilas, ancho, alto):
         self.pilas = pilas
-        self._imagen = QtGui.QPixmap(ancho, alto)
-        self._imagen.fill(QtGui.QColor(255, 255, 255, 0))
-        self.canvas = QtGui.QPainter()
+        self._imagen = QtWidgets.QPixmap(ancho, alto)
+        self._imagen.fill(QtWidgets.QColor(255, 255, 255, 0))
+        self.canvas = QtWidgets.QPainter()
         self.ruta_original = os.urandom(25)
         self.repetir_horizontal = False
         self.repetir_vertical = False
 
     def pintar(self, color):
         r, g, b, a = color.obtener_componentes()
-        self._imagen.fill(QtGui.QColor(r, g, b, a))
+        self._imagen.fill(QtWidgets.QColor(r, g, b, a))
 
     def pintar_parte_de_imagen(self, imagen, origen_x, origen_y, ancho, alto,
                                x, y):
@@ -45,7 +45,7 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
         color = colores.generar_color_desde_texto(color)
         r, g, b, _ = color.obtener_componentes()
-        self.canvas.setPen(QtGui.QColor(r, g, b))
+        self.canvas.setPen(QtWidgets.QColor(r, g, b))
         dx = x
         dy = y
 
@@ -62,7 +62,7 @@ class Superficie(Imagen):
         else:
             flags = QtCore.Qt.AlignLeft | QtCore.Qt.TextWordWrap | QtCore.Qt.AlignTop
 
-        font = QtGui.QFont(nombre_de_fuente, magnitud)
+        font = QtWidgets.QFont(nombre_de_fuente, magnitud)
         self.canvas.setFont(font)
 
         if vertical:
@@ -82,8 +82,8 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, _ = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         if relleno:
@@ -97,8 +97,8 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, a = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b, a)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b, a)
+        pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         if relleno:
@@ -111,8 +111,8 @@ class Superficie(Imagen):
         self.canvas.begin(self._imagen)
 
         r, g, b, _ = color.obtener_componentes()
-        color = QtGui.QColor(r, g, b)
-        pen = QtGui.QPen(color, grosor)
+        color = QtWidgets.QColor(r, g, b)
+        pen = QtWidgets.QPen(color, grosor)
         self.canvas.setPen(pen)
 
         self.canvas.drawLine(x, y, x2, y2)
@@ -133,7 +133,7 @@ class Superficie(Imagen):
         self.circulo(x, y, 3, color=color, relleno=True)
 
     def limpiar(self):
-        self._imagen.fill(QtGui.QColor(0, 0, 0, 0))
+        self._imagen.fill(QtWidgets.QColor(0, 0, 0, 0))
 
     def cargar_fuente(self, fuente_como_ruta):
         """Carga o convierte una fuente para ser utilizada dentro del motor.
@@ -151,12 +151,12 @@ class Superficie(Imagen):
 
         if not fuente_como_ruta in Superficie.CACHE_FUENTES.keys():
             ruta_a_la_fuente = utils.obtener_ruta_al_recurso(fuente_como_ruta)
-            fuente_id = QtGui.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
+            fuente_id = QtWidgets.QFontDatabase.addApplicationFont(ruta_a_la_fuente)
             Superficie.CACHE_FUENTES[fuente_como_ruta] = fuente_id
         else:
             fuente_id = Superficie.CACHE_FUENTES[fuente_como_ruta]
 
-        return str(QtGui.QFontDatabase.applicationFontFamilies(fuente_id)[0])
+        return str(QtWidgets.QFontDatabase.applicationFontFamilies(fuente_id)[0])
 
     def __repr__(self):
         return "<Superficie>"

@@ -9,7 +9,7 @@ import sys
 import traceback
 
 from PyQt5 import Qt
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 from PyQt5 import QtCore
 from PyQt5.QtOpenGL import QGLWidget
 
@@ -53,7 +53,7 @@ class WidgetConAceleracion(QGLWidget):
         self.parent_guardado = None
 
     def iniciar_interface(self, ancho, alto):
-        self.painter = QtGui.QPainter()
+        self.painter = QtWidgets.QPainter()
         self.setMouseTracking(True)
         self.mouse_x = 0
         self.mouse_y = 0
@@ -190,7 +190,7 @@ class WidgetConAceleracion(QGLWidget):
         self.mouse_y = y
 
     def _pintar_fondo(self):
-        self.painter.setBrush(QtGui.QColor(50, 50, 50))
+        self.painter.setBrush(QtWidgets.QColor(50, 50, 50))
         size = self.size()
         w = size.width()
         h = size.height()
@@ -225,10 +225,10 @@ class WidgetConAceleracion(QGLWidget):
     def _dibujar_widget(self):
         # Suavizar efectos y transformaciones de imágenes.
         self.painter.save()
-        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
-        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
-        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
-        self.painter.setRenderHint(QtGui.QPainter.TextAntialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.Antialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.HighQualityAntialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.SmoothPixmapTransform, self._borrosidad)
+        self.painter.setRenderHint(QtWidgets.QPainter.TextAntialiasing, True)
 
         self.painter.translate(self.window_dx, self.window_dy)
         self.painter.scale(self.escala, self.escala)
@@ -236,7 +236,7 @@ class WidgetConAceleracion(QGLWidget):
         self.pilas.realizar_dibujado(self.painter)
 
         if self.pausa:
-            font = QtGui.QFont(self.painter.font().family(), 30)
+            font = QtWidgets.QFont(self.painter.font().family(), 30)
             self.painter.setFont(font)
             w = self.original_width
             h = self.original_height
@@ -248,7 +248,7 @@ class WidgetConAceleracion(QGLWidget):
 
         # Ocultando los bordes de pantalla.
         self.painter.restore()
-        self.painter.setBrush(QtGui.QColor(0, 0, 0))
+        self.painter.setBrush(QtWidgets.QColor(0, 0, 0))
         size = self.size()
         w = size.width()
         h = size.height()
@@ -284,8 +284,8 @@ class WidgetConAceleracion(QGLWidget):
 
     def centrar(self):
         """Coloca la ventana en el centro del escritorio."""
-        from PyQt5 import QtGui
-        desktop = QtGui.QApplication.desktop()
+        from PyQt5 import QtWidgets
+        desktop = QtWidgets.QApplication.desktop()
         centro = desktop.screen().rect().center()
 
         if centro.x() > 1000:
@@ -394,7 +394,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
         self.parent_guardado = None
 
     def iniciar_interface(self, ancho, alto):
-        self.painter = QtGui.QPainter()
+        self.painter = QtWidgets.QPainter()
         self.setMouseTracking(True)
         self.mouse_x = 0
         self.mouse_y = 0
@@ -529,7 +529,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
         self.mouse_y = y
 
     def _pintar_fondo(self):
-        self.painter.setBrush(QtGui.QColor(50, 50, 50))
+        self.painter.setBrush(QtWidgets.QColor(50, 50, 50))
         size = self.size()
         w = size.width()
         h = size.height()
@@ -564,10 +564,10 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
     def _dibujar_widget(self):
         # Suavizar efectos y transformaciones de imágenes.
         self.painter.save()
-        self.painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
-        self.painter.setRenderHint(QtGui.QPainter.HighQualityAntialiasing, True)
-        self.painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, self._borrosidad)
-        self.painter.setRenderHint(QtGui.QPainter.TextAntialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.Antialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.HighQualityAntialiasing, True)
+        self.painter.setRenderHint(QtWidgets.QPainter.SmoothPixmapTransform, self._borrosidad)
+        self.painter.setRenderHint(QtWidgets.QPainter.TextAntialiasing, True)
 
         self.painter.translate(self.window_dx, self.window_dy)
         self.painter.scale(self.escala, self.escala)
@@ -575,7 +575,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
         self.pilas.realizar_dibujado(self.painter)
 
         if self.pausa:
-            font = QtGui.QFont(self.painter.font().family(), 30)
+            font = QtWidgets.QFont(self.painter.font().family(), 30)
             self.painter.setFont(font)
             w = self.original_width
             h = self.original_height
@@ -587,7 +587,7 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
 
         # Ocultando los bordes de pantalla.
         self.painter.restore()
-        self.painter.setBrush(QtGui.QColor(0, 0, 0))
+        self.painter.setBrush(QtWidgets.QColor(0, 0, 0))
         size = self.size()
         w = size.width()
         h = size.height()
@@ -623,8 +623,8 @@ class WidgetSinAceleracion(QtWidgets.QWidget):
 
     def centrar(self):
         """Coloca la ventana en el centro del escritorio."""
-        from PyQt5 import QtGui
-        desktop = QtGui.QApplication.desktop()
+        from PyQt5 import QtWidgets
+        desktop = QtWidgets.QApplication.desktop()
         centro = desktop.screen().rect().center()
 
         if centro.x() > 1000:

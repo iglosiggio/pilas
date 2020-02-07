@@ -13,7 +13,7 @@ import math
 from pilasengine import colores
 
 from PyQt5 import QtCore
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 INTERPRETE_PATH = os.path.dirname(sys.argv[0])
@@ -234,7 +234,7 @@ def instanciar_interpolacion(pilas, valor_o_valores, duracion=1, demora=0,
 def centrar_ventana(ventana):
     """Mueve la ventana al centro del area visible del escritorio."""
     qr = ventana.frameGeometry()
-    cp = QtGui.QDesktopWidget().availableGeometry().center()
+    cp = QtWidgets.QDesktopWidget().availableGeometry().center()
     qr.moveCenter(cp)
     ventana.move(qr.topLeft())
 
@@ -294,7 +294,7 @@ def destacar_ventanas():
 def iniciar_desde_terminal():
     import sys
     import signal
-    from PyQt5 import QtGui
+    from PyQt5 import QtWidgets
 
     import pilasengine
 
@@ -303,8 +303,8 @@ def iniciar_desde_terminal():
 
 
 
-    app = QtGui.QApplication(sys.argv)
-    QtGui.QApplication.addLibraryPath(QtGui.QApplication.applicationDirPath() + "/../PlugIns")
+    app = QtWidgets.QApplication(sys.argv)
+    QtWidgets.QApplication.addLibraryPath(QtWidgets.QApplication.applicationDirPath() + "/../PlugIns")
 
     pilasengine.configuracion.Configuracion()
 
@@ -325,7 +325,7 @@ def iniciar_desde_terminal():
             _ = pilasengine.abrir_asistente()
 
     icono = pilasengine.utils.obtener_ruta_al_recurso('icono.ico')
-    app.setWindowIcon(QtGui.QIcon(icono))
-    #mainwindow.setWindowIcon(QtGui.QIcon(icono))
+    app.setWindowIcon(QtWidgets.QIcon(icono))
+    #mainwindow.setWindowIcon(QtWidgets.QIcon(icono))
 
     sys.exit(app.exec_())
