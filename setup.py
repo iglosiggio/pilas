@@ -21,6 +21,9 @@ http://www.pilas-engine.com.ar
         install_requires=[
             'setuptools',
             'box2d',
+            'PyQt5',
+            'PyQtWebEngine',
+            'pygame',
             ],
         packages=[
             'pilasengine',
