@@ -7,7 +7,6 @@
 # Website - http://www.pilas-engine.com.ar
 
 from pilasengine import habilidades
-from pilasengine import utils
 
 
 class MirarAlActor(habilidades.Habilidad):
@@ -34,6 +33,6 @@ class MirarAlActor(habilidades.Habilidad):
         receptor = (self.receptor.x, self.receptor.y)
         actor_a_seguir = (self.actor_a_seguir.x, self.actor_a_seguir.y)
 
-        angulo = utils.obtener_angulo_entre(receptor, actor_a_seguir)
+        angulo = self.pilas.utils.obtener_angulo_entre(receptor, actor_a_seguir)
 
         self.receptor.rotacion = angulo - self.lado_seguimiento
