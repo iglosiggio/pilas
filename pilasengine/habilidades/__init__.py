@@ -62,14 +62,14 @@ class Habilidades(object):
         try:
             return self.diccionario_de_habilidades[nombre]
         except KeyError:
-            posibilidades = self.diccionario_de_habilidades.keys()
+            posibilidades = list(self.diccionario_de_habilidades.keys())
             similar = difflib.get_close_matches(nombre, posibilidades)
 
             if similar:
                 similar = similar[0]
-                raise NameError("lo siento, no existe esa habilidad... quisiste decir '%s' ?" %(similar))
+                raise NameError("lo siento, no existe esa habilidad... quisiste decir '%s' ?" % (similar))
             else:
-                raise NameError("lo siento, no existe una habilidad con el nombre '%s'..." %(nombre))
+                raise NameError("lo siento, no existe una habilidad con el nombre '%s'..." % (nombre))
 
     @property
     def Habilidad(self):

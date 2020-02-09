@@ -113,7 +113,7 @@ class Comportamientos(object):
         try:
             return self.diccionario_de_comportamientos[nombre]
         except KeyError:
-            posibilidades = self.diccionario_de_comportamientos.keys()
+            posibilidades = list(self.diccionario_de_comportamientos.keys())
             similar = difflib.get_close_matches(nombre, posibilidades)
 
             if similar:

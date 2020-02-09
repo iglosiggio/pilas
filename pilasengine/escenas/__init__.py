@@ -9,6 +9,7 @@
 import traceback
 import inspect
 
+from pilasengine.actores import Actores
 from pilasengine.escenas.normal import Normal
 from pilasengine.escenas.escena import Escena
 from pilasengine.escenas.error import Error
@@ -34,10 +35,6 @@ class Escenas(object):
         self.pila_de_escenas = []
         self.escena_actual = None
         self.iteraciones = 0
-
-    def definir_escena(self, escena):
-        mensaje = "El método definir_escena está en desuso..."
-        raise Error(mensaje)
 
     def obtener_escena_actual(self):
         return self.escena_actual

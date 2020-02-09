@@ -410,7 +410,7 @@ def _get_win_folder_from_registry(csidl_name):
     registry for this guarantees us the correct answer for all CSIDL_*
     names.
     """
-    import _winreg
+    import winreg
 
     shell_folder_name = {
         "CSIDL_APPDATA": "AppData",
@@ -418,14 +418,14 @@ def _get_win_folder_from_registry(csidl_name):
         "CSIDL_LOCAL_APPDATA": "Local AppData",
     }[csidl_name]
 
-    key = _winreg.OpenKey(
-        _winreg.HKEY_CURRENT_USER,
+    key = winreg.OpenKey(
+        winreg.HKEY_CURRENT_USER,
         r"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
     )
-    dir, type = _winreg.QueryValueEx(key, shell_folder_name)
+    dir, type = winreg.QueryValueEx(key, shell_folder_name)
     return dir
 
-
+# TODO: win32com doesn't exist for python3
 def _get_win_folder_with_pywin32(csidl_name):
     from win32com.shell import shellcon, shell
     dir = shell.SHGetFolderPath(0, getattr(shellcon, csidl_name), 0, 0)
@@ -479,6 +479,7 @@ def _get_win_folder_with_ctypes(csidl_name):
 
     return buf.value
 
+# TODO: This probably doesn't work
 def _get_win_folder_with_jna(csidl_name):
     import array
     from com.sun import jna
@@ -500,7 +501,7 @@ def _get_win_folder_with_jna(csidl_name):
     if has_high_char:
         buf = array.zeros('c', buf_size)
         kernel = win32.Kernel32.INSTANCE
-        if kernal.GetShortPathName(dir, buf, buf_size):
+        if kernel.GetShortPathName(dir, buf, buf_size):
             dir = jna.Native.toString(buf.tostring()).rstrip("\0")
 
     return dir

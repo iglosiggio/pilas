@@ -5,9 +5,8 @@
 # License: LGPLv3 (see http://www.gnu.org/licenses/lgpl.html)
 #
 # Website - http://www.pilas-engine.com.ar
-import pytweener
 
-class Interpolacion(object):
+class Interpolacion:
     """Representa una interpolacion, que pasa por varios puntos clave.
 
     Las interpolacione se utilizan para realizar movimientos de
@@ -87,7 +86,7 @@ class Lineal(Interpolacion):
         return Lineal(new_values, self.duration, self.delay)
 
     def apply(self, target, function):
-        Interpolacion.apply(self, target, function, pytweener.Easing.Linear.easeNone)
+        Interpolacion.apply(self, target, function, self.pilas.pytweener.Easing.Linear.easeNone)
 
 class AceleracionGradual(Interpolacion):
     "Representa una interpolación con aceleración gradual."

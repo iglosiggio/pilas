@@ -464,7 +464,7 @@ class Pilas(object):
 
         if self._imprimir_mensajes_log:
             hora = datetime.datetime.now().strftime("%H:%M:%S")
-            mensaje = map(lambda x: str(x), mensaje)
+            mensaje = map(str, mensaje)
             print(":: %s :: %s " % (hora, " ".join(mensaje)))
 
     def obtener_ruta_al_recurso(self, ruta):
