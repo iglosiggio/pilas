@@ -24,6 +24,7 @@ http://www.pilas-engine.com.ar
             'PyQt5',
             'PyQtWebEngine',
             'pygame',
+            'appdirs',
             ],
         packages=[
             'pilasengine',
