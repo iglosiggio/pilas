@@ -10,6 +10,7 @@ from pilasengine.fisica.contact_listener import ObjetosContactListener
 from pilasengine.fisica import rectangulo
 from pilasengine.fisica import circulo
 from pilasengine.fisica import figura
+from pilasengine.fisica import poligono
 from pilasengine.fisica.constantes import constante_de_movimiento
 
 PPM = 30
@@ -328,3 +329,12 @@ class Fisica(object):
                                restitucion=restitucion, friccion=friccion,
                                amortiguacion=amortiguacion, sin_rotacion=sin_rotacion,
                                sensor=sensor)
+
+    def Poligono(self, x=0, y=0, puntos=[], dinamica=True, densidad=1.0,
+                 restitucion=0.56, friccion=10.5, amortiguacion=0.1,
+                 sin_rotacion=False, sensor=False):
+        return poligono.Poligono(self, self.pilas, x, y, puntos,
+                                 dinamica=dinamica, densidad=densidad,
+                                 restitucion=restitucion, friccion=friccion,
+                                 amortiguacion=amortiguacion,
+                                 sin_rotacion=sin_rotacion, sensor=sensor)

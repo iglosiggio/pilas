@@ -6,7 +6,9 @@
 #
 # Website - http://www.pilas-engine.com.ar
 
+import Box2D as box2d
 from pilasengine.fisica.figura import Figura
+from pilasengine.utils import convertir_a_metros
 
 class Poligono(Figura):
     """Representa un cuerpo poligonal.
@@ -17,44 +19,48 @@ class Poligono(Figura):
 
     Por ejemplo:
 
-        >>> pilas.fisica.Poligono(0,0,[(100, 2), (-50, 0), (-100, 100.0)])
+        >>> pilas.fisica.Poligono(0, 0, [(100, 2), (-50, 0), (-100, 100.0)])
 
     """
 
-    def __init__(self, x, y, puntos, dinamica=True, densidad=1.0,
-            restitucion=0.56, friccion=10.5, amortiguacion=0.1,
-            fisica=None, sin_rotacion=False, sensor=False):
+    def __init__(self, fisica, pilas, x, y, puntos, dinamica=True,
+                 densidad=1.0, restitucion=0.56, friccion=10.5,
+                 amortiguacion=0.1, sin_rotacion=False, sensor=False):
 
-        Figura.__init__(self)
+        Figura.__init__(self, fisica, pilas)
 
         self._escala = 1
 
         self.puntos = puntos
-        self.dinamica = dinamica
         self.fisica = fisica
 
         if not self.fisica:
             self.fisica = pilas.escena_actual().fisica
 
-        self.vertices = [(convertir_a_metros(x1) * self._escala, convertir_a_metros(y1) * self._escala) for (x1, y1) in self.puntos]
+        self.vertices = [(convertir_a_metros(x) * self._escala, convertir_a_metros(y) * self._escala) for (x, y) in self.puntos]
+        shape = box2d.b2PolygonShape(vertices=self.vertices)
 
-        fixture = box2d.b2FixtureDef(shape=box2d.b2PolygonShape(vertices=self.vertices),
-                                     density=densidad,
-                                     linearDamping=amortiguacion,
-                                     friction=friccion,
-                                     restitution=restitucion)
+        try:
+            fixture = box2d.b2FixtureDef(shape=shape, density=densidad,
+                                         friction=friccion,
+                                         restitution=restitucion)
+        except TypeError:
+            fixture = box2d.b2FixtureDef(shape=shape, density=densidad,
+                                         linearDamping=amortiguacion,
+                                         friction=friccion,
+                                         restitution=restitucion)
 
         self.userData = {'id': self.id, 'figura': self}
         fixture.userData = self.userData
 
-        if self.dinamica:
-            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(0, 0), fixtures=fixture)
+        if dinamica:
+            self._cuerpo = self.fisica.mundo.CreateDynamicBody(position=(x, y), fixtures=fixture)
         else:
-            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(0, 0), fixtures=fixture)
+            self._cuerpo = self.fisica.mundo.CreateKinematicBody(position=(x, y), fixtures=fixture)
 
+        self.dinamica = dinamica
         self.sin_rotacion = sin_rotacion
         self.sensor = sensor
-
 
     def definir_escala(self, escala):
         self._escala = escala
@@ -62,11 +68,8 @@ class Poligono(Figura):
         self._cuerpo.fixtures[0].shape.vertices = box2d.b2PolygonShape(
             vertices = self.vertices).vertices
 
-
-    @pilas.utils.interpolable
     def set_scale(self, escala):
         self.definir_escala(escala)
-
 
     def get_scale(self):
         return self._escala
