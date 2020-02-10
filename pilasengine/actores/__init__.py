@@ -574,6 +574,10 @@ class Actores(object):
                                  velocidad_maxima=velocidad_maxima,
                                  angulo_de_movimiento=angulo_de_movimiento)
 
+    def Alien(self):
+        ":rtype alien.Alien"
+        return self._crear_actor('alien', 'Alien')
+
     def _crear_actor(self, modulo, clase, *k, **kw):
 
         referencia_a_modulo = importlib.import_module('pilasengine.actores.' + modulo)
